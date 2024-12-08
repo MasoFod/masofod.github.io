@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>MasoFod</title>
+  <icon>http://masofod.github.io/icon.png</icon>
+  <subtitle>思考与想象</subtitle>
+  <link href="http://masofod.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://masofod.github.io/"/>
+  <updated>2024-12-08T15:01:45.862Z</updated>
+  <id>http://masofod.github.io/</id>
+  
+  <author>
+    <name>MasoFod</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>通过对比清理图片</title>
+    <link href="http://masofod.github.io/2024/12/08/%E9%80%9A%E8%BF%87%E5%AF%B9%E6%AF%94%E6%B8%85%E7%90%86%E5%9B%BE%E7%89%87/"/>
+    <id>http://masofod.github.io/2024/12/08/%E9%80%9A%E8%BF%87%E5%AF%B9%E6%AF%94%E6%B8%85%E7%90%86%E5%9B%BE%E7%89%87/</id>
+    <published>2024-12-08T14:51:53.000Z</published>
+    <updated>2024-12-08T15:01:45.862Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;因为本人平时喜好存一些图片，但经常批量下载，存了又不怎么看，因此有很多图片实际上并不需要，因此我想到了这个办法。&lt;/p&gt;
+&lt;p&gt;使用这个工具，输入路径后，会自动随机抽取路径下的两张图片，然后可以自己选择留下哪一张，或者是直接跳过。&lt;/p&gt;
+&lt;p&gt;同时，我还使用了HTTP服务，因此可以躺床上用手机操作。&lt;/p&gt;
+&lt;p&gt;开始运行后访问localhost:1145即可。&lt;/p&gt;
+&lt;p&gt;代码如下。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="工具" scheme="http://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="小工具" scheme="http://masofod.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+</feed>
