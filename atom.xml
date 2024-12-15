@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>MasoFod</title>
-  <icon>http://masofod.github.io/icon.png</icon>
+  <icon>https://masofod.github.io/icon.png</icon>
   <subtitle>思考与想象</subtitle>
-  <link href="http://masofod.github.io/atom.xml" rel="self"/>
+  <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
-  <link href="http://masofod.github.io/"/>
+  <link href="https://masofod.github.io/"/>
   <updated>2024-12-14T15:59:42.486Z</updated>
-  <id>http://masofod.github.io/</id>
+  <id>https://masofod.github.io/</id>
   
   <author>
     <name>MasoFod</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>推荐一个看番软件</title>
-    <link href="http://masofod.github.io/2024/12/14/%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%E7%9C%8B%E7%95%AA%E8%BD%AF%E4%BB%B6/"/>
-    <id>http://masofod.github.io/2024/12/14/%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%E7%9C%8B%E7%95%AA%E8%BD%AF%E4%BB%B6/</id>
+    <link href="https://masofod.github.io/2024/12/14/%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%E7%9C%8B%E7%95%AA%E8%BD%AF%E4%BB%B6/"/>
+    <id>https://masofod.github.io/2024/12/14/%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%E7%9C%8B%E7%95%AA%E8%BD%AF%E4%BB%B6/</id>
     <published>2024-12-14T15:58:05.000Z</published>
     <updated>2024-12-14T15:59:42.486Z</updated>
     
@@ -34,17 +34,17 @@
     
     
     
-    <category term="工具" scheme="http://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    <category term="工具" scheme="https://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-    <category term="小工具" scheme="http://masofod.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
+    <category term="小工具" scheme="https://masofod.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
   <entry>
     <title>【随便漫谈】独自一人的异世界攻略</title>
-    <link href="http://masofod.github.io/2024/12/14/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E7%8B%AC%E8%87%AA%E4%B8%80%E4%BA%BA%E7%9A%84%E5%BC%82%E4%B8%96%E7%95%8C%E6%94%BB%E7%95%A5/"/>
-    <id>http://masofod.github.io/2024/12/14/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E7%8B%AC%E8%87%AA%E4%B8%80%E4%BA%BA%E7%9A%84%E5%BC%82%E4%B8%96%E7%95%8C%E6%94%BB%E7%95%A5/</id>
+    <link href="https://masofod.github.io/2024/12/14/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E7%8B%AC%E8%87%AA%E4%B8%80%E4%BA%BA%E7%9A%84%E5%BC%82%E4%B8%96%E7%95%8C%E6%94%BB%E7%95%A5/"/>
+    <id>https://masofod.github.io/2024/12/14/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E7%8B%AC%E8%87%AA%E4%B8%80%E4%BA%BA%E7%9A%84%E5%BC%82%E4%B8%96%E7%95%8C%E6%94%BB%E7%95%A5/</id>
     <published>2024-12-14T03:31:22.000Z</published>
     <updated>2024-12-14T03:33:07.713Z</updated>
     
@@ -63,21 +63,21 @@
     
     
     
-    <category term="随便漫谈" scheme="http://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
     
-    <category term="随便漫谈" scheme="http://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
-    <category term="后宫番" scheme="http://masofod.github.io/tags/%E5%90%8E%E5%AE%AB%E7%95%AA/"/>
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
     
-    <category term="厕纸" scheme="http://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    <category term="后宫番" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB%E7%95%AA/"/>
     
   </entry>
   
   <entry>
     <title>【随便漫谈】我立于百万生命之上 及第二季</title>
-    <link href="http://masofod.github.io/2024/12/14/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E6%88%91%E7%AB%8B%E4%BA%8E%E7%99%BE%E4%B8%87%E7%94%9F%E5%91%BD%E4%B9%8B%E4%B8%8A-%E5%8F%8A%E7%AC%AC%E4%BA%8C%E5%AD%A3/"/>
-    <id>http://masofod.github.io/2024/12/14/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E6%88%91%E7%AB%8B%E4%BA%8E%E7%99%BE%E4%B8%87%E7%94%9F%E5%91%BD%E4%B9%8B%E4%B8%8A-%E5%8F%8A%E7%AC%AC%E4%BA%8C%E5%AD%A3/</id>
+    <link href="https://masofod.github.io/2024/12/14/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E6%88%91%E7%AB%8B%E4%BA%8E%E7%99%BE%E4%B8%87%E7%94%9F%E5%91%BD%E4%B9%8B%E4%B8%8A-%E5%8F%8A%E7%AC%AC%E4%BA%8C%E5%AD%A3/"/>
+    <id>https://masofod.github.io/2024/12/14/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E6%88%91%E7%AB%8B%E4%BA%8E%E7%99%BE%E4%B8%87%E7%94%9F%E5%91%BD%E4%B9%8B%E4%B8%8A-%E5%8F%8A%E7%AC%AC%E4%BA%8C%E5%AD%A3/</id>
     <published>2024-12-14T03:23:07.000Z</published>
     <updated>2024-12-14T03:27:18.025Z</updated>
     
@@ -92,21 +92,21 @@
     
     
     
-    <category term="随便漫谈" scheme="http://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
     
-    <category term="随便漫谈" scheme="http://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
-    <category term="后宫番" scheme="http://masofod.github.io/tags/%E5%90%8E%E5%AE%AB%E7%95%AA/"/>
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
     
-    <category term="厕纸" scheme="http://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    <category term="后宫番" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB%E7%95%AA/"/>
     
   </entry>
   
   <entry>
     <title>【随便漫谈】战斗员派遣中</title>
-    <link href="http://masofod.github.io/2024/12/14/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E6%88%98%E6%96%97%E5%91%98%E6%B4%BE%E9%81%A3%E4%B8%AD/"/>
-    <id>http://masofod.github.io/2024/12/14/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E6%88%98%E6%96%97%E5%91%98%E6%B4%BE%E9%81%A3%E4%B8%AD/</id>
+    <link href="https://masofod.github.io/2024/12/14/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E6%88%98%E6%96%97%E5%91%98%E6%B4%BE%E9%81%A3%E4%B8%AD/"/>
+    <id>https://masofod.github.io/2024/12/14/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E6%88%98%E6%96%97%E5%91%98%E6%B4%BE%E9%81%A3%E4%B8%AD/</id>
     <published>2024-12-14T03:22:24.000Z</published>
     <updated>2024-12-14T03:30:53.594Z</updated>
     
@@ -125,21 +125,21 @@
     
     
     
-    <category term="随便漫谈" scheme="http://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
     
-    <category term="随便漫谈" scheme="http://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
-    <category term="后宫番" scheme="http://masofod.github.io/tags/%E5%90%8E%E5%AE%AB%E7%95%AA/"/>
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
     
-    <category term="厕纸" scheme="http://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    <category term="后宫番" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB%E7%95%AA/"/>
     
   </entry>
   
   <entry>
     <title>【随便漫谈】不正经的魔术讲师与禁忌教典</title>
-    <link href="http://masofod.github.io/2024/12/11/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E4%B8%8D%E6%AD%A3%E7%BB%8F%E7%9A%84%E9%AD%94%E6%9C%AF%E8%AE%B2%E5%B8%88%E4%B8%8E%E7%A6%81%E5%BF%8C%E6%95%99%E5%85%B8/"/>
-    <id>http://masofod.github.io/2024/12/11/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E4%B8%8D%E6%AD%A3%E7%BB%8F%E7%9A%84%E9%AD%94%E6%9C%AF%E8%AE%B2%E5%B8%88%E4%B8%8E%E7%A6%81%E5%BF%8C%E6%95%99%E5%85%B8/</id>
+    <link href="https://masofod.github.io/2024/12/11/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E4%B8%8D%E6%AD%A3%E7%BB%8F%E7%9A%84%E9%AD%94%E6%9C%AF%E8%AE%B2%E5%B8%88%E4%B8%8E%E7%A6%81%E5%BF%8C%E6%95%99%E5%85%B8/"/>
+    <id>https://masofod.github.io/2024/12/11/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E4%B8%8D%E6%AD%A3%E7%BB%8F%E7%9A%84%E9%AD%94%E6%9C%AF%E8%AE%B2%E5%B8%88%E4%B8%8E%E7%A6%81%E5%BF%8C%E6%95%99%E5%85%B8/</id>
     <published>2024-12-11T05:27:22.000Z</published>
     <updated>2024-12-11T05:43:55.682Z</updated>
     
@@ -157,19 +157,19 @@
     
     
     
-    <category term="随便漫谈" scheme="http://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
     
-    <category term="随便漫谈" scheme="http://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
-    <category term="厕纸" scheme="http://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
     
   </entry>
   
   <entry>
     <title>【随便漫谈】星刻的龙骑士</title>
-    <link href="http://masofod.github.io/2024/12/10/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E6%98%9F%E5%88%BB%E7%9A%84%E9%BE%99%E9%AA%91%E5%A3%AB/"/>
-    <id>http://masofod.github.io/2024/12/10/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E6%98%9F%E5%88%BB%E7%9A%84%E9%BE%99%E9%AA%91%E5%A3%AB/</id>
+    <link href="https://masofod.github.io/2024/12/10/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E6%98%9F%E5%88%BB%E7%9A%84%E9%BE%99%E9%AA%91%E5%A3%AB/"/>
+    <id>https://masofod.github.io/2024/12/10/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E6%98%9F%E5%88%BB%E7%9A%84%E9%BE%99%E9%AA%91%E5%A3%AB/</id>
     <published>2024-12-10T03:22:00.000Z</published>
     <updated>2024-12-10T03:27:47.654Z</updated>
     
@@ -188,21 +188,21 @@
     
     
     
-    <category term="随便漫谈" scheme="http://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
     
-    <category term="随便漫谈" scheme="http://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
-    <category term="后宫番" scheme="http://masofod.github.io/tags/%E5%90%8E%E5%AE%AB%E7%95%AA/"/>
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
     
-    <category term="厕纸" scheme="http://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    <category term="后宫番" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB%E7%95%AA/"/>
     
   </entry>
   
   <entry>
     <title>【随便漫谈】冰剑的魔术师将要统一世界</title>
-    <link href="http://masofod.github.io/2024/12/09/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E5%86%B0%E5%89%91%E7%9A%84%E9%AD%94%E6%9C%AF%E5%B8%88%E5%B0%86%E8%A6%81%E7%BB%9F%E4%B8%80%E4%B8%96%E7%95%8C/"/>
-    <id>http://masofod.github.io/2024/12/09/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E5%86%B0%E5%89%91%E7%9A%84%E9%AD%94%E6%9C%AF%E5%B8%88%E5%B0%86%E8%A6%81%E7%BB%9F%E4%B8%80%E4%B8%96%E7%95%8C/</id>
+    <link href="https://masofod.github.io/2024/12/09/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E5%86%B0%E5%89%91%E7%9A%84%E9%AD%94%E6%9C%AF%E5%B8%88%E5%B0%86%E8%A6%81%E7%BB%9F%E4%B8%80%E4%B8%96%E7%95%8C/"/>
+    <id>https://masofod.github.io/2024/12/09/%E3%80%90%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88%E3%80%91%E5%86%B0%E5%89%91%E7%9A%84%E9%AD%94%E6%9C%AF%E5%B8%88%E5%B0%86%E8%A6%81%E7%BB%9F%E4%B8%80%E4%B8%96%E7%95%8C/</id>
     <published>2024-12-09T11:11:37.000Z</published>
     <updated>2024-12-09T11:25:12.736Z</updated>
     
@@ -220,21 +220,21 @@
     
     
     
-    <category term="随便漫谈" scheme="http://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
     
-    <category term="随便漫谈" scheme="http://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
-    <category term="后宫番" scheme="http://masofod.github.io/tags/%E5%90%8E%E5%AE%AB%E7%95%AA/"/>
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
     
-    <category term="厕纸" scheme="http://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    <category term="后宫番" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB%E7%95%AA/"/>
     
   </entry>
   
   <entry>
     <title>通过对比清理图片</title>
-    <link href="http://masofod.github.io/2024/12/08/%E9%80%9A%E8%BF%87%E5%AF%B9%E6%AF%94%E6%B8%85%E7%90%86%E5%9B%BE%E7%89%87/"/>
-    <id>http://masofod.github.io/2024/12/08/%E9%80%9A%E8%BF%87%E5%AF%B9%E6%AF%94%E6%B8%85%E7%90%86%E5%9B%BE%E7%89%87/</id>
+    <link href="https://masofod.github.io/2024/12/08/%E9%80%9A%E8%BF%87%E5%AF%B9%E6%AF%94%E6%B8%85%E7%90%86%E5%9B%BE%E7%89%87/"/>
+    <id>https://masofod.github.io/2024/12/08/%E9%80%9A%E8%BF%87%E5%AF%B9%E6%AF%94%E6%B8%85%E7%90%86%E5%9B%BE%E7%89%87/</id>
     <published>2024-12-08T14:51:53.000Z</published>
     <updated>2024-12-08T15:01:45.862Z</updated>
     
@@ -247,10 +247,10 @@
     
     
     
-    <category term="工具" scheme="http://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    <category term="工具" scheme="https://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-    <category term="小工具" scheme="http://masofod.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
+    <category term="小工具" scheme="https://masofod.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
