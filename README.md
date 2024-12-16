@@ -1,0 +1,1 @@
+This is my [blog](https://masofod.github.io/)

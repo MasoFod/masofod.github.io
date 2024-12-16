@@ -2,24 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://masofod.github.io/posts/a10ab4dd.html</loc>
-    
-    <lastmod>2024-12-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://masofod.github.io/posts/74bc9031.html</loc>
-    
-    <lastmod>2024-12-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://masofod.github.io/posts/1c1a1f03.html</loc>
     
     <lastmod>2024-12-16</lastmod>
@@ -38,7 +20,25 @@
   </url>
   
   <url>
+    <loc>https://masofod.github.io/posts/cbb6721e.html</loc>
+    
+    <lastmod>2024-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://masofod.github.io/posts/f20036ba.html</loc>
+    
+    <lastmod>2024-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://masofod.github.io/posts/567274b5.html</loc>
     
     <lastmod>2024-12-16</lastmod>
     
@@ -56,27 +56,27 @@
   </url>
   
   <url>
-    <loc>https://masofod.github.io/posts/567274b5.html</loc>
-    
-    <lastmod>2024-12-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://masofod.github.io/posts/cbb6721e.html</loc>
-    
-    <lastmod>2024-12-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://masofod.github.io/posts/360164f0.html</loc>
     
-    <lastmod>2024-12-15</lastmod>
+    <lastmod>2024-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://masofod.github.io/posts/74bc9031.html</loc>
+    
+    <lastmod>2024-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://masofod.github.io/posts/a10ab4dd.html</loc>
+    
+    <lastmod>2024-12-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
