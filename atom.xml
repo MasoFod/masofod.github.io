@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>MasoFod——一个致力于追寻乐子但是不怎么成功的人</title>
+  <icon>https://masofod.github.io/icon.png</icon>
+  <subtitle>思考与想象</subtitle>
+  <link href="https://masofod.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://masofod.github.io/"/>
+  <updated>2025-01-08T05:38:49.719Z</updated>
+  <id>https://masofod.github.io/</id>
+  
+  <author>
+    <name>MasoFod</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【随便漫谈】月光下的异世界之旅</title>
+    <link href="https://masofod.github.io/posts/c0cfa037"/>
+    <id>https://masofod.github.io/posts/c0cfa037</id>
+    <published>2025-01-08T05:33:14.000Z</published>
+    <updated>2025-01-08T05:38:49.719Z</updated>
+    
+    
+    <summary type="html">简介：男主被召唤到异世界后被女神抛弃，但是实际上非常强，然后发生的冒险故事。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【来点技术】Godot中实现简单的单机联机通用的客户端</title>
+    <link href="https://masofod.github.io/posts/1f9f5e5"/>
+    <id>https://masofod.github.io/posts/1f9f5e5</id>
+    <published>2025-01-05T08:36:41.000Z</published>
+    <updated>2025-01-07T13:37:05.635Z</updated>
+    
+    
+    <summary type="html">简介：在Godot 4.3中实现以单客户端同时支持单机和联机功能。</summary>
+    
+    
+    
+    <category term="技术" scheme="https://masofod.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://masofod.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Godot" scheme="https://masofod.github.io/tags/Godot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】这个医师超麻烦</title>
+    <link href="https://masofod.github.io/posts/c09f02d9"/>
+    <id>https://masofod.github.io/posts/c09f02d9</id>
+    <published>2025-01-04T11:42:20.000Z</published>
+    <updated>2025-01-04T11:45:22.112Z</updated>
+    
+    
+    <summary type="html">简介：超弱的男主和嘴臭的女主一起冒险的故事。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="搞笑" scheme="https://masofod.github.io/tags/%E6%90%9E%E7%AC%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】异世界舅舅</title>
+    <link href="https://masofod.github.io/posts/2da51f56"/>
+    <id>https://masofod.github.io/posts/2da51f56</id>
+    <published>2025-01-02T11:18:25.000Z</published>
+    <updated>2025-01-02T11:25:03.392Z</updated>
+    
+    
+    <summary type="html">简介：主角（？）的舅舅在17岁时被泥头车送到异世界17年后又回来了。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
+    
+    <category term="搞笑" scheme="https://masofod.github.io/tags/%E6%90%9E%E7%AC%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【来点技术】携手合作：Web2与Web3开发者如何共同构建未来</title>
+    <link href="https://masofod.github.io/posts/6a11feb6"/>
+    <id>https://masofod.github.io/posts/6a11feb6</id>
+    <published>2024-12-31T12:29:13.000Z</published>
+    <updated>2024-12-31T13:02:06.264Z</updated>
+    
+    
+    <summary type="html">简介：Web2与Web3开发者之间并不总是持有最友好的看法。</summary>
+    
+    
+    
+    <category term="技术" scheme="https://masofod.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://masofod.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="区块链" scheme="https://masofod.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    <category term="blockchain" scheme="https://masofod.github.io/tags/blockchain/"/>
+    
+    <category term="翻译熟肉" scheme="https://masofod.github.io/tags/%E7%BF%BB%E8%AF%91%E7%86%9F%E8%82%89/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】噗妮露是可爱史莱姆</title>
+    <link href="https://masofod.github.io/posts/a90a8a3d"/>
+    <id>https://masofod.github.io/posts/a90a8a3d</id>
+    <published>2024-12-27T07:37:03.000Z</published>
+    <updated>2024-12-27T08:54:48.720Z</updated>
+    
+    
+    <summary type="html">简介：男主与自己做出来后变得有生命的史莱姆之间发生的故事。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="搞笑" scheme="https://masofod.github.io/tags/%E6%90%9E%E7%AC%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】柔光魔女股份有限公司</title>
+    <link href="https://masofod.github.io/posts/676a762e"/>
+    <id>https://masofod.github.io/posts/676a762e</id>
+    <published>2024-12-27T07:31:24.000Z</published>
+    <updated>2024-12-27T08:54:51.112Z</updated>
+    
+    
+    <summary type="html">简介：魔法少女用科学的魔法解决问题的故事。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="战斗" scheme="https://masofod.github.io/tags/%E6%88%98%E6%96%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】胆大党</title>
+    <link href="https://masofod.github.io/posts/718237c1"/>
+    <id>https://masofod.github.io/posts/718237c1</id>
+    <published>2024-12-27T07:28:00.000Z</published>
+    <updated>2024-12-27T08:54:26.588Z</updated>
+    
+    
+    <summary type="html">简介：男主和女主在获得能力后解决各种超自然事件的故事。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="战斗" scheme="https://masofod.github.io/tags/%E6%88%98%E6%96%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】精灵幻想记 及第二季</title>
+    <link href="https://masofod.github.io/posts/6f9d9faf"/>
+    <id>https://masofod.github.io/posts/6f9d9faf</id>
+    <published>2024-12-27T07:22:54.000Z</published>
+    <updated>2024-12-27T08:54:31.150Z</updated>
+    
+    
+    <summary type="html">简介：男主装逼并刷好感的故事，但其实根本不爽。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【来点技术】快递员问题</title>
+    <link href="https://masofod.github.io/posts/5fe5bce9"/>
+    <id>https://masofod.github.io/posts/5fe5bce9</id>
+    <published>2024-12-24T09:28:04.000Z</published>
+    <updated>2024-12-31T13:05:41.515Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;题目背景&lt;/h1&gt;
+&lt;p&gt;快递员遇到了一些小问题，每天的派送过程既繁琐又费时。而原因，就是派送的目的地要求的派送时间不一样。&lt;/p&gt;
+&lt;h1&gt;题目描述&lt;/h1&gt;
+&lt;p&gt;给出一张无向图，每个节点有开关的时间，要求从起点出发，在节点开门的情况下遍历所有节点，问在耗时最短的情况</summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="https://masofod.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://masofod.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】叹气的亡灵想隐退</title>
+    <link href="https://masofod.github.io/posts/7f701857"/>
+    <id>https://masofod.github.io/posts/7f701857</id>
+    <published>2024-12-24T03:22:49.000Z</published>
+    <updated>2024-12-27T08:54:53.479Z</updated>
+    
+    
+    <summary type="html">简介：毫无能力的男主靠误解装逼的故事。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="搞笑" scheme="https://masofod.github.io/tags/%E6%90%9E%E7%AC%91/"/>
+    
+    <category term="战斗" scheme="https://masofod.github.io/tags/%E6%88%98%E6%96%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】落第骑士英雄谭</title>
+    <link href="https://masofod.github.io/posts/1a79cd1f"/>
+    <id>https://masofod.github.io/posts/1a79cd1f</id>
+    <published>2024-12-23T13:24:46.000Z</published>
+    <updated>2024-12-27T08:54:45.611Z</updated>
+    
+    
+    <summary type="html">简介：男主靠努力变强过后到处打人撩妹的故事</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="战斗" scheme="https://masofod.github.io/tags/%E6%88%98%E6%96%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>检验你是不是欧皇</title>
+    <link href="https://masofod.github.io/posts/1dd25bb5"/>
+    <id>https://masofod.github.io/posts/1dd25bb5</id>
+    <published>2024-12-16T09:30:18.000Z</published>
+    <updated>2024-12-27T08:55:06.971Z</updated>
+    
+    
+    <summary type="html">简介：随机生成ETH钱包地址查询里面有没有币</summary>
+    
+    
+    
+    <category term="工具" scheme="https://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="区块链" scheme="https://masofod.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    <category term="blockchain" scheme="https://masofod.github.io/tags/blockchain/"/>
+    
+    <category term="小工具" scheme="https://masofod.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
+    
+    <category term="没用" scheme="https://masofod.github.io/tags/%E6%B2%A1%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】变态王子与不笑猫</title>
+    <link href="https://masofod.github.io/posts/a10ab4dd"/>
+    <id>https://masofod.github.io/posts/a10ab4dd</id>
+    <published>2024-12-16T03:47:47.000Z</published>
+    <updated>2024-12-27T08:54:18.626Z</updated>
+    
+    
+    <summary type="html">简介：男主在能实现愿望的不笑猫的帮助下与女生刷好感的故事</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
+    
+    <category term="搞笑" scheme="https://masofod.github.io/tags/%E6%90%9E%E7%AC%91/"/>
+    
+    <category term="恋爱喜剧" scheme="https://masofod.github.io/tags/%E6%81%8B%E7%88%B1%E5%96%9C%E5%89%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>推荐一个看番软件</title>
+    <link href="https://masofod.github.io/posts/567274b5"/>
+    <id>https://masofod.github.io/posts/567274b5</id>
+    <published>2024-12-14T15:58:05.000Z</published>
+    <updated>2024-12-27T08:55:12.108Z</updated>
+    
+    
+    <summary type="html">简介：一个集成了Bangumi带弹幕和长按倍速的看番软件</summary>
+    
+    
+    
+    <category term="工具" scheme="https://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="小工具" scheme="https://masofod.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】独自一人的异世界攻略</title>
+    <link href="https://masofod.github.io/posts/1c1a1f03"/>
+    <id>https://masofod.github.io/posts/1c1a1f03</id>
+    <published>2024-12-14T03:31:22.000Z</published>
+    <updated>2024-12-27T08:54:28.899Z</updated>
+    
+    
+    <summary type="html">简介：实际上一直有人关心的男主开挂乱杀的故事</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】我立于百万生命之上 及第二季</title>
+    <link href="https://masofod.github.io/posts/83cee2d9"/>
+    <id>https://masofod.github.io/posts/83cee2d9</id>
+    <published>2024-12-14T03:23:07.000Z</published>
+    <updated>2024-12-27T08:54:55.837Z</updated>
+    
+    
+    <summary type="html">简介：男主不停开挂并刷好感的故事</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】战斗员派遣中</title>
+    <link href="https://masofod.github.io/posts/96772038"/>
+    <id>https://masofod.github.io/posts/96772038</id>
+    <published>2024-12-14T03:22:24.000Z</published>
+    <updated>2024-12-27T08:55:00.839Z</updated>
+    
+    
+    <summary type="html">简介：男主开挂并刷好感的故事</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
+    
+    <category term="搞笑" scheme="https://masofod.github.io/tags/%E6%90%9E%E7%AC%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】不正经的魔术讲师与禁忌教典</title>
+    <link href="https://masofod.github.io/posts/360164f0"/>
+    <id>https://masofod.github.io/posts/360164f0</id>
+    <published>2024-12-11T05:27:22.000Z</published>
+    <updated>2024-12-27T08:54:24.089Z</updated>
+    
+    
+    <summary type="html">简介：男主与自己和解并刷好感的故事</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】星刻的龙骑士</title>
+    <link href="https://masofod.github.io/posts/f20036ba"/>
+    <id>https://masofod.github.io/posts/f20036ba</id>
+    <published>2024-12-10T03:22:00.000Z</published>
+    <updated>2024-12-27T08:54:58.562Z</updated>
+    
+    
+    <summary type="html">简介：男主和可爱女生贴贴的故事</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
+    
+  </entry>
+  
+</feed>

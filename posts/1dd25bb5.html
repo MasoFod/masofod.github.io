@@ -1,0 +1,476 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>检验你是不是欧皇 | MasoFod——一个致力于追寻乐子但是不怎么成功的人</title><meta name="author" content="MasoFod"><meta name="copyright" content="MasoFod"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="简介：随机生成ETH钱包地址查询里面有没有币">
+<meta property="og:type" content="article">
+<meta property="og:title" content="检验你是不是欧皇">
+<meta property="og:url" content="https://masofod.github.io/posts/1dd25bb5">
+<meta property="og:site_name" content="MasoFod——一个致力于追寻乐子但是不怎么成功的人">
+<meta property="og:description" content="简介：随机生成ETH钱包地址查询里面有没有币">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://masofod.github.io/img/top_img.jpg">
+<meta property="article:published_time" content="2024-12-16T09:30:18.000Z">
+<meta property="article:modified_time" content="2024-12-27T08:55:06.971Z">
+<meta property="article:author" content="MasoFod">
+<meta property="article:tag" content="区块链">
+<meta property="article:tag" content="blockchain">
+<meta property="article:tag" content="小工具">
+<meta property="article:tag" content="没用">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://masofod.github.io/img/top_img.jpg"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://masofod.github.io/posts/1dd25bb5"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="msvalidate.01" content="D9F75D8546CE377CF39CE37125E4C653"/><meta name="google-site-verification" content="KbTQW4sxxDvfme0ltVZCUd7MoP2inlaM-3VvMpJ-OZg"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "pdv9bv5b5y");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: MasoFod","link":"链接: ","source":"来源: MasoFod——一个致力于追寻乐子但是不怎么成功的人","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '检验你是不是欧皇',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="MasoFod——一个致力于追寻乐子但是不怎么成功的人" type="application/atom+xml">
+</head><body><div id="web_bg" style="background-image: url(/img/top_img.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://s2.loli.net/2024/12/27/4AtSaxIsMPNifBy.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa-solid fa-message"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/sponsor/"><i class="fa-fw fa-solid fa-coins"></i><span> 赞助</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: transparent;"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://s2.loli.net/2024/12/27/DxFZ3bKwQeJBydN.png" alt="Logo"><span class="site-name">MasoFod——一个致力于追寻乐子但是不怎么成功的人</span></a><a class="nav-page-title" href="/"><span class="site-name">检验你是不是欧皇</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa-solid fa-message"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/sponsor/"><i class="fa-fw fa-solid fa-coins"></i><span> 赞助</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">检验你是不是欧皇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-16T09:30:18.000Z" title="发表于 2024-12-16 17:30:18">2024-12-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-27T08:55:06.971Z" title="更新于 2024-12-27 16:55:06">2024-12-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">938</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>这个工具会生成一个ETH私钥，然后生成公钥和地址。<br>
+接着在<a target="_blank" rel="noopener external nofollow noreferrer" href="https://ethplorer.io/wallet/#">Ethplorer</a>查询该地址有没有币。<br>
+因此在使用这个程序之前，需要搞一个Ethplorer的api，好在这个网站是有很高的免费额度的，虽然内地不好上。<br>
+这个程序的最大限制在于api的速度，如果是搞本地查询，那肯定飞快。<br>
+不管咋说，这东西都没啥用，2的32次方个钱包地址，找到有钱的，还没听说过（可能是我孤陋寡闻）。<br>
+如果你真的欧皇附体查到了，那理论上会出现在<code>result.txt</code>里面。<br>
+下面是这个程序的代码，记得改一下api。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import os
+from eth_keys import keys
+import requests
+import time
+import shelve
+import logging
+from collections import deque
+
+api &#x3D; &quot;你的api&quot;
+
+# 设置日志记录
+logging.basicConfig(filename&#x3D;&quot;errorlog.log&quot;, level&#x3D;logging.ERROR)
+
+# 计数器存储文件
+COUNTS_DB &#x3D; &quot;api_counts.db&quot;
+
+# 定义时间窗口长度
+SECONDLY_TIME_FRAME &#x3D; 1  # 每秒
+HOURLY_TIME_FRAME &#x3D; 3600  # 每小时
+DAILY_TIME_FRAME &#x3D; 86400  # 每天
+WEEKLY_TIME_FRAME &#x3D; 604800  # 每周
+
+# 定义请求限制
+LIMITS &#x3D; &#123;&quot;second&quot;: 5, &quot;hour&quot;: 17500, &quot;day&quot;: 378000, &quot;week&quot;: 2381400&#125;
+
+
+def get_counts():
+    with shelve.open(COUNTS_DB) as db:
+        if &quot;timestamps&quot; not in db:
+            db[&quot;timestamps&quot;] &#x3D; deque(maxlen&#x3D;SECONDLY_TIME_FRAME)
+        return db[&quot;timestamps&quot;]
+
+
+def update_counts(timestamps):
+    with shelve.open(COUNTS_DB, writeback&#x3D;True) as db:
+        db[&quot;timestamps&quot;] &#x3D; timestamps
+
+
+def reset_counts():
+    with shelve.open(COUNTS_DB, writeback&#x3D;True) as db:
+        db[&quot;timestamps&quot;] &#x3D; deque(maxlen&#x3D;SECONDLY_TIME_FRAME)
+
+
+def is_over_limit(timestamps, limit, time_frame):
+    current_time &#x3D; time.time()
+    # 移除时间窗口之外的记录
+    while timestamps and current_time - timestamps[0] &gt; time_frame:
+        timestamps.popleft()
+    return len(timestamps) &gt;&#x3D; limit
+
+
+def generate_key_pair():
+    # 生成一个安全的随机私钥
+    private_key &#x3D; keys.PrivateKey(os.urandom(32))
+
+    # 获取私钥的十六进制表示
+    private_key_hex &#x3D; private_key.to_hex()
+
+    # 输出私钥
+    # print(f&quot;Private Key: &#123;private_key_hex&#125;&quot;)
+
+    # 从私钥派生公钥
+    public_key &#x3D; private_key.public_key
+
+    # 获取公钥的压缩形式
+    public_key_compressed_hex &#x3D; public_key.to_hex()
+
+    # 输出公钥
+    # print(f&quot;Public Key: &#123;public_key_compressed_hex&#125;&quot;)
+
+    # 生成以太坊地址
+    address &#x3D; public_key.to_checksum_address()
+
+    # 输出地址
+    # print(f&quot;Ethereum Address: &#123;address&#125;&quot;)
+
+    return private_key_hex, public_key_compressed_hex, address
+
+
+def make_api_request(address):
+
+    if not address:
+        private_key_hex, public_key_compressed_hex, address &#x3D; generate_key_pair()
+
+    # 拼接请求
+    url &#x3D; f&quot;https:&#x2F;&#x2F;api.ethplorer.io&#x2F;getAddressInfo&#x2F;&quot; + address + &quot;?apiKey&#x3D;&quot; + api
+
+    # 发送请求
+    response &#x3D; requests.get(url)
+    # 解析响应
+    data &#x3D; response.json()
+
+    # 是否是空钱包
+    non_zero_balances &#x3D; False
+
+    # 检测有没有ETH
+    if data[&quot;ETH&quot;][&quot;balance&quot;] !&#x3D; 0:
+        non_zero_balances &#x3D; True
+
+    # 检测别的代币
+    if &quot;tokens&quot; in data:
+        for token in data[&quot;tokens&quot;]:
+            if token[&quot;balance&quot;] !&#x3D; 0:
+                non_zero_balances &#x3D; True
+                break
+    # BNB链查询
+    url &#x3D; f&quot;https:&#x2F;&#x2F;api.binplorer.com&#x2F;getAddressInfo&#x2F;&quot; + address + &quot;?apiKey&#x3D;&quot; + api
+
+    # 发送请求
+    response &#x3D; requests.get(url)
+    # 解析响应
+    data &#x3D; response.json()
+
+    # 检测BNB（返回为ETH）
+    if data[&quot;ETH&quot;][&quot;balance&quot;] !&#x3D; 0:
+        non_zero_balances &#x3D; True
+
+    # 检测别的代币
+    if &quot;tokens&quot; in data:
+        for token in data[&quot;tokens&quot;]:
+            if token[&quot;balance&quot;] !&#x3D; 0:
+                non_zero_balances &#x3D; True
+                break
+
+    return non_zero_balances
+
+
+def main():
+    private_key_hex, public_key_compressed_hex, address &#x3D; generate_key_pair()
+    flag &#x3D; True
+    while True:
+        timestamps &#x3D; get_counts()
+
+        # 检查是否超过限制
+        if is_over_limit(timestamps, LIMITS[&quot;second&quot;], SECONDLY_TIME_FRAME):
+            time.sleep(0.1)  # 等待一段时间
+            continue
+        if is_over_limit(timestamps, LIMITS[&quot;hour&quot;], HOURLY_TIME_FRAME):
+            time.sleep(1)  # 等待一段时间
+            continue
+        if is_over_limit(timestamps, LIMITS[&quot;day&quot;], DAILY_TIME_FRAME):
+            time.sleep(10)  # 等待一段时间
+            continue
+        if is_over_limit(timestamps, LIMITS[&quot;week&quot;], WEEKLY_TIME_FRAME):
+            time.sleep(60)  # 等待一段时间
+            continue
+
+        try:
+            non_zero_balances &#x3D; make_api_request(address)
+            timestamps.append(time.time())
+            update_counts(timestamps)
+        except Exception as e:
+            logging.error(str(e))
+            flag &#x3D; False
+        # Output message if any non-zero balance is found
+        output_message &#x3D; f&quot;地址：&#123;address&#125;&quot;
+        output_message +&#x3D; f&quot;\n私钥：&#123;private_key_hex&#125;&quot;
+        output_message +&#x3D; f&quot;\n公钥：&#123;public_key_compressed_hex&#125;&quot;
+        print(output_message)
+        if non_zero_balances:
+            with open(&quot;result.txt&quot;, &quot;a&quot;) as f:
+                f.write(output_message + &quot;\n&quot;)
+        if flag:
+            private_key_hex, public_key_compressed_hex, address &#x3D; generate_key_pair()
+        flag &#x3D; True
+
+        # 等待以限制每秒的请求次数
+        time.sleep(0.1)  # 根据API请求的耗时调整这个值
+
+
+if __name__ &#x3D;&#x3D; &quot;__main__&quot;:
+    main()
+</code></pre></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/MasoFod/">MasoFod</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://masofod.github.io/posts/1dd25bb5">https://masofod.github.io/posts/1dd25bb5</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://masofod.github.io" target="_blank">MasoFod——一个致力于追寻乐子但是不怎么成功的人</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a><a class="post-meta__tags" href="/tags/blockchain/">blockchain</a><a class="post-meta__tags" href="/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/">小工具</a><a class="post-meta__tags" href="/tags/%E6%B2%A1%E7%94%A8/">没用</a></div><div class="post-share"><div class="social-share" data-image="/img/top_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>图个乐</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/coin.png" target="_blank"><img class="post-qr-code-img" src="/img/coin.png" alt="ETH及其他小狐狸钱包可用的币"/></a><div class="post-qr-code-desc">ETH及其他小狐狸钱包可用的币</div></li></ul></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://s2.loli.net/2024/12/27/4AtSaxIsMPNifBy.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">MasoFod</div><div class="author-info-description">我是MasoFod，一个不知道脑子里在想什么的人。这是我的博客，分享一些我想写的东西。我对人工智能、区块链及游戏开发有浓厚的兴趣，欢迎各位与我交流。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/masofod"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/masofod" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:masofod@outlook.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa-solid fa-rss" style="color: #ea6f5a;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">最近只能写一些番剧感想，写不出什么长篇大作，有点挫败。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/c0cfa037" title="【随便漫谈】月光下的异世界之旅">【随便漫谈】月光下的异世界之旅</a><time datetime="2025-01-08T05:33:14.000Z" title="发表于 2025-01-08 13:33:14">2025-01-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/1f9f5e5" title="【来点技术】Godot中实现简单的单机联机通用的客户端">【来点技术】Godot中实现简单的单机联机通用的客户端</a><time datetime="2025-01-05T08:36:41.000Z" title="发表于 2025-01-05 16:36:41">2025-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/c09f02d9" title="【随便漫谈】这个医师超麻烦">【随便漫谈】这个医师超麻烦</a><time datetime="2025-01-04T11:42:20.000Z" title="发表于 2025-01-04 19:42:20">2025-01-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/2da51f56" title="【随便漫谈】异世界舅舅">【随便漫谈】异世界舅舅</a><time datetime="2025-01-02T11:18:25.000Z" title="发表于 2025-01-02 19:18:25">2025-01-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/6a11feb6" title="【来点技术】携手合作：Web2与Web3开发者如何共同构建未来">【来点技术】携手合作：Web2与Web3开发者如何共同构建未来</a><time datetime="2024-12-31T12:29:13.000Z" title="发表于 2024-12-31 20:29:13">2024-12-31</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By MasoFod</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.pixiv.net/artworks/79131650">背景图</a>来自于<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.pixiv.net/users/3452804">HaneRu</a>。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>(() => {
+  const panguFn = () => {
+    if (typeof pangu === 'object') pangu.autoSpacingPage()
+    else {
+      btf.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+        .then(() => {
+          pangu.autoSpacingPage()
+        })
+    }
+  }
+
+  const panguInit = () => {
+    if (true){
+      GLOBAL_CONFIG_SITE.isPost && panguFn()
+    } else {
+      panguFn()
+    }
+  }
+
+  btf.addGlobalFn('pjaxComplete', panguInit, 'pangu')
+  document.addEventListener('DOMContentLoaded', panguInit)
+})()</script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'MasoFod/comments',
+      'data-repo-id': 'R_kgDONbCn1g',
+      'data-category-id': 'DIC_kwDONbCn1s4CljIn',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script>(() => {
+  window.Prism = window.Prism || {}
+  window.Prism.manual = true
+
+  const highlightAll = () => {
+    window.Prism.highlightAll()
+  }
+
+  window.addEventListener('load', highlightAll)
+  btf.addGlobalFn('pjaxComplete', highlightAll, 'prismjs')
+  btf.addGlobalFn('encrypt', highlightAll, 'prismjs')
+})()
+</script><script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script><script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

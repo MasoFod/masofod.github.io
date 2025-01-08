@@ -1,0 +1,1124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>【来点技术】快递员问题</title>
+    <url>/posts/5fe5bce9.html</url>
+    <content><![CDATA[<h1>题目背景</h1>
+<p>快递员遇到了一些小问题，每天的派送过程既繁琐又费时。而原因，就是派送的目的地要求的派送时间不一样。</p>
+<h1>题目描述</h1>
+<p>给出一张无向图，每个节点有开关的时间，要求从起点出发，在节点开门的情况下遍历所有节点，问在耗时最短的情况下最晚可以从什么时候出发。其中，关门的节点依然可以经过，只是不计入访问。每一天的时间一共有1440。在到达关门的时间的时候，这个节点就已经关门了，例如节点在100的时候关门，则在100的时候到达并不认为成功访问。固定1号点为起点,且1号点没有开关门时间。</p>
+<h1>输入格式</h1>
+<p>共n+m行。<br>
+第1行为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span>，表示点数和边数。<br>
+第2行至第n行中，每一行有两个整数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>t</mi><mi>n</mi><mi>o</mi></msubsup></mrow><annotation encoding="application/x-tex">t^o_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9114em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>t</mi><mi>n</mi><mi>c</mi></msubsup></mrow><annotation encoding="application/x-tex">t^c_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9114em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>表示这个节点的开门时间和关门时间，其中n为行数。<br>
+第n+1行至第n+m行中，每一行为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mrow><mi>a</mi><mi>b</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{ab}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7651em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ab</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ，表示边的起点、终点及经过边需要使用的时间。</p>
+<h1>输出格式</h1>
+<p>输出仅一个整数，表示出发的时间。</p>
+<h1>输入输出示例</h1>
+<h2 id="输入-1">输入 #1</h2>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">2 1
+0 1440
+1 2 1</code></pre>
+<h2 id="输出-2">输出 #2</h2>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">1438</code></pre>
+<h1>说明</h1>
+<p>对所有数据，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&lt;</mo><mi>n</mi><mo>⩽</mo><mn>10000</mn></mrow><annotation encoding="application/x-tex">1&lt;n\leqslant10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>m</mi><mo>⩽</mo><mn>10000</mn></mrow><annotation encoding="application/x-tex">0&lt;m\leqslant10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000</span></span></span></span>。（数据范围我瞎编的）</p>
+<hr>
+<p>然而本人才疏学浅，并不能解决这个问题。可能经过一段时间就会发现其实这就是个很简单的问题吧。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】不正经的魔术讲师与禁忌教典</title>
+    <url>/posts/360164f0.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.11）：6.2/10</p>
+<p>个人评分：8/10</p>
+<p>画风好又不好，剧情有新意，没有什么硬伤，至少我很满意。不过还是有一些俗套的东西，看看也行。</p>
+<p>然后，著名表情包也出自这部番。</p>
+<p><img src="https://s2.loli.net/2024/12/11/6i7MjQ8VPeGO2EY.jpg" alt="某张表情包出处"></p>
+<p>总之个人认为值得一看，就是感觉吊胃口的东西太多了，如果能出第二季一起看就好了。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【来点技术】Godot中实现简单的单机联机通用的客户端</title>
+    <url>/posts/1f9f5e5.html</url>
+    <content><![CDATA[<p>本文主要作为学习笔记。<br>
+以下内容主要根据<a href="https://docs.godotengine.org/zh-cn/4.x/tutorials/networking/high_level_multiplayer.html">Godot的相关文档</a>和我的理解与实践编写，可能并非最佳实践，也可能存在错误，但是应该基本能用。</p>
+<div class="note info flat"><p>本文基于4.3版本。</p>
+</div>
+<h1>Godot中的网络通讯基础</h1>
+<p>Godot中提供了一些较底层的实现，但是因为我用不上，所以就不讲了。<br>
+Godot提供的高级api是用的UDP，支持IPv6。</p>
+<h2 id="网络初始化">网络初始化</h2>
+<p>每个节点都有一个<code>multiplayer</code>属性，它是对场景树为其配置的<code>MultiplayerAPI</code>实例的引用。可以对节点单独设置<code>MultiplayerAPI</code>，同时覆盖所有子节点。因此，可以实现在一个Godot示例中运行多个服务端和客户端。</p>
+<p>可以通过如下方法创建客户端和服务端。</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"># 创建客户端
+var peer &#x3D; ENetMultiplayerPeer.new()
+peer.create_client(IP_ADDRESS, PORT)
+multiplayer.multiplayer_peer &#x3D; peer
+
+# 创建服务端
+var peer &#x3D; ENetMultiplayerPeer.new()
+peer.create_server(PORT, MAX_CLIENTS)
+multiplayer.multiplayer_peer &#x3D; peer</code></pre>
+<p>通过如下方法结束联网。</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">multiplayer.multiplayer_peer &#x3D; null</code></pre>
+<div class="note info flat"><p>导出Android需要勾选INTERNET权限，否则不能联网。</p>
+</div>
+<h2 id="管理连接">管理连接</h2>
+<p>这里要用到的一个概念是对等体，可以直接理解为一个没有性质的物体。<br>
+系统会给每个对等体都分配一个唯一ID（UID），服务端的ID永远为1，客户端的ID则会被分配给一个随机的正整数。</p>
+<p>可以通过<code>MultiplayerAPI</code>信号来检测连接建立和断开：<br>
+· <code>peer_connected(id: int)</code> 此信号在每个其他对等体上与新连接的对等体ID一起发出，并在新对等点上多次发出，其中一次与每个其他对等点ID一起发出。<br>
+· <code>peer_disconnected（id:int）</code> 当一个对等体断开连接时，剩余的每个对等体都会发出此信号。<br>
+以下信号仅在客户端上发送：<br>
+· <code>connected_to_server()</code><br>
+· <code>connection_failed()</code><br>
+· <code>server_disconnected()</code><br>
+通过<code>multiplayer.get_unique_id()</code>获取关联的UID。<br>
+通过<code>multiplayer.is_server()</code>获取对等体是服务端还是客户端。</p>
+<h2 id="远程过程调用（RPC）">远程过程调用（RPC）</h2>
+<p>远程过程调用是指在其他对等体上调用的函数。在函数定义前加上<code>@rpc</code>则将该函数创建为RPC。<br>
+若要调用 RPC，请在每个对等体中通过 Callable 的 rpc() 方法调用之，或使用 rpc_id() 在特定对等方中调用之。</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">func _ready():
+	if multiplayer.is_server():
+		print_once_per_client.rpc()
+
+@rpc
+func print_once_per_client():
+	print(&quot;每个连接的客户端都会将我打印到控制台一次。&quot;)</code></pre>
+<p>要实现RPC，要求发送方和接收方的节点有相同的<code>NodePath</code>，包括节点名称。同时要求<code>@rpc</code>同时存在于服务端和客户端的对应函数，且函数的声明和返回类型等要相同。若要对预期使用RPC的节点调用<code>add_child()</code>时，请将参数<code>force_readable_name</code>设置为<code>true</code>。</p>
+<div class="note info flat"><p>在这个<a href="https://github.com/godotengine/godot/issues/57869#issuecomment-1034215138">issue</a>中有更多关于RPC错误的信息。<br>
+<a href="https://docs.godotengine.org/zh-cn/4.x/tutorials/networking/high_level_multiplayer.html#remote-procedure-calls">文档</a>也有说明。</p>
+</div>
+<p><code>@rpc</code>可以有多个参数，在没有设置时，采用如下预设：</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">@rpc(&quot;authority&quot;, &quot;call_remote&quot;, &quot;unreliable&quot;, 0)</code></pre>
+<p>其参数及可选值如下：<br>
+<code>mode</code>：<br>
+· <code>&quot;authority&quot;</code> ：只有多人游戏权限端（服务端）才能远程调用该函数。<br>
+· <code>&quot;any_peer&quot;</code> ：也允许客户端进行远程调用该函数，用于传输用户输入。<br>
+<code>sync</code>：<br>
+· <code>&quot;call_remote&quot;</code> ：让该函数不会在本地对等体上调用。<br>
+· <code>&quot;call_local”</code> ：让该函数也可以在本地对等体上调用，在服务端也是玩家时非常有用。<br>
+<code>transfer_mode</code>：<br>
+· <code>&quot;unreliable&quot;</code> ：数据包不被确认，可能丢失，并且可以按任意顺序到达接收方。<br>
+· <code>&quot;unreliable_ordered&quot;</code> ：数据包按照发送的顺序接收，透过忽略迟达的数据包（如果已经收到在这些数据包之后发送的另一个数据包）来实现的。使用不当可能会导致丢包。<br>
+· <code>&quot;reliable&quot;</code> ：发送重新传送尝试，直到数据包被确认为止，且这些数据包的顺序会被保留。具有明显的性能损失。<br>
+<code>transfer_channel</code>是信道索引。<br>
+前3个参数在注解中的顺序任意，但<code>transfer_channel</code>参数必须始终位于注解中的最后。</p>
+<p>在RPC所调用的函数中，可用函数<code>multiplayer.get_remote_sender_id()</code>来获取RPC发送方对等体的UID。</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">func _on_some_input(): # 连接到某些输入。
+	transfer_some_input.rpc_id(1) # 只对服务端发送输入。
+
+
+# 当服务端也是一个玩家时，需要设置为call_local。
+@rpc(&quot;any_peer&quot;, &quot;call_local&quot;, &quot;reliable&quot;)
+func transfer_some_input():
+	# 获得发送发UID。
+	var sender_id &#x3D; multiplayer.get_remote_sender_id()</code></pre>
+<h2 id="信道">信道</h2>
+<p>可以设置多个信道以实现互不干扰的通信，尤其是在需要的可靠度不同的时候可以提高效率。<br>
+索引为0的信道实际是3个不同的传输模式的3个信道。（但我不是很理解这句）</p>
+<h2 id="官方示例">官方示例</h2>
+<p>下面为一个示例大厅，可以处理对等体的加入和离开，通过信号来通知UI场景，并在所有客户端加载游戏场景后启动游戏。</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">extends Node
+
+# Autoload named Lobby
+
+# These signals can be connected to by a UI lobby scene or the game scene.
+signal player_connected(peer_id, player_info)
+signal player_disconnected(peer_id)
+signal server_disconnected
+
+const PORT &#x3D; 7000
+const DEFAULT_SERVER_IP &#x3D; &quot;127.0.0.1&quot; # IPv4 localhost
+const MAX_CONNECTIONS &#x3D; 20
+
+# This will contain player info for every player,
+# with the keys being each player&#39;s unique IDs.
+var players &#x3D; &#123;&#125;
+
+# This is the local player info. This should be modified locally
+# before the connection is made. It will be passed to every other peer.
+# For example, the value of &quot;name&quot; can be set to something the player
+# entered in a UI scene.
+var player_info &#x3D; &#123;&quot;name&quot;: &quot;Name&quot;&#125;
+
+var players_loaded &#x3D; 0
+
+
+
+func _ready():
+	multiplayer.peer_connected.connect(_on_player_connected)
+	multiplayer.peer_disconnected.connect(_on_player_disconnected)
+	multiplayer.connected_to_server.connect(_on_connected_ok)
+	multiplayer.connection_failed.connect(_on_connected_fail)
+	multiplayer.server_disconnected.connect(_on_server_disconnected)
+
+
+func join_game(address &#x3D; &quot;&quot;):
+	if address.is_empty():
+		address &#x3D; DEFAULT_SERVER_IP
+	var peer &#x3D; ENetMultiplayerPeer.new()
+	var error &#x3D; peer.create_client(address, PORT)
+	if error:
+		return error
+	multiplayer.multiplayer_peer &#x3D; peer
+
+
+func create_game():
+	var peer &#x3D; ENetMultiplayerPeer.new()
+	var error &#x3D; peer.create_server(PORT, MAX_CONNECTIONS)
+	if error:
+		return error
+	multiplayer.multiplayer_peer &#x3D; peer
+
+	players[1] &#x3D; player_info
+	player_connected.emit(1, player_info)
+
+
+func remove_multiplayer_peer():
+	multiplayer.multiplayer_peer &#x3D; null
+
+
+# When the server decides to start the game from a UI scene,
+# do Lobby.load_game.rpc(filepath)
+@rpc(&quot;call_local&quot;, &quot;reliable&quot;)
+func load_game(game_scene_path):
+	get_tree().change_scene_to_file(game_scene_path)
+
+
+# Every peer will call this when they have loaded the game scene.
+@rpc(&quot;any_peer&quot;, &quot;call_local&quot;, &quot;reliable&quot;)
+func player_loaded():
+	if multiplayer.is_server():
+		players_loaded +&#x3D; 1
+		if players_loaded &#x3D;&#x3D; players.size():
+			$&#x2F;root&#x2F;Game.start_game()
+			players_loaded &#x3D; 0
+
+
+# When a peer connects, send them my player info.
+# This allows transfer of all desired data for each player, not only the unique ID.
+func _on_player_connected(id):
+	_register_player.rpc_id(id, player_info)
+
+
+@rpc(&quot;any_peer&quot;, &quot;reliable&quot;)
+func _register_player(new_player_info):
+	var new_player_id &#x3D; multiplayer.get_remote_sender_id()
+	players[new_player_id] &#x3D; new_player_info
+	player_connected.emit(new_player_id, new_player_info)
+
+
+func _on_player_disconnected(id):
+	players.erase(id)
+	player_disconnected.emit(id)
+
+
+func _on_connected_ok():
+	var peer_id &#x3D; multiplayer.get_unique_id()
+	players[peer_id] &#x3D; player_info
+	player_connected.emit(peer_id, player_info)
+
+
+func _on_connected_fail():
+	multiplayer.multiplayer_peer &#x3D; null
+
+
+func _on_server_disconnected():
+	multiplayer.multiplayer_peer &#x3D; null
+	players.clear()
+	server_disconnected.emit()</code></pre>
+<p>游戏场景的根节点应命名为 Game，在其所附加的脚本中：</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">extends Node3D # Or Node2D.
+
+
+
+func _ready():
+	# Preconfigure game.
+
+	Lobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
+
+
+# Called only on the server.
+func start_game():
+	# All peers are ready to receive RPCs in this scene.</code></pre>
+<h1>自动同步</h1>
+<p><code>MultiplayerSynchronizer</code>节点可以实现多端自动同步。<br>
+添加节点后，下方选择<code>复制</code>-&gt;<code>添加同步属性</code>，然后选择要同步的节点和属性。<br>
+例如可以将多个<code>Sprite2D</code>的<code>Transform</code>同步，这样就可以实现所有端上的<code>Sprite2D</code>的位置同步了。</p>
+<h1>实现一个可以单机或联机的客户端</h1>
+<p>实际上是用官方示例改的。我只是加入了一个让单机与联机能用相同逻辑的脚本以及我自己的注解。</p>
+<h2 id="总体节点架构">总体节点架构</h2>
+<p>主场景<br>
+Control_Main<br>
+|- LineEdit_InputName<br>
+|- Button_Solo<br>
+|- Button_HostMutiplayer<br>
+|- Button_JoinMutiplayer</p>
+<p>实际游戏<br>
+Control_Game<br>
+|- Button_GetScore<br>
+|- Button_End<br>
+|- Label_Players<br>
+|-MultiplayerSynchronizer_MultiplayerSynchronizer</p>
+<p>主持多人游戏<br>
+Control_HostMutiplayer<br>
+|- Label_Players<br>
+|- Button_Start<br>
+|- Button_End</p>
+<p>加入多人游戏<br>
+Control_JoinMutiplayer<br>
+|- Label-Players<br>
+|- LineEdit_InputIP<br>
+|- Button_Start<br>
+|- Button_End</p>
+<h2 id="编写脚本">编写脚本</h2>
+<p><code>server.gd</code>（需要自动加载）</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">extends Node
+
+# 自定义信号，方便别的地方获取信息
+signal player_connected(peer_id, player_info)
+signal player_disconnected(peer_id, player_info)
+signal server_disconnected
+signal player_getscore
+
+# 默认服务端配置
+var PORT &#x3D; 7000
+var DEFAULT_SERVER_IP &#x3D; &quot;127.0.0.1&quot;
+const MAX_CONNECTIONS &#x3D; 20
+
+# 以UID为索引
+@export var players &#x3D; &#123;&#125;
+var player_info &#x3D; &#123;&quot;name&quot;: &quot;MasoFod&quot;, &quot;score&quot;: 0&#125; # 该端的玩家信息，需要在建立连接前进行更改
+
+func _ready():
+	multiplayer.peer_connected.connect(_on_player_connected)
+	multiplayer.peer_disconnected.connect(_on_player_disconnected)
+	multiplayer.connected_to_server.connect(_on_connected_ok)
+	multiplayer.connection_failed.connect(_on_connected_fail)
+	multiplayer.server_disconnected.connect(_on_server_disconnected)
+
+# 连接到指定IP的服务端
+func join_game(address &#x3D; &quot;&quot;):
+	if address.is_empty():
+		address &#x3D; DEFAULT_SERVER_IP
+	var peer &#x3D; ENetMultiplayerPeer.new()
+	var error &#x3D; peer.create_client(address, PORT)
+	if error:
+		return error
+	multiplayer.multiplayer_peer &#x3D; peer
+
+# 创建服务端
+func create_game():
+	var peer &#x3D; ENetMultiplayerPeer.new()
+	var error &#x3D; peer.create_server(PORT, MAX_CONNECTIONS)
+	if error:
+		return error
+	multiplayer.multiplayer_peer &#x3D; peer
+
+	# 将默认玩家设置为服务端玩家
+	players[1] &#x3D; player_info
+	player_connected.emit(1, player_info)
+
+# 停止联网
+func remove_multiplayer_peer():
+	multiplayer.multiplayer_peer &#x3D; null
+
+# 可执行Server.load_game.rpc(filepath)重启游戏，仅服务端可调用
+@rpc(&quot;call_local&quot;, &quot;reliable&quot;)
+func load_game(game_scene_path):
+	get_tree().change_scene_to_file(game_scene_path)
+
+# 客户端连接到服务端时，发送玩家信息
+func _on_player_connected(id):
+	_register_player.rpc_id(id, player_info)
+
+# 所有客户端注册玩家信息
+@rpc(&quot;any_peer&quot;, &quot;reliable&quot;)
+func _register_player(new_player_info):
+	var new_player_id &#x3D; multiplayer.get_remote_sender_id()
+	players[new_player_id] &#x3D; new_player_info
+	player_connected.emit(new_player_id, new_player_info)
+
+# 客户端断开连接后服务端处理
+func _on_player_disconnected(id):
+	players.erase(id)
+	player_disconnected.emit(id, player_info)
+
+# 客户端建立连接后，在本地注册自己
+func _on_connected_ok():
+	var peer_id &#x3D; multiplayer.get_unique_id()
+	players[peer_id] &#x3D; player_info
+	player_connected.emit(peer_id, player_info)
+
+# 客户端连接失败后断网
+func _on_connected_fail():
+	multiplayer.multiplayer_peer &#x3D; null
+
+# 客户端断开连接客户端处理
+func _on_server_disconnected():
+	multiplayer.multiplayer_peer &#x3D; null
+	players.clear()
+	player_info.score &#x3D; 0
+	server_disconnected.emit()
+	get_tree().change_scene_to_file(&quot;res:&#x2F;&#x2F;main.tscn&quot;)
+
+# 当有玩家的分数变化
+@rpc(&quot;any_peer&quot;, &quot;call_local&quot;, &quot;reliable&quot;)
+func _on_player_get_score(id):
+	players[id].score +&#x3D; 1
+	player_getscore.emit()
+
+# 所有端开始游戏
+@rpc(&quot;authority&quot;,&quot;call_local&quot;,&quot;reliable&quot;)
+func start_game() -&gt; void:
+	get_tree().change_scene_to_file(&quot;res:&#x2F;&#x2F;game.tscn&quot;)
+
+# 结束本地游戏
+func end_game() -&gt; void:
+	multiplayer.multiplayer_peer &#x3D; null
+	players.clear()
+	player_info.score &#x3D; 0
+	get_tree().change_scene_to_file(&quot;res:&#x2F;&#x2F;main.tscn&quot;)</code></pre>
+<p><code>main.gd</code>（main的脚本，需要连接信号）</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">extends Control
+
+@onready var input_name: LineEdit &#x3D; $InputName
+
+func _ready() -&gt; void:
+	input_name.text &#x3D; str(Server.player_info.name)
+
+func _on_solo_pressed() -&gt; void:
+	Server.player_info.name &#x3D; input_name.text
+	Server.players[1] &#x3D; Server.player_info
+	Server.create_game()
+	get_tree().change_scene_to_file(&quot;res:&#x2F;&#x2F;game.tscn&quot;)
+
+
+func _on_host_mutiplayer_pressed() -&gt; void:
+	Server.player_info.name &#x3D; input_name.text
+	get_tree().change_scene_to_file(&quot;res:&#x2F;&#x2F;host_mutiplayer.tscn&quot;)
+
+
+func _on_join_mutiplayer_pressed() -&gt; void:
+	Server.player_info.name &#x3D; input_name.text
+	Server.players[1] &#x3D; Server.player_info
+	get_tree().change_scene_to_file(&quot;res:&#x2F;&#x2F;join_mutiplayer.tscn&quot;)</code></pre>
+<p><code>game.gd</code>（game的脚本，需要连接信号）</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">extends Control
+
+@onready var players: Label &#x3D; $Players
+
+func _ready() -&gt; void:
+	Server.player_getscore.connect(refresh_text)
+	Server.player_disconnected.connect(refresh_text)
+	for p in Server.players:
+		players.text +&#x3D; Server.players[p].name + &#39; &#39; + (&quot;%d&quot;%Server.players[p].score) + &#39;分\n&#39;
+
+
+func _on_end_pressed() -&gt; void:
+	Server.end_game()
+
+
+func _on_get_score_pressed() -&gt; void:
+	# 对当前玩家+1分
+	Server._on_player_get_score.rpc(Server.multiplayer.get_unique_id())
+
+# 刷新积分榜
+func refresh_text(_id &#x3D; 0, _player_info &#x3D; &quot;&quot;) -&gt; void:
+	players.text &#x3D; &quot;&quot;
+	for p in Server.players:
+		players.text +&#x3D; Server.players[p].name + &#39; &#39; + (&quot;%d&quot;%Server.players[p].score) + &#39;分\n&#39;</code></pre>
+<p><code>host_mutiplayer.gd</code>（HostMutiplayer的脚本，需要连接信号）</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">extends Control
+
+@onready var players: Label &#x3D; $Players
+
+func _ready() -&gt; void:
+	Server.player_connected.connect(update_players)
+	Server.player_disconnected.connect(update_players)
+	Server.create_game()
+
+func update_players(_id:int, _player_info) -&gt; void:
+	players.text &#x3D; &quot;玩家有：\n&quot;
+	for p in Server.players:
+		players.text +&#x3D; Server.players[p].name + &#39;\n&#39;
+
+func _on_start_pressed() -&gt; void:
+	Server.start_game.rpc()
+
+func _on_end_pressed() -&gt; void:
+	Server.end_game()</code></pre>
+<p><code>join_mutiplayer.gd</code>（JoinMutiplayer的脚本，需要连接信号）</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">extends Control
+
+@onready var start: Button &#x3D; $Start
+@onready var players: Label &#x3D; $Players
+@onready var input_ip: LineEdit &#x3D; $InputIP
+
+func _ready() -&gt; void:
+	Server.player_connected.connect(update_players)
+	Server.player_disconnected.connect(update_players)
+
+func update_players(id:int, player_info) -&gt; void:
+	players.text &#x3D; &quot;玩家有：\n&quot;
+	for p in Server.players:
+		players.text +&#x3D; Server.players[p].name + &#39;\n&#39;
+
+func _on_start_pressed() -&gt; void:
+	var ip &#x3D; str(input_ip.text)
+	var error &#x3D; Server.join_game(ip)
+	if error:
+		players.text &#x3D; &quot;找不到服务器&quot;
+	else:
+		start.queue_free()
+
+
+func _on_end_pressed() -&gt; void:
+	Server.remove_multiplayer_peer()
+	get_tree().change_scene_to_file(&quot;res:&#x2F;&#x2F;main.tscn&quot;)</code></pre>
+<h1>小提示</h1>
+<p>左上<code>调试</code>-&gt;<code>自定义运行实例...</code>可以设置运行的时候打开几个实例，方便测试网络。</p>
+<h1>总结</h1>
+<p>这篇所讲到的内容基本上用处不大，只适合做点小游戏联机。如果想做大量联机，还是得做专用服务器。<br>
+如果看完了这篇文章还有不懂的，推荐看看<a href="https://www.bilibili.com/video/BV1aH4y167Lv">这个视频</a>，虽然语速很快，但是全是干货，如果无法理解，可以再看看文档，两个结合过后就很好懂了。<br>
+只不过看起来我还是用得很不好，执着于造轮子思维，总想着自己实现，没想到有现成的东西可以用。<br>
+因此我的代码中肯定有很多不“优美”的地方，还望大家谅解。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>Godot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【来点技术】携手合作：Web2与Web3开发者如何共同构建未来</title>
+    <url>/posts/6a11feb6.html</url>
+    <content><![CDATA[<p>以下内容来自于<a href="https://stackoverflow.blog/2024/11/20/joining-forces-how-web2-and-web3-developers-can-build-together/">https://stackoverflow.blog/2024/11/20/joining-forces-how-web2-and-web3-developers-can-build-together/</a>，作者为<a href="https://stackoverflow.blog/author/mayukha-vadari/">Mayukha Vadari</a>，根据CC BY-SA转载。<br>
+本人将其翻译为中文，文章内容不代表本人观点。</p>
+<hr>
+<p>Web2和Web3开发者之间并不总是相互看好。他们（Web2开发者）认为Web3全是骗局；而我们（Web3开发者）则认为Web2还停留在石器时代，技术未能充分利用分布式技术景观。这两种观点都不公平：任何炒作周期都会吸引不道德的投机者，而技术并不以新为好。<br>
+但现在是我们宣布停战，探讨真正的差异和优缺点的时候了。这种分歧很大程度上源于对底层技术的误解，以及专注于负面新闻而忽视了正在大规模构建的有意义业务。这就是我们创建<a href="https://learn.xrpl.org/">XRP Ledger学习门户</a>的原因，它帮助Web2开发者过渡到Web3。探索<a href="https://learn.xrpl.org/transition-from-web2-to-web3-development/">Web2到Web3的课程</a>，以弥合差距并将区块链概念应用到您的项目中。发现这两个世界是如何互补的！<br>
+本文将探讨两种技术在哪些方面相似，Web2开发者如何弥补这一知识鸿沟，以及区块链技术如何使Web2项目受益。</p>
+<h1>从Web2进入Web3的世界</h1>
+<p>对于普通的Web2开发者来说，他们看待自己的技术栈，大致包括前端代码、后端服务、API和数据库。他们控制着这些组件的位置和维护，但也有许多不在他们控制之下的部分——比如API、云存储、数据库服务等。你可能有自己的认证系统来存储登录和访问信息，但同样常见的是使用OAuth2或类似的东西，这意味着你至少部分依赖于第三方。<br>
+Web3应用程序拥有许多相同的特性。区块链本质上只是一个数据库，不过它是分布在对等网络中的。向区块链发送的交易存储数据，这些数据可以通过熟悉的API调用进行搜索。区块链上的数据属于任何使用账本的人，但它不能被篡改（除非你以某种方式修改了连接到该链的所有服务器上存储的数据的每一份副本）。<br>
+许多Web2开发者习惯了标准的CRUD应用——创建、读取、更新和删除，而区块链却是<a href="https://en.wikipedia.org/wiki/Append-only">只增不减</a>的。一旦你向账本发送了东西，它就永远在那里，没有撤回的余地。使用特定链的每个人都可以在该链上存储数据，所有数据对其他人都是可见的（除非数据被哈希或加密）。在软件工程中，通过隐秘性来保证安全是一种反模式，那么为什么在金融服务中不是呢？<br>
+你与区块链（以及其中的任何智能合约）互动的方式是通过API。任何构建过现代Web应用的人都清楚，大部分后端操作都是通过API完成的，无论是内部还是第三方的。但当API连接到区块链时，请求/响应的动态工作方式是相同的。最终，它只是一个<a href="https://xrpl.org/docs/references/http-websocket-apis/api-conventions/request-formatting#json-rpc-format">POST请求</a>。<br>
+使用标准的API和基于云的服务时，你需要进行认证并在请求中传递访问令牌。而在Web3应用中，钱包处理认证过程。不是使用令牌，而是需要用你的钱包签署每一笔交易。登录钱包可以使用其他认证方法，包括OAuth2，但你的钱包控制着对账本的访问。<br>
+所有认证都通过钱包进行的原因是，账本上的交易执行需要花费货币——比信用卡交易的费用少，但并非没有成本。大多数托管数据库都有某种形式的数据传输费用，但这些数据库并不专门用于执行和存储交易。金融交易通常通过某种API进行，该API会收取总价值的一定比例作为费用。XRP Ledger（XRPL）的交易费用仅相当于传统金融API和其他Web3选项的一小部分，并且由于账本是开源且去中心化的，所以不受单一实体的控制。</p>
+<h1>Web2开发者需要掌握的新概念</h1>
+<p>对于Web2开发者来说，虽然有很多类比可以帮助他们理解如何将Web3技术映射到Web2，但也有一些方面可能会让传统的网页开发者感到有些紧张。大多数Web2开发者习惯了完全控制他们的技术栈，而区块链则是去中心化的。无论代码和数据是在本地运行还是在他们的云实例中，它们都存放在开发者自己拥有的地方。<br>
+你并不一定需要放弃对数据的完全控制。除了运行一个节点服务器，连接到区块链并存储数据以便于访问之外，你还可以运行自己的验证器服务器。验证器负责验证和提交交易，因此你将能够决定在区块链上什么被认为是有效的。作为一个额外的好处，这也有助于网络继续繁荣发展。<br>
+除了去中心化之外，Web2开发者可能会对默认的追加式交易和透明性感到紧张。我们都在公开仓库中读到过人们发现秘密，如API密钥的故事——发送到区块链的秘密基本上永远在那里。这就是在测试网上运行的重要性。你可以在将内容发送到主网之前，在本地测试网上测试一切。如果你真的那么需要完全控制，你甚至可以启动自己的测试网。<br>
+讨论了一些差异之后，我认为是时候转向这两个世界共同点的话题了。在Web3范式下，Web2开发者会发现很多熟悉的东西，同时也有一些新的概念需要掌握。但在下一部分，我想放大XRPL的一个特有功能，这将帮助Web2开发者更快地跳入Web3编程。</p>
+<h1>Web3 APIs：智能合约与固定函数</h1>
+<p>如果您需要进行的交易操作不仅仅是存储在区块链上，那该怎么办？您可能听说过智能合约，当它们被调用时，会触发某种操作。但本质上，您需要为自己的合约编写API和代码，这可能会非常耗时，并且需要像编写自己的API端点一样进行测试以确保正确性。<br>
+对于许多区块链来说，您可以编写在满足特定条件时自我执行的智能合约。您需要编写所有代码，设置参数，测试和审计合约的各个方面，然后将其部署到您选择的区块链上。示例代码可以帮助您入门，但<a href="https://www.finextra.com/the-long-read/430/when-smart-contracts-go-wrong">合约中的错误可能会发生</a>。您可能只有在合约执行后才发现错误，这可能会非常昂贵。<br>
+在<a href="https://xrpl.org/">XRP Ledger区块链</a>上，有一些现有的构建块，它们类似于预先制作的API函数，可以直接在账本上操作。您不需要编写任何代码。您所需要做的就是了解参数——阅读您想要使用的函数的文档，然后就可以开始操作了。这些函数是区块链的原生函数，不需要额外的工作。<br>
+智能合约需要额外的测试和审计，而这些构建块经过了严格的测试，并由核心账本开发者编写，因此所有边缘情况都会自动处理。它们打包了常见功能，如<a href="https://xrpl.org/docs/concepts/tokens">代币</a>、<a href="https://xrpl.org/docs/concepts/tokens/nfts">非同质化代币（NFTs）</a>、<a href="https://xrpl.org/docs/concepts/tokens/decentralized-exchange/automated-market-makers">自动化市场制造商（AMMs）</a>等，这样您就不需要自己实现这些功能——这保证了它们之间都是互操作的。<br>
+对于习惯于使用API的开发者来说，由于每个交易的验证，您可能需要应对比习惯中更多的延迟。在XRPL上，一笔交易通常需要4到8秒来验证；其他区块链可能需要更长时间（例如，比特币通常需要大约一个小时才能完成交易验证）。如果交易验证有任何延迟，API可能会首先响应确认，然后在稍后提供完整的响应负载。大多数库都提供了异步函数，它们将等待交易被完全验证，因此如果您预计会与需要一段时间才能响应的合约或固定函数进行交互，您可以构建异步接口。<br>
+到目前为止，我们已经讨论了映射到Web2概念的Web3技术。接下来，让我们探索将区块链能力添加到您的技能库中将解锁的新功能。</p>
+<h1>区块链为Web2开发者带来的价值，无论是在今天还是在未来</h1>
+<p>虽然区块链账本类似于数据库，但这并不是Web2开发者能够找到最佳结果的使用场景。区块链在金融应用场景中才能真正发光。与传统银行需要数天时间来结算交易相比，区块链可以实现全球范围内的近即时价值转移。这就是所谓的价值互联网，它关乎于像发送电子邮件一样轻松地在世界各地转移资金和价值。<br>
+通常情况下，Web2开发者会通过信用卡处理器或其他金融服务提供商来添加金融功能。这些服务会从支付中收取相当一部分作为费用——某些信用卡处理器可能高达交易额的3%。信用卡公司<a href="https://apnews.com/article/visa-mastercard-merchants-swipe-fee-5f2a75674d472ef95af9f6fd426f1f6e">最近就这些费用达成了和解</a>，这些费用往往是小企业面临的最大开支之一。区块链交易仍然存在成本，但相对较低——通常只是美分的一小部分。<br>
+如上述诉讼所示，让一两个大型实体控制几乎每一笔交易的支付过程并不总是对客户最有利的。区块链消除了中间商。您不是大量信任一个实体，而是稍微信任许多实体。它消除了中介，以一种透明和去中心化的方式验证支付。<br>
+还记得我在开头说的，Web2开发者对Web3应用持怀疑态度，认为它们都是骗局吗？事实是，一个透明、由同行验证的区块链实际上防止了许多支付骗局。一些个人卖家和小型商家曾遭遇<a href="https://en.wikipedia.org/wiki/Overpayment_scam">在线退款骗局</a>和请求及退款骗局。交易不能被狡猾的买家撤回；退款必须作为卖方向买方的交易来启动。<br>
+有时您会遇到一个API，它并不完全符合您的需求——几乎符合，但又不完全。想象一下，如果您能够对API本身进行一点定制，而不是需要从头开始重写整个东西。<a href="https://ripple.com/insights/expanding-programmability-on-the-xrp-ledger/">固定函数的额外可编程性</a>即将到来，这将允许您做到这一点。您将能够对现有的固定函数添加自己的定制，以便您特定的业务逻辑在这些区块链原生功能中得到反映和整合。</p>
+<h1>不炒作，只是工具</h1>
+<p>Web2和Web3开发之间有很多共同的概念。涉及的技术实际上跨越了不同的范式——您仍然需要一个前端和一个后端。区块链实际上只是一个由多个对等节点维护和验证的分布式数据库。您需要习惯它的完全透明性、分布式控制和只增不减的特性，但一旦习惯了，您将会受益匪浅。<br>
+对于XRPL和其他区块链擅长的金融应用场景来说，这些特性是优势，而不是劣势。对所有参与者可见、不可篡改且不受任何单一方完全控制的交易，提供了一种无需信任个别支付处理器的可信赖支付方式。<br>
+如果您准备好迈出了解区块链并将其集成到项目中的下一步，请查看我们的<a href="https://learn.xrpl.org/transition-from-web2-to-web3-development/">Web2到Web3 XRPL学习门户课程</a>。这个课程专门为Web2开发者设计，以便他们能够亲身体验区块链技术，帮助您弥合差距，在这个新范式中自信地构建。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>区块链</tag>
+        <tag>blockchain</tag>
+        <tag>翻译熟肉</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】冰剑的魔术师将要统一世界</title>
+    <url>/posts/74bc9031.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.09）：3.9/10</p>
+<p>个人评分：5/10</p>
+<p>一句话，女主好看（不穷的时候），但是剧情太典了，龙傲天剧情，情节推动很一般，以至于我一直倍速而且需要时不时停下缓缓。</p>
+<p>男主太牛了，值得大家学习。不过学了可能被抓进去。</p>
+<p>总之看了之后会后悔为什么看了，但是对我来说还能忍。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】异世界舅舅</title>
+    <url>/posts/2da51f56.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.01.02）：7.6/10</p>
+<p>个人评分：9/10</p>
+<p>很好看。无论制作还是剧情，都做得很好。有很多很好笑的地方，我看得很开心。</p>
+<p>唯一的问题就是，这种一节一节的剧情描述方式可能不合一些人的胃口。至少看得我很急，就像里面的男主和女主。但这也是特点吧。</p>
+<p>总之就是，快出第二季，很急。尤其是听了群友爆料后面的漫画剧情过后就更急了。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>后宫</tag>
+        <tag>搞笑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】变态王子与不笑猫</title>
+    <url>/posts/a10ab4dd.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.16）：6.8/10</p>
+<p>个人评分：9/10</p>
+<p>虽然是十年前的番，但是画风还是很好，女生都很可爱。每个人的个性都很鲜明，故事也是围绕每个人的性格推动。很多情节也很好笑，虽然经常笑着笑着就笑不出来了。</p>
+<p>不得不说，男主性格是真的好啊，该坦率的时候特别坦率。整部番全都是围绕男主进行，而且节奏很好，没有拖沓。虽说是后宫番，但其实可以认为是讲男主和各个女孩一起发生的故事。要是仅仅冲着后宫来看的话并不能得到太多乐趣，但是如果看作一部恋爱喜剧，体会其中的感情变化，那还是相当有趣的。</p>
+<p>总之是一部值得一看的番，对我来说各个方面都接近完美。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>后宫</tag>
+        <tag>搞笑</tag>
+        <tag>恋爱喜剧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】噗妮露是可爱史莱姆</title>
+    <url>/posts/a90a8a3d.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.27）：7.3/10</p>
+<p>个人评分：9/10</p>
+<p>总之就是非常可爱。<br>
+不喜欢噗妮露的有难了。<br>
+你也许会被里面人的画风劝退，但是，噗妮露的各种形态都很好看。<br>
+本以为是子供向，结果是<s>成人动画</s>。<br>
+<img src="https://s2.loli.net/2024/12/27/SghHbrtjVv75nJs.png" alt="表情包"></p>
+<p>剧情也基本上是单元剧类型，但还是有个先后顺序的影响。里面每个人特点鲜明，不过男主是真废物。可能看着确实会对男主生气吧，不过想想这就是小孩子，倒也不是不能接受。<br>
+<img src="https://s2.loli.net/2024/12/27/bkyD2KV7Xo6Amze.png" alt="另一张表情包"></p>
+<p>总之属于是很推荐的一部番，至少给我带来了不少欢乐。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>搞笑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】战斗员派遣中</title>
+    <url>/posts/96772038.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.14）：6.3/10</p>
+<p>个人评分：8/10</p>
+<p>作为一部搞笑番，搞笑部分还算可以，能让我时不时笑一下。主要角色画得还行。</p>
+<p>剧情比较典，但看的过程中并不会反感。</p>
+<p>总之还是值得一看，挺有意思的。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+        <tag>搞笑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】月光下的异世界之旅</title>
+    <url>/posts/c0cfa037.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.01.08）：6.0/10</p>
+<p>个人评分：5/10</p>
+<p>符合时代的作画，以及我觉得很无聊的剧情。人物没什么特色，在剧情中也没表现什么人物特点。每一集看了过后的唯一感想就是寂寞。</p>
+<p>不过我也只看了7集，先搁置了。感觉还是得找找别的类型的番。</p>
+<p>但是话说回来，这番好歹还是个及格吧。没什么雷，没什么亮点。适合睡前助眠。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】我立于百万生命之上 及第二季</title>
+    <url>/posts/83cee2d9.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.14）：5.9/10 6.1/10</p>
+<p>个人评分：7/10</p>
+<p>剧情一般，没有让人看不下去。但是感觉节奏还行，不会让人觉得无聊。而且并非主打龙傲天的，没那么无脑。</p>
+<p>总之属于可以一看的类型，正好有两季，拿来放松一下还行。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】柔光魔女股份有限公司</title>
+    <url>/posts/676a762e.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.27）：6.0/10</p>
+<p>个人评分：8/10</p>
+<p>画风可爱，情节也是一种突出中心的编排。剧情推进有一种老派的感觉，但是看着很舒服。</p>
+<p>故事设定也很新颖，魔法是一种程序，魔法少女是一种工作。故事基本上就是围绕这个设定展开的，而人物就是将这个设定进一步发散。</p>
+<p>个人认为还是很有意思的，但是我相信如果你真看了，肯定吐槽不会少。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>战斗</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】叹气的亡灵想隐退</title>
+    <url>/posts/7f701857.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.24）：6.3/10</p>
+<p>个人评分：7/10</p>
+<p>故事节奏还行，画风稍微有点不合胃口，但是还是挺喜欢的，尤其是小蒂诺。</p>
+<p>在这部番中，你将见到，每一集开始一两分钟弹幕就会说下周见，因为OP非常特立独行。而ED也很有特点，以至于有一天起来脑子里第一个声音就是ED的一段。</p>
+<p>总之属于比较推荐的一部番，算是比较能让人笑的作品。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>搞笑</tag>
+        <tag>战斗</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】胆大党</title>
+    <url>/posts/718237c1.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.27）：7.6/10</p>
+<p>个人评分：8/10</p>
+<p>故事很有趣，节奏把握很好，属于是很吸引人一直看下去的类型。</p>
+<p>角色塑造也比较成功，都很有特点。也没什么违背人设的情节。</p>
+<p>似乎大家对这部番的评价也挺高的，看来我的审美并没有完全被厕纸污染。</p>
+<p>总之属于是比较推荐一看的，除非你不喜欢这种带点热血的青春小故事。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>战斗</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】独自一人的异世界攻略</title>
+    <url>/posts/1c1a1f03.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.14）：4.5/10</p>
+<p>个人评分：3/10</p>
+<p>画风一般，演出极其尴尬，剧情也很无聊。</p>
+<p>但我确实每周一集追完了。可能每周看一集就能忍了。</p>
+<p>如果开倍速可以看看，反正不动脑。</p>
+<p>估计bgm评分还会接着跌就是了。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】星刻的龙骑士</title>
+    <url>/posts/f20036ba.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.10）：5.3/10</p>
+<p>个人评分：7/10</p>
+<p>十年前的动漫了，画风还能接受，至少女主很可爱。</p>
+<p>设定有新意，剧情有点公式化，但总体不错。</p>
+<p>福利场景很多，但是有些提不起兴趣。</p>
+<p>最难绷的是下图。</p>
+<p><img src="https://s2.loli.net/2024/12/10/tKRLMOcmpTokvUY.jpg" alt="某张截图"></p>
+<p>总之还是比较推荐，是一部合格的后宫番厕纸。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】精灵幻想记 及第二季</title>
+    <url>/posts/6f9d9faf.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.27）：5.6/10 5.3/10</p>
+<p>个人评分：6/10</p>
+<p>画风挺好看的，尤其是女角色。故事属于一种很慢节奏的叙事，尤其是第二季的最后几集，已经慢到无聊了。</p>
+<p>但是你别说，你还真别说，女角色真的好看，尤其是小老师。<br>
+你就说你喜不喜欢小老师吧。</p>
+<p>实在不想对剧情有太多评论，毕竟，能做到让人感觉不到爽的爽番也挺厉害的。</p>
+<p>总之可以一看，当消磨时间了。一口气全看完是在还是有点折磨。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】落第骑士英雄谭</title>
+    <url>/posts/1a79cd1f.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.23）：6.5/10</p>
+<p>个人评分：7/10</p>
+<p>画风挺好的，虽然是快10年前的番了，但还是挺好看的。剧情稍显无聊，有一点典，能够很容易猜到。</p>
+<p>非常意外，bgm上大家评分都挺高，还以为这种剧情典的评分不会高，可能还是画太好了。</p>
+<p>适合打发时间看看。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>战斗</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】这个医师超麻烦</title>
+    <url>/posts/c09f02d9.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.01.04）：6.1/10</p>
+<p>个人评分：8/10</p>
+<p>一开始看可能觉得很高血压，但是看着看着就开始笑了。虽然到后期有些笑点显得很重复，但我还是会笑。</p>
+<p>如果让我简单总结，那就是太搞了。所有内容都是服从于搞怪，从而产生笑点。但是男主也太菜了。</p>
+<p>总之属于是比较推荐的作品。但是我这连着看搞笑番实在有点累了，得去找点无脑厕纸平衡一下。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>搞笑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>推荐一个看番软件</title>
+    <url>/posts/567274b5.html</url>
+    <content><![CDATA[<p>推荐一个我经常用的看番软件：Animeko（<a href="https://myani.org/">https://myani.org/</a>或<a href="https://github.com/open-ani/animeko/">https://github.com/open-ani/animeko/</a>）。<br>
+这个软件集成了Bangumi，登录Bangumi账号后，再使用这个软件看番就会自动把进度同步。同时，这个软件一键点格子比在Bangumi上快多了。而且这个软件会读取弹弹Play的弹幕。最爽的是，这个软件支持长按倍速，再也不用担心看厕纸不能快进了。</p>
+<p>此外，分享一下关于数据源的经验（当前版本4.0.1，不确定后续版本是否相同）。<br>
+先讲一下思路。<br>
+有很多在线看番网站的模板大差不差，因此可以在已经给出的数据源中找出与你想用的数据源相似的，然后依葫芦画瓢改一改就行。其实大部分都不用改。<br>
+给出一个我搞好的例子。以下是次元城的数据源。（2024年12月15日更新：自带次元城数据源了）</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;&quot;mediaSources&quot;:[&#123;&quot;factoryId&quot;:&quot;web-selector&quot;,&quot;version&quot;:2,&quot;arguments&quot;:&#123;&quot;name&quot;:&quot;次元城&quot;,&quot;description&quot;:&quot;&quot;,&quot;iconUrl&quot;:&quot;https:&#x2F;&#x2F;www.cyc-anime.net&#x2F;upload&#x2F;site&#x2F;20240319-1&#x2F;25e700991446a527804c82a744731b60.png&quot;,&quot;searchConfig&quot;:&#123;&quot;searchUrl&quot;:&quot;https:&#x2F;&#x2F;www.cyc-anime.net&#x2F;search.html?wd&#x3D;&#123;keyword&#125;&quot;,&quot;searchUseOnlyFirstWord&quot;:true,&quot;searchRemoveSpecial&quot;:true,&quot;rawBaseUrl&quot;:&quot;&quot;,&quot;subjectFormatId&quot;:&quot;indexed&quot;,&quot;selectorSubjectFormatA&quot;:&#123;&quot;selectLists&quot;:&quot;body &gt; div.box-width &gt; div &gt; div.row-9 &gt; div &gt; div &gt; div.right.rel.flex-auto &gt; div.thumb-content &gt; div.thumb-txt.cor4.hide&quot;,&quot;preferShorterName&quot;:true&#125;,&quot;selectorSubjectFormatIndexed&quot;:&#123;&quot;selectNames&quot;:&quot;body &gt; .box-width .search-box .thumb-content &gt; .thumb-txt&quot;,&quot;selectLinks&quot;:&quot;body &gt; .box-width .search-box .thumb-menu &gt; a&quot;,&quot;preferShorterName&quot;:true&#125;,&quot;selectorSubjectFormatJsonPathIndexed&quot;:&#123;&quot;selectLinks&quot;:&quot;$[*][&#39;url&#39;, &#39;link&#39;]&quot;,&quot;selectNames&quot;:&quot;$[*][&#39;title&#39;,&#39;name&#39;]&quot;,&quot;preferShorterName&quot;:true&#125;,&quot;channelFormatId&quot;:&quot;index-grouped&quot;,&quot;selectorChannelFormatFlattened&quot;:&#123;&quot;selectChannelNames&quot;:&quot;.anthology-tab &gt; .swiper-wrapper a&quot;,&quot;matchChannelName&quot;:&quot;^(?&lt;ch&gt;.+?)(\\d+)?$&quot;,&quot;selectEpisodeLists&quot;:&quot;.anthology-list-box&quot;,&quot;selectEpisodesFromList&quot;:&quot;a&quot;,&quot;selectEpisodeLinksFromList&quot;:&quot;&quot;,&quot;matchEpisodeSortFromName&quot;:&quot;第\\s*(?&lt;ep&gt;.+)\\s*[话集]&quot;&#125;,&quot;selectorChannelFormatNoChannel&quot;:&#123;&quot;selectEpisodes&quot;:&quot;.anthology-list-play&quot;,&quot;selectEpisodeLinks&quot;:&quot;&quot;,&quot;matchEpisodeSortFromName&quot;:&quot;第\\s*(?&lt;ep&gt;.+)\\s*[话集]&quot;&#125;,&quot;filterByEpisodeSort&quot;:true,&quot;filterBySubjectName&quot;:true,&quot;selectMedia&quot;:&#123;&quot;distinguishSubjectName&quot;:true,&quot;distinguishChannelName&quot;:true&#125;,&quot;matchVideo&quot;:&#123;&quot;enableNestedUrl&quot;:true,&quot;matchNestedUrl&quot;:&quot;^.+(m3u8|vip|xigua\\.php).+\\?&quot;,&quot;matchVideoUrl&quot;:&quot;(^http(s)?:\\&#x2F;\\&#x2F;(?!.*http(s)?:\\&#x2F;\\&#x2F;).+((\\.mp4)|(\\.mkv)|(m3u8)).*(\\?.+)?)|(akamaized)|(bilivideo.com)&quot;,&quot;cookies&quot;:&quot;quality&#x3D;1080&quot;,&quot;addHeadersToVideo&quot;:&#123;&quot;referer&quot;:&quot;&quot;,&quot;userAgent&quot;:&quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;58.0.3029.110 Safari&#x2F;537.3&quot;&#125;&#125;&#125;&#125;&#125;]&#125;</code></pre>
+<p>记得测试一下是否正常。如果不正常，可能是次元城挂了，也可能是你的网络犯病，也可能是换网址了。<br>
+我建议使用<a href="https://www.cycity.pro/">https://www.cycity.pro/</a>这个地址发布页看看次元城的最新网址。这个网站还是很不错的，广告影响不大。</p>
+<p>当然，仅仅使用自带的源一般就够了。新番可以用BT，老番就老老实实用在线源吧。<br>
+以我这里的网络，稀饭动漫和漫次元是比较好的，清晰度高且无广告。</p>
+<p>祝大家看番顺利。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>小工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>检验你是不是欧皇</title>
+    <url>/posts/1dd25bb5.html</url>
+    <content><![CDATA[<p>这个工具会生成一个ETH私钥，然后生成公钥和地址。<br>
+接着在<a href="https://ethplorer.io/wallet/#">Ethplorer</a>查询该地址有没有币。<br>
+因此在使用这个程序之前，需要搞一个Ethplorer的api，好在这个网站是有很高的免费额度的，虽然内地不好上。<br>
+这个程序的最大限制在于api的速度，如果是搞本地查询，那肯定飞快。<br>
+不管咋说，这东西都没啥用，2的32次方个钱包地址，找到有钱的，还没听说过（可能是我孤陋寡闻）。<br>
+如果你真的欧皇附体查到了，那理论上会出现在<code>result.txt</code>里面。<br>
+下面是这个程序的代码，记得改一下api。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import os
+from eth_keys import keys
+import requests
+import time
+import shelve
+import logging
+from collections import deque
+
+api &#x3D; &quot;你的api&quot;
+
+# 设置日志记录
+logging.basicConfig(filename&#x3D;&quot;errorlog.log&quot;, level&#x3D;logging.ERROR)
+
+# 计数器存储文件
+COUNTS_DB &#x3D; &quot;api_counts.db&quot;
+
+# 定义时间窗口长度
+SECONDLY_TIME_FRAME &#x3D; 1  # 每秒
+HOURLY_TIME_FRAME &#x3D; 3600  # 每小时
+DAILY_TIME_FRAME &#x3D; 86400  # 每天
+WEEKLY_TIME_FRAME &#x3D; 604800  # 每周
+
+# 定义请求限制
+LIMITS &#x3D; &#123;&quot;second&quot;: 5, &quot;hour&quot;: 17500, &quot;day&quot;: 378000, &quot;week&quot;: 2381400&#125;
+
+
+def get_counts():
+    with shelve.open(COUNTS_DB) as db:
+        if &quot;timestamps&quot; not in db:
+            db[&quot;timestamps&quot;] &#x3D; deque(maxlen&#x3D;SECONDLY_TIME_FRAME)
+        return db[&quot;timestamps&quot;]
+
+
+def update_counts(timestamps):
+    with shelve.open(COUNTS_DB, writeback&#x3D;True) as db:
+        db[&quot;timestamps&quot;] &#x3D; timestamps
+
+
+def reset_counts():
+    with shelve.open(COUNTS_DB, writeback&#x3D;True) as db:
+        db[&quot;timestamps&quot;] &#x3D; deque(maxlen&#x3D;SECONDLY_TIME_FRAME)
+
+
+def is_over_limit(timestamps, limit, time_frame):
+    current_time &#x3D; time.time()
+    # 移除时间窗口之外的记录
+    while timestamps and current_time - timestamps[0] &gt; time_frame:
+        timestamps.popleft()
+    return len(timestamps) &gt;&#x3D; limit
+
+
+def generate_key_pair():
+    # 生成一个安全的随机私钥
+    private_key &#x3D; keys.PrivateKey(os.urandom(32))
+
+    # 获取私钥的十六进制表示
+    private_key_hex &#x3D; private_key.to_hex()
+
+    # 输出私钥
+    # print(f&quot;Private Key: &#123;private_key_hex&#125;&quot;)
+
+    # 从私钥派生公钥
+    public_key &#x3D; private_key.public_key
+
+    # 获取公钥的压缩形式
+    public_key_compressed_hex &#x3D; public_key.to_hex()
+
+    # 输出公钥
+    # print(f&quot;Public Key: &#123;public_key_compressed_hex&#125;&quot;)
+
+    # 生成以太坊地址
+    address &#x3D; public_key.to_checksum_address()
+
+    # 输出地址
+    # print(f&quot;Ethereum Address: &#123;address&#125;&quot;)
+
+    return private_key_hex, public_key_compressed_hex, address
+
+
+def make_api_request(address):
+
+    if not address:
+        private_key_hex, public_key_compressed_hex, address &#x3D; generate_key_pair()
+
+    # 拼接请求
+    url &#x3D; f&quot;https:&#x2F;&#x2F;api.ethplorer.io&#x2F;getAddressInfo&#x2F;&quot; + address + &quot;?apiKey&#x3D;&quot; + api
+
+    # 发送请求
+    response &#x3D; requests.get(url)
+    # 解析响应
+    data &#x3D; response.json()
+
+    # 是否是空钱包
+    non_zero_balances &#x3D; False
+
+    # 检测有没有ETH
+    if data[&quot;ETH&quot;][&quot;balance&quot;] !&#x3D; 0:
+        non_zero_balances &#x3D; True
+
+    # 检测别的代币
+    if &quot;tokens&quot; in data:
+        for token in data[&quot;tokens&quot;]:
+            if token[&quot;balance&quot;] !&#x3D; 0:
+                non_zero_balances &#x3D; True
+                break
+    # BNB链查询
+    url &#x3D; f&quot;https:&#x2F;&#x2F;api.binplorer.com&#x2F;getAddressInfo&#x2F;&quot; + address + &quot;?apiKey&#x3D;&quot; + api
+
+    # 发送请求
+    response &#x3D; requests.get(url)
+    # 解析响应
+    data &#x3D; response.json()
+
+    # 检测BNB（返回为ETH）
+    if data[&quot;ETH&quot;][&quot;balance&quot;] !&#x3D; 0:
+        non_zero_balances &#x3D; True
+
+    # 检测别的代币
+    if &quot;tokens&quot; in data:
+        for token in data[&quot;tokens&quot;]:
+            if token[&quot;balance&quot;] !&#x3D; 0:
+                non_zero_balances &#x3D; True
+                break
+
+    return non_zero_balances
+
+
+def main():
+    private_key_hex, public_key_compressed_hex, address &#x3D; generate_key_pair()
+    flag &#x3D; True
+    while True:
+        timestamps &#x3D; get_counts()
+
+        # 检查是否超过限制
+        if is_over_limit(timestamps, LIMITS[&quot;second&quot;], SECONDLY_TIME_FRAME):
+            time.sleep(0.1)  # 等待一段时间
+            continue
+        if is_over_limit(timestamps, LIMITS[&quot;hour&quot;], HOURLY_TIME_FRAME):
+            time.sleep(1)  # 等待一段时间
+            continue
+        if is_over_limit(timestamps, LIMITS[&quot;day&quot;], DAILY_TIME_FRAME):
+            time.sleep(10)  # 等待一段时间
+            continue
+        if is_over_limit(timestamps, LIMITS[&quot;week&quot;], WEEKLY_TIME_FRAME):
+            time.sleep(60)  # 等待一段时间
+            continue
+
+        try:
+            non_zero_balances &#x3D; make_api_request(address)
+            timestamps.append(time.time())
+            update_counts(timestamps)
+        except Exception as e:
+            logging.error(str(e))
+            flag &#x3D; False
+        # Output message if any non-zero balance is found
+        output_message &#x3D; f&quot;地址：&#123;address&#125;&quot;
+        output_message +&#x3D; f&quot;\n私钥：&#123;private_key_hex&#125;&quot;
+        output_message +&#x3D; f&quot;\n公钥：&#123;public_key_compressed_hex&#125;&quot;
+        print(output_message)
+        if non_zero_balances:
+            with open(&quot;result.txt&quot;, &quot;a&quot;) as f:
+                f.write(output_message + &quot;\n&quot;)
+        if flag:
+            private_key_hex, public_key_compressed_hex, address &#x3D; generate_key_pair()
+        flag &#x3D; True
+
+        # 等待以限制每秒的请求次数
+        time.sleep(0.1)  # 根据API请求的耗时调整这个值
+
+
+if __name__ &#x3D;&#x3D; &quot;__main__&quot;:
+    main()
+</code></pre>]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>blockchain</tag>
+        <tag>小工具</tag>
+        <tag>没用</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>通过对比清理图片</title>
+    <url>/posts/cbb6721e.html</url>
+    <content><![CDATA[<p>因为本人平时喜好存一些图片，但经常批量下载，存了又不怎么看，因此有很多图片实际上并不需要，因此我想到了这个办法。</p>
+<p>使用这个工具，输入路径后，会自动随机抽取路径下的两张图片，然后可以自己选择留下哪一张，或者是直接跳过。</p>
+<p>同时，我还使用了HTTP服务，因此可以躺床上用手机操作。</p>
+<p>开始运行后访问localhost:1145即可。</p>
+<p>代码如下。</p>
+<span id="more"></span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import os
+import random
+from pywebio.input import *
+from pywebio.output import *
+from pywebio import start_server
+
+
+# 1. 读取目录内的随机两张图片
+def get_random_images(directory):
+    images &#x3D; [f for f in os.listdir(directory) if f.endswith((&quot;.png&quot;, &quot;.jpg&quot;, &quot;.jpeg&quot;))]
+    if len(images) &lt; 2:
+        return None
+    selected_images &#x3D; random.sample(images, 2)
+    return [os.path.join(directory, img) for img in selected_images]
+
+
+# 2. 显示图片并处理用户选择
+def show_images(directory):
+    while True:
+        image_paths &#x3D; get_random_images(directory)
+        if not image_paths:
+            put_text(&quot;目录中没有足够的图片&quot;)
+            break
+
+        # 显示图片
+        img1 &#x3D; open(image_paths[0], &quot;rb&quot;).read()
+        img2 &#x3D; open(image_paths[1], &quot;rb&quot;).read()
+        put_row(
+            [
+                put_image(img1),
+                put_image(img2),
+            ]
+        )
+
+        # 创建按钮
+        choice &#x3D; actions(&quot;&quot;, [&quot;留下左边&quot;, &quot;留下右边&quot;, &quot;跳过&quot;])
+
+        # 刷新页面
+        clear()
+        # 处理用户选择
+        if choice &#x3D;&#x3D; &quot;留下左边&quot;:
+            os.remove(image_paths[1])
+        elif choice &#x3D;&#x3D; &quot;留下右边&quot;:
+            os.remove(image_paths[0])
+        elif choice &#x3D;&#x3D; &quot;跳过&quot;:
+            continue
+
+
+# 3. 开启HTTP服务
+def main():
+    directory &#x3D; input(&quot;请输入图片目录的路径：&quot;)
+    show_images(directory)
+
+
+start_server(main, port&#x3D;1145)</code></pre>]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>小工具</tag>
+      </tags>
+  </entry>
+</search>
