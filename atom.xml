@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2025-01-09T13:40:47.962Z</updated>
+  <updated>2025-01-15T12:10:34.293Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【随便漫谈】RPG不动产</title>
+    <link href="https://masofod.github.io/posts/1427c487"/>
+    <id>https://masofod.github.io/posts/1427c487</id>
+    <published>2025-01-15T08:49:21.000Z</published>
+    <updated>2025-01-15T12:10:34.293Z</updated>
+    
+    
+    <summary type="html">简介：异世界的房产中介的故事。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="百合" scheme="https://masofod.github.io/tags/%E7%99%BE%E5%90%88/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【随便漫谈】最强阴阳师的异世界转生记</title>
     <link href="https://masofod.github.io/posts/ed36ff09"/>
     <id>https://masofod.github.io/posts/ed36ff09</id>
     <published>2025-01-09T12:58:57.000Z</published>
-    <updated>2025-01-09T13:40:47.962Z</updated>
+    <updated>2025-01-09T13:41:57.489Z</updated>
     
     
     <summary type="html">简介：最强阴阳师转生到了有魔法的异世界，然后收后宫的故事。</summary>
@@ -33,9 +54,9 @@
     
     <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
-    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
-    
     <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
     
   </entry>
   
@@ -56,9 +77,9 @@
     
     <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
-    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
-    
     <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
     
   </entry>
   
@@ -67,7 +88,7 @@
     <link href="https://masofod.github.io/posts/1f9f5e5"/>
     <id>https://masofod.github.io/posts/1f9f5e5</id>
     <published>2025-01-05T08:36:41.000Z</published>
-    <updated>2025-01-07T13:37:05.635Z</updated>
+    <updated>2025-01-15T08:26:29.887Z</updated>
     
     
     <summary type="html">简介：在Godot 4.3中实现以单客户端同时支持单机和联机功能。</summary>
@@ -199,7 +220,7 @@
     <link href="https://masofod.github.io/posts/718237c1"/>
     <id>https://masofod.github.io/posts/718237c1</id>
     <published>2024-12-27T07:28:00.000Z</published>
-    <updated>2024-12-27T08:54:26.588Z</updated>
+    <updated>2025-01-09T13:54:35.036Z</updated>
     
     
     <summary type="html">简介：男主和女主在获得能力后解决各种超自然事件的故事。</summary>
@@ -210,6 +231,8 @@
     
     
     <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="恋爱" scheme="https://masofod.github.io/tags/%E6%81%8B%E7%88%B1/"/>
     
     <category term="战斗" scheme="https://masofod.github.io/tags/%E6%88%98%E6%96%97/"/>
     
@@ -232,9 +255,9 @@
     
     <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
-    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
-    
     <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
     
   </entry>
   
@@ -294,10 +317,10 @@
     <link href="https://masofod.github.io/posts/1a79cd1f"/>
     <id>https://masofod.github.io/posts/1a79cd1f</id>
     <published>2024-12-23T13:24:46.000Z</published>
-    <updated>2024-12-27T08:54:45.611Z</updated>
+    <updated>2025-01-09T13:56:25.509Z</updated>
     
     
-    <summary type="html">简介：男主靠努力变强过后到处打人撩妹的故事</summary>
+    <summary type="html">简介：男主靠努力变强过后到处打人撩妹的故事。</summary>
     
     
     
@@ -305,6 +328,10 @@
     
     
     <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="恋爱" scheme="https://masofod.github.io/tags/%E6%81%8B%E7%88%B1/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
     
     <category term="战斗" scheme="https://masofod.github.io/tags/%E6%88%98%E6%96%97/"/>
     
@@ -340,10 +367,10 @@
     <link href="https://masofod.github.io/posts/a10ab4dd"/>
     <id>https://masofod.github.io/posts/a10ab4dd</id>
     <published>2024-12-16T03:47:47.000Z</published>
-    <updated>2024-12-27T08:54:18.626Z</updated>
+    <updated>2025-01-09T13:55:13.940Z</updated>
     
     
-    <summary type="html">简介：男主在能实现愿望的不笑猫的帮助下与女生刷好感的故事</summary>
+    <summary type="html">简介：男主在能实现愿望的不笑猫的帮助下与女生刷好感的故事。</summary>
     
     
     
@@ -352,11 +379,11 @@
     
     <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
+    <category term="恋爱" scheme="https://masofod.github.io/tags/%E6%81%8B%E7%88%B1/"/>
+    
     <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
     
     <category term="搞笑" scheme="https://masofod.github.io/tags/%E6%90%9E%E7%AC%91/"/>
-    
-    <category term="恋爱喜剧" scheme="https://masofod.github.io/tags/%E6%81%8B%E7%88%B1%E5%96%9C%E5%89%A7/"/>
     
   </entry>
   
@@ -384,10 +411,10 @@
     <link href="https://masofod.github.io/posts/1c1a1f03"/>
     <id>https://masofod.github.io/posts/1c1a1f03</id>
     <published>2024-12-14T03:31:22.000Z</published>
-    <updated>2024-12-27T08:54:28.899Z</updated>
+    <updated>2025-01-09T13:56:45.465Z</updated>
     
     
-    <summary type="html">简介：实际上一直有人关心的男主开挂乱杀的故事</summary>
+    <summary type="html">简介：实际上一直有人关心的男主开挂乱杀的故事。</summary>
     
     
     
@@ -395,8 +422,6 @@
     
     
     <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
-    
-    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
     
     <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
     
@@ -419,9 +444,9 @@
     
     <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
-    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
-    
     <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
     
   </entry>
   
@@ -442,32 +467,11 @@
     
     <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
     <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
     
     <category term="搞笑" scheme="https://masofod.github.io/tags/%E6%90%9E%E7%AC%91/"/>
-    
-    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【随便漫谈】不正经的魔术讲师与禁忌教典</title>
-    <link href="https://masofod.github.io/posts/360164f0"/>
-    <id>https://masofod.github.io/posts/360164f0</id>
-    <published>2024-12-11T05:27:22.000Z</published>
-    <updated>2024-12-27T08:54:24.089Z</updated>
-    
-    
-    <summary type="html">简介：男主与自己和解并刷好感的故事</summary>
-    
-    
-    
-    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
-    
-    
-    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
-    
-    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
     
   </entry>
   
