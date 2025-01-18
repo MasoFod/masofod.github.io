@@ -31,6 +31,7 @@
       </categories>
       <tags>
         <tag>技术</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1160,6 +1161,31 @@ start_server(main, port&#x3D;1145)</code></pre>]]></content>
       </categories>
       <tags>
         <tag>小工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【来点技术】Godot开发中获得的一些经验（长期更新）</title>
+    <url>/posts/83c20e8a.html</url>
+    <content><![CDATA[<p>本人使用Godot做过一些小游戏（或者不算游戏的小东西），虽然每个项目的开发时间不长，项目规模也不大，但我还是获得了不少经验。因此在这里记录下来，以便警醒自己。<br>
+如果你有什么自己的经验，也可以写在评论区。</p>
+<hr>
+<h1>效率类</h1>
+<p>1、做一个新功能之前，先搜一下有没有现成的插件。即使是过期插件，也可以从中学到思路。</p>
+<hr>
+<h1>技巧类</h1>
+<p>1、多用信号，避免繁琐的节点访问。</p>
+<p>2、避免频繁切换场景（<code>change_scene_to_file()</code>方法），否则性能开销较大。考虑使用一个<code>Main</code>根节点来组织场景树。</p>
+<p>3、在<code>_process()</code>（或其他频繁调用的方法）中避免高消耗的操作，例如加载素材。</p>
+<p>4、尽量使用<code>@export</code>的方法加载复杂路径的节点，避免在脚本中直接写节点路径，这样在更改节点路径后不会出问题。</p>
+<hr>
+<h1>出错类</h1>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>Godot</tag>
       </tags>
   </entry>
 </search>

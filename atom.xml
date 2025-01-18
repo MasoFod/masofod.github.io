@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2025-01-15T12:10:34.293Z</updated>
+  <updated>2025-01-18T14:15:23.216Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【来点技术】Godot开发中获得的一些经验（长期更新）</title>
+    <link href="https://masofod.github.io/posts/83c20e8a"/>
+    <id>https://masofod.github.io/posts/83c20e8a</id>
+    <published>2025-01-18T13:59:27.000Z</published>
+    <updated>2025-01-18T14:15:23.216Z</updated>
+    
+    
+    <summary type="html">简介：在一些小项目中获得的一点小经验。</summary>
+    
+    
+    
+    <category term="技术" scheme="https://masofod.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://masofod.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Godot" scheme="https://masofod.github.io/tags/Godot/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【随便漫谈】RPG不动产</title>
     <link href="https://masofod.github.io/posts/1427c487"/>
     <id>https://masofod.github.io/posts/1427c487</id>
     <published>2025-01-15T08:49:21.000Z</published>
-    <updated>2025-01-15T12:10:34.293Z</updated>
+    <updated>2025-01-15T12:10:55.608Z</updated>
     
     
     <summary type="html">简介：异世界的房产中介的故事。</summary>
@@ -266,19 +287,10 @@
     <link href="https://masofod.github.io/posts/5fe5bce9"/>
     <id>https://masofod.github.io/posts/5fe5bce9</id>
     <published>2024-12-24T09:28:04.000Z</published>
-    <updated>2024-12-31T13:05:41.515Z</updated>
+    <updated>2025-01-18T14:17:08.036Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;题目背景&lt;/h1&gt;
-&lt;p&gt;快递员遇到了一些小问题，每天的派送过程既繁琐又费时。而原因，就是派送的目的地要求的派送时间不一样。&lt;/p&gt;
-&lt;h1&gt;题目描述&lt;/h1&gt;
-&lt;p&gt;给出一张无向图，每个节点有开关的时间，要求从起点出发，在节点开门的情况下遍历所有节点，问在耗时最短的情况</summary>
-        
-      
+    <summary type="html">简介：一个图论相关的算法问题。</summary>
     
     
     
@@ -286,6 +298,8 @@
     
     
     <category term="技术" scheme="https://masofod.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="算法" scheme="https://masofod.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -447,31 +461,6 @@
     <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
     
     <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【随便漫谈】战斗员派遣中</title>
-    <link href="https://masofod.github.io/posts/96772038"/>
-    <id>https://masofod.github.io/posts/96772038</id>
-    <published>2024-12-14T03:22:24.000Z</published>
-    <updated>2024-12-27T08:55:00.839Z</updated>
-    
-    
-    <summary type="html">简介：男主开挂并刷好感的故事</summary>
-    
-    
-    
-    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
-    
-    
-    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
-    
-    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
-    
-    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
-    
-    <category term="搞笑" scheme="https://masofod.github.io/tags/%E6%90%9E%E7%AC%91/"/>
     
   </entry>
   
