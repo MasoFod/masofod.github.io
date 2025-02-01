@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>【来点技术】Godot开发中获得的一些经验（长期更新）</title>
-    <url>/posts/83c20e8a.html</url>
-    <content><![CDATA[<p>本人使用Godot做过一些小游戏（或者不算游戏的小东西），虽然每个项目的开发时间不长，项目规模也不大，但我还是获得了不少经验。因此在这里记录下来，以便警醒自己。<br>
-如果你有什么自己的经验，也可以写在评论区。</p>
+    <title>【来点技术】快递员问题</title>
+    <url>/posts/5fe5bce9.html</url>
+    <content><![CDATA[<h1>题目背景</h1>
+<p>快递员遇到了一些小问题，每天的派送过程既繁琐又费时。而原因，就是派送的目的地要求的派送时间不一样。</p>
+<h1>题目描述</h1>
+<p>给出一张无向图，每个节点有开关的时间，要求从起点出发，在节点开门的情况下遍历所有节点，问在耗时最短的情况下最晚可以从什么时候出发。其中，关门的节点依然可以经过，只是不计入访问。每一天的时间一共有1440。在到达关门的时间的时候，这个节点就已经关门了，例如节点在100的时候关门，则在100的时候到达并不认为成功访问。固定1号点为起点,且1号点没有开关门时间。</p>
+<h1>输入格式</h1>
+<p>共n+m行。<br>
+第1行为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span>，表示点数和边数。<br>
+第2行至第n行中，每一行有两个整数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>t</mi><mi>n</mi><mi>o</mi></msubsup></mrow><annotation encoding="application/x-tex">t^o_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9114em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>t</mi><mi>n</mi><mi>c</mi></msubsup></mrow><annotation encoding="application/x-tex">t^c_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9114em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>表示这个节点的开门时间和关门时间，其中n为行数。<br>
+第n+1行至第n+m行中，每一行为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mrow><mi>a</mi><mi>b</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{ab}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7651em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ab</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ，表示边的起点、终点及经过边需要使用的时间。</p>
+<h1>输出格式</h1>
+<p>输出仅一个整数，表示出发的时间。若无法完成，则输出-1。</p>
+<h1>输入输出示例</h1>
+<h2 id="输入-1">输入 #1</h2>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">2 1
+0 1440
+1 2 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="输出-2">输出 #2</h2>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">1438<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1>说明</h1>
+<p>对所有数据，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&lt;</mo><mi>n</mi><mo>⩽</mo><mn>10000</mn></mrow><annotation encoding="application/x-tex">1&lt;n\leqslant10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>m</mi><mo>⩽</mo><mn>10000</mn></mrow><annotation encoding="application/x-tex">0&lt;m\leqslant10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000</span></span></span></span>。（数据范围我瞎编的）</p>
 <hr>
-<h1>效率类</h1>
-<p>1、做一个新功能之前，先搜一下有没有现成的插件。即使是过期插件，也可以从中学到思路。</p>
-<hr>
-<h1>技巧类</h1>
-<p>1、多用信号，避免繁琐的节点访问。</p>
-<p>2、避免频繁切换场景（<code>change_scene_to_file()</code>方法），否则性能开销较大。考虑使用一个<code>Main</code>根节点来组织场景树。</p>
-<p>3、在<code>_process()</code>（或其他频繁调用的方法）中避免高消耗的操作，例如加载素材。</p>
-<p>4、尽量使用<code>@export</code>的方法加载复杂路径的节点，避免在脚本中直接写节点路径，这样在更改节点路径后不会出问题。</p>
-<hr>
-<h1>出错类</h1>
-<hr>
+<p>然而本人才疏学浅，并不能解决这个问题。可能经过一段时间就会发现其实这就是个很简单的问题吧。<br>
+如果说数据设定为一定有解，那应该有取巧的办法，但如果不一定有解，那我还真就只能想到暴力。<br>
+另外，这个问题还可以变一下式，比如结束的时间最早。这样的话跑暴力应该也好点。</p>
 ]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
         <tag>技术</tag>
-        <tag>Godot</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -483,37 +493,48 @@ Control_JoinMutiplayer<br>
       </tags>
   </entry>
   <entry>
-    <title>【来点技术】快递员问题</title>
-    <url>/posts/5fe5bce9.html</url>
-    <content><![CDATA[<h1>题目背景</h1>
-<p>快递员遇到了一些小问题，每天的派送过程既繁琐又费时。而原因，就是派送的目的地要求的派送时间不一样。</p>
-<h1>题目描述</h1>
-<p>给出一张无向图，每个节点有开关的时间，要求从起点出发，在节点开门的情况下遍历所有节点，问在耗时最短的情况下最晚可以从什么时候出发。其中，关门的节点依然可以经过，只是不计入访问。每一天的时间一共有1440。在到达关门的时间的时候，这个节点就已经关门了，例如节点在100的时候关门，则在100的时候到达并不认为成功访问。固定1号点为起点,且1号点没有开关门时间。</p>
-<h1>输入格式</h1>
-<p>共n+m行。<br>
-第1行为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span>，表示点数和边数。<br>
-第2行至第n行中，每一行有两个整数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>t</mi><mi>n</mi><mi>o</mi></msubsup></mrow><annotation encoding="application/x-tex">t^o_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9114em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>t</mi><mi>n</mi><mi>c</mi></msubsup></mrow><annotation encoding="application/x-tex">t^c_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9114em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>表示这个节点的开门时间和关门时间，其中n为行数。<br>
-第n+1行至第n+m行中，每一行为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mrow><mi>a</mi><mi>b</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{ab}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7651em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ab</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ，表示边的起点、终点及经过边需要使用的时间。</p>
-<h1>输出格式</h1>
-<p>输出仅一个整数，表示出发的时间。</p>
-<h1>输入输出示例</h1>
-<h2 id="输入-1">输入 #1</h2>
-<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">2 1
-0 1440
-1 2 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="输出-2">输出 #2</h2>
-<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">1438<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1>说明</h1>
-<p>对所有数据，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&lt;</mo><mi>n</mi><mo>⩽</mo><mn>10000</mn></mrow><annotation encoding="application/x-tex">1&lt;n\leqslant10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>m</mi><mo>⩽</mo><mn>10000</mn></mrow><annotation encoding="application/x-tex">0&lt;m\leqslant10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000</span></span></span></span>。（数据范围我瞎编的）</p>
+    <title>【来点技术】Godot开发中获得的一些经验（长期更新）</title>
+    <url>/posts/83c20e8a.html</url>
+    <content><![CDATA[<p>本人使用Godot做过一些小游戏（或者不算游戏的小东西），虽然每个项目的开发时间不长，项目规模也不大，但我还是获得了不少经验。因此在这里记录下来，以便警醒自己。<br>
+如果你有什么自己的经验，也可以写在评论区。</p>
 <hr>
-<p>然而本人才疏学浅，并不能解决这个问题。可能经过一段时间就会发现其实这就是个很简单的问题吧。</p>
+<h1>效率类</h1>
+<p>1、做一个新功能之前，先搜一下有没有现成的插件。即使是过期插件，也可以从中学到思路。</p>
+<hr>
+<h1>技巧类</h1>
+<p>1、多用信号，避免繁琐的节点访问。</p>
+<p>2、避免频繁切换场景（<code>change_scene_to_file()</code>方法），否则性能开销较大。考虑使用一个<code>Main</code>根节点来组织场景树。</p>
+<p>3、在<code>_process()</code>（或其他频繁调用的方法）中避免高消耗的操作，例如加载素材。</p>
+<p>4、尽量使用<code>@export</code>的方法加载复杂路径的节点，避免在脚本中直接写节点路径，这样在更改节点路径后不会出问题。</p>
+<hr>
+<h1>出错类</h1>
+<hr>
 ]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
         <tag>技术</tag>
-        <tag>算法</tag>
+        <tag>Godot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】不正经的魔术讲师与禁忌教典</title>
+    <url>/posts/360164f0.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.11）：6.2/10</p>
+<p>个人评分：8/10</p>
+<p>画风好又不好，剧情有新意，没有什么硬伤，至少我很满意。不过还是有一些俗套的东西，看看也行。</p>
+<p>然后，著名表情包也出自这部番。</p>
+<p><img src="https://s2.loli.net/2024/12/11/6i7MjQ8VPeGO2EY.jpg" alt="某张表情包出处"></p>
+<p>总之个人认为值得一看，就是感觉吊胃口的东西太多了，如果能出第二季一起看就好了。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>恋爱</tag>
       </tags>
   </entry>
   <entry>
@@ -566,6 +587,25 @@ Web3应用程序拥有许多相同的特性。区块链本质上只是一个数�
       </tags>
   </entry>
   <entry>
+    <title>【随便漫谈】变态王子与不笑猫</title>
+    <url>/posts/a10ab4dd.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.16）：6.8/10</p>
+<p>个人评分：9/10</p>
+<p>虽然是十年前的番，但是画风还是很好，女生都很可爱。每个人的个性都很鲜明，故事也是围绕每个人的性格推动。很多情节也很好笑，虽然经常笑着笑着就笑不出来了。</p>
+<p>不得不说，男主性格是真的好啊，该坦率的时候特别坦率。整部番全都是围绕男主进行，而且节奏很好，没有拖沓。虽说是后宫番，但其实可以认为是讲男主和各个女孩一起发生的故事。要是仅仅冲着后宫来看的话并不能得到太多乐趣，但是如果看作一部恋爱喜剧，体会其中的感情变化，那还是相当有趣的。</p>
+<p>总之是一部值得一看的番，对我来说各个方面都接近完美。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>恋爱</tag>
+        <tag>后宫</tag>
+        <tag>搞笑</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【随便漫谈】RPG不动产</title>
     <url>/posts/1427c487.html</url>
     <content><![CDATA[<p>Bangumi评分（截至2025.01.15）：5.4/10</p>
@@ -597,46 +637,9 @@ Web3应用程序拥有许多相同的特性。区块链本质上只是一个数�
       </categories>
       <tags>
         <tag>随便漫谈</tag>
-        <tag>后宫</tag>
-        <tag>恋爱</tag>
         <tag>厕纸</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】变态王子与不笑猫</title>
-    <url>/posts/a10ab4dd.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2024.12.16）：6.8/10</p>
-<p>个人评分：9/10</p>
-<p>虽然是十年前的番，但是画风还是很好，女生都很可爱。每个人的个性都很鲜明，故事也是围绕每个人的性格推动。很多情节也很好笑，虽然经常笑着笑着就笑不出来了。</p>
-<p>不得不说，男主性格是真的好啊，该坦率的时候特别坦率。整部番全都是围绕男主进行，而且节奏很好，没有拖沓。虽说是后宫番，但其实可以认为是讲男主和各个女孩一起发生的故事。要是仅仅冲着后宫来看的话并不能得到太多乐趣，但是如果看作一部恋爱喜剧，体会其中的感情变化，那还是相当有趣的。</p>
-<p>总之是一部值得一看的番，对我来说各个方面都接近完美。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>后宫</tag>
         <tag>恋爱</tag>
-        <tag>搞笑</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】叹气的亡灵想隐退</title>
-    <url>/posts/7f701857.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2024.12.24）：6.3/10</p>
-<p>个人评分：7/10</p>
-<p>故事节奏还行，画风稍微有点不合胃口，但是还是挺喜欢的，尤其是小蒂诺。</p>
-<p>在这部番中，你将见到，每一集开始一两分钟弹幕就会说下周见，因为OP非常特立独行。而ED也很有特点，以至于有一天起来脑子里第一个声音就是ED的一段。</p>
-<p>总之属于比较推荐的一部番，算是比较能让人笑的作品。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>搞笑</tag>
-        <tag>战斗</tag>
+        <tag>后宫</tag>
       </tags>
   </entry>
   <entry>
@@ -662,22 +665,21 @@ Web3应用程序拥有许多相同的特性。区块链本质上只是一个数�
       </tags>
   </entry>
   <entry>
-    <title>【随便漫谈】不正经的魔术讲师与禁忌教典</title>
-    <url>/posts/360164f0.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2024.12.11）：6.2/10</p>
-<p>个人评分：8/10</p>
-<p>画风好又不好，剧情有新意，没有什么硬伤，至少我很满意。不过还是有一些俗套的东西，看看也行。</p>
-<p>然后，著名表情包也出自这部番。</p>
-<p><img src="https://s2.loli.net/2024/12/11/6i7MjQ8VPeGO2EY.jpg" alt="某张表情包出处"></p>
-<p>总之个人认为值得一看，就是感觉吊胃口的东西太多了，如果能出第二季一起看就好了。</p>
+    <title>【随便漫谈】叹气的亡灵想隐退</title>
+    <url>/posts/7f701857.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.24）：6.3/10</p>
+<p>个人评分：7/10</p>
+<p>故事节奏还行，画风稍微有点不合胃口，但是还是挺喜欢的，尤其是小蒂诺。</p>
+<p>在这部番中，你将见到，每一集开始一两分钟弹幕就会说下周见，因为OP非常特立独行。而ED也很有特点，以至于有一天起来脑子里第一个声音就是ED的一段。</p>
+<p>总之属于比较推荐的一部番，算是比较能让人笑的作品。</p>
 ]]></content>
       <categories>
         <category>随便漫谈</category>
       </categories>
       <tags>
         <tag>随便漫谈</tag>
-        <tag>恋爱</tag>
-        <tag>厕纸</tag>
+        <tag>搞笑</tag>
+        <tag>战斗</tag>
       </tags>
   </entry>
   <entry>
@@ -711,8 +713,8 @@ Web3应用程序拥有许多相同的特性。区块链本质上只是一个数�
       </categories>
       <tags>
         <tag>随便漫谈</tag>
-        <tag>后宫</tag>
         <tag>厕纸</tag>
+        <tag>后宫</tag>
       </tags>
   </entry>
   <entry>
@@ -729,30 +731,9 @@ Web3应用程序拥有许多相同的特性。区块链本质上只是一个数�
       </categories>
       <tags>
         <tag>随便漫谈</tag>
-        <tag>后宫</tag>
         <tag>厕纸</tag>
+        <tag>后宫</tag>
         <tag>搞笑</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】星刻的龙骑士</title>
-    <url>/posts/f20036ba.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2024.12.10）：5.3/10</p>
-<p>个人评分：7/10</p>
-<p>十年前的动漫了，画风还能接受，至少女主很可爱。</p>
-<p>设定有新意，剧情有点公式化，但总体不错。</p>
-<p>福利场景很多，但是有些提不起兴趣。</p>
-<p>最难绷的是下图。</p>
-<p><img src="https://s2.loli.net/2024/12/10/tKRLMOcmpTokvUY.jpg" alt="某张截图"></p>
-<p>总之还是比较推荐，是一部合格的后宫番厕纸。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>后宫</tag>
-        <tag>厕纸</tag>
       </tags>
   </entry>
   <entry>
@@ -769,26 +750,8 @@ Web3应用程序拥有许多相同的特性。区块链本质上只是一个数�
       </categories>
       <tags>
         <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
         <tag>后宫</tag>
-        <tag>厕纸</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】独自一人的异世界攻略</title>
-    <url>/posts/1c1a1f03.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2024.12.14）：4.5/10</p>
-<p>个人评分：3/10</p>
-<p>画风一般，演出极其尴尬，剧情也很无聊。</p>
-<p>但我确实每周一集追完了。可能每周看一集就能忍了。</p>
-<p>如果开倍速可以看看，反正不动脑。</p>
-<p>估计bgm评分还会接着跌就是了。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>厕纸</tag>
       </tags>
   </entry>
   <entry>
@@ -809,6 +772,27 @@ Web3应用程序拥有许多相同的特性。区块链本质上只是一个数�
       </tags>
   </entry>
   <entry>
+    <title>【随便漫谈】星刻的龙骑士</title>
+    <url>/posts/f20036ba.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.10）：5.3/10</p>
+<p>个人评分：7/10</p>
+<p>十年前的动漫了，画风还能接受，至少女主很可爱。</p>
+<p>设定有新意，剧情有点公式化，但总体不错。</p>
+<p>福利场景很多，但是有些提不起兴趣。</p>
+<p>最难绷的是下图。</p>
+<p><img src="https://s2.loli.net/2024/12/10/tKRLMOcmpTokvUY.jpg" alt="某张截图"></p>
+<p>总之还是比较推荐，是一部合格的后宫番厕纸。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【随便漫谈】最强阴阳师的异世界转生记</title>
     <url>/posts/ed36ff09.html</url>
     <content><![CDATA[<p>Bangumi评分（截至2025.01.09）：5.9/10</p>
@@ -823,47 +807,8 @@ Web3应用程序拥有许多相同的特性。区块链本质上只是一个数�
       </categories>
       <tags>
         <tag>随便漫谈</tag>
-        <tag>后宫</tag>
         <tag>厕纸</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】精灵幻想记 及第二季</title>
-    <url>/posts/6f9d9faf.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2024.12.27）：5.6/10 5.3/10</p>
-<p>个人评分：6/10</p>
-<p>画风挺好看的，尤其是女角色。故事属于一种很慢节奏的叙事，尤其是第二季的最后几集，已经慢到无聊了。</p>
-<p>但是你别说，你还真别说，女角色真的好看，尤其是小老师。<br>
-你就说你喜不喜欢小老师吧。</p>
-<p>实在不想对剧情有太多评论，毕竟，能做到让人感觉不到爽的爽番也挺厉害的。</p>
-<p>总之可以一看，当消磨时间了。一口气全看完是在还是有点折磨。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
         <tag>后宫</tag>
-        <tag>厕纸</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】落第骑士英雄谭</title>
-    <url>/posts/1a79cd1f.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2024.12.23）：6.5/10</p>
-<p>个人评分：7/10</p>
-<p>画风挺好的，虽然是快10年前的番了，但还是挺好看的。剧情稍显无聊，有一点典，能够很容易猜到。</p>
-<p>非常意外，bgm上大家评分都挺高，还以为这种剧情典的评分不会高，可能还是画太好了。</p>
-<p>适合打发时间看看。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>后宫</tag>
-        <tag>恋爱</tag>
-        <tag>战斗</tag>
       </tags>
   </entry>
   <entry>
@@ -886,43 +831,60 @@ Web3应用程序拥有许多相同的特性。区块链本质上只是一个数�
       </tags>
   </entry>
   <entry>
-    <title>【随便漫谈】这个医师超麻烦</title>
-    <url>/posts/c09f02d9.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.01.04）：6.1/10</p>
-<p>个人评分：8/10</p>
-<p>一开始看可能觉得很高血压，但是看着看着就开始笑了。虽然到后期有些笑点显得很重复，但我还是会笑。</p>
-<p>如果让我简单总结，那就是太搞了。所有内容都是服从于搞怪，从而产生笑点。但是男主也太菜了。</p>
-<p>总之属于是比较推荐的作品。但是我这连着看搞笑番实在有点累了，得去找点无脑厕纸平衡一下。</p>
+    <title>【随便漫谈】落第骑士英雄谭</title>
+    <url>/posts/1a79cd1f.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.23）：6.5/10</p>
+<p>个人评分：7/10</p>
+<p>画风挺好的，虽然是快10年前的番了，但还是挺好看的。剧情稍显无聊，有一点典，能够很容易猜到。</p>
+<p>非常意外，bgm上大家评分都挺高，还以为这种剧情典的评分不会高，可能还是画太好了。</p>
+<p>适合打发时间看看。</p>
 ]]></content>
       <categories>
         <category>随便漫谈</category>
       </categories>
       <tags>
         <tag>随便漫谈</tag>
-        <tag>搞笑</tag>
+        <tag>恋爱</tag>
+        <tag>后宫</tag>
+        <tag>战斗</tag>
       </tags>
   </entry>
   <entry>
-    <title>推荐一个看番软件</title>
-    <url>/posts/567274b5.html</url>
-    <content><![CDATA[<p>推荐一个我经常用的看番软件：Animeko（<a href="https://myani.org/">https://myani.org/</a>或<a href="https://github.com/open-ani/animeko/">https://github.com/open-ani/animeko/</a>）。<br>
-这个软件集成了Bangumi，登录Bangumi账号后，再使用这个软件看番就会自动把进度同步。同时，这个软件一键点格子比在Bangumi上快多了。而且这个软件会读取弹弹Play的弹幕。最爽的是，这个软件支持长按倍速，再也不用担心看厕纸不能快进了。</p>
-<p>此外，分享一下关于数据源的经验（当前版本4.0.1，不确定后续版本是否相同）。<br>
-先讲一下思路。<br>
-有很多在线看番网站的模板大差不差，因此可以在已经给出的数据源中找出与你想用的数据源相似的，然后依葫芦画瓢改一改就行。其实大部分都不用改。<br>
-给出一个我搞好的例子。以下是次元城的数据源。（2024年12月15日更新：自带次元城数据源了）</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"mediaSources"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token property">"factoryId"</span><span class="token operator">:</span><span class="token string">"web-selector"</span><span class="token punctuation">,</span><span class="token property">"version"</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token property">"arguments"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"次元城"</span><span class="token punctuation">,</span><span class="token property">"description"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"iconUrl"</span><span class="token operator">:</span><span class="token string">"https://www.cyc-anime.net/upload/site/20240319-1/25e700991446a527804c82a744731b60.png"</span><span class="token punctuation">,</span><span class="token property">"searchConfig"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"searchUrl"</span><span class="token operator">:</span><span class="token string">"https://www.cyc-anime.net/search.html?wd=&#123;keyword&#125;"</span><span class="token punctuation">,</span><span class="token property">"searchUseOnlyFirstWord"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token property">"searchRemoveSpecial"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token property">"rawBaseUrl"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"subjectFormatId"</span><span class="token operator">:</span><span class="token string">"indexed"</span><span class="token punctuation">,</span><span class="token property">"selectorSubjectFormatA"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"selectLists"</span><span class="token operator">:</span><span class="token string">"body > div.box-width > div > div.row-9 > div > div > div.right.rel.flex-auto > div.thumb-content > div.thumb-txt.cor4.hide"</span><span class="token punctuation">,</span><span class="token property">"preferShorterName"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"selectorSubjectFormatIndexed"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"selectNames"</span><span class="token operator">:</span><span class="token string">"body > .box-width .search-box .thumb-content > .thumb-txt"</span><span class="token punctuation">,</span><span class="token property">"selectLinks"</span><span class="token operator">:</span><span class="token string">"body > .box-width .search-box .thumb-menu > a"</span><span class="token punctuation">,</span><span class="token property">"preferShorterName"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"selectorSubjectFormatJsonPathIndexed"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"selectLinks"</span><span class="token operator">:</span><span class="token string">"$[*]['url', 'link']"</span><span class="token punctuation">,</span><span class="token property">"selectNames"</span><span class="token operator">:</span><span class="token string">"$[*]['title','name']"</span><span class="token punctuation">,</span><span class="token property">"preferShorterName"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"channelFormatId"</span><span class="token operator">:</span><span class="token string">"index-grouped"</span><span class="token punctuation">,</span><span class="token property">"selectorChannelFormatFlattened"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"selectChannelNames"</span><span class="token operator">:</span><span class="token string">".anthology-tab > .swiper-wrapper a"</span><span class="token punctuation">,</span><span class="token property">"matchChannelName"</span><span class="token operator">:</span><span class="token string">"^(?&lt;ch>.+?)(\\d+)?$"</span><span class="token punctuation">,</span><span class="token property">"selectEpisodeLists"</span><span class="token operator">:</span><span class="token string">".anthology-list-box"</span><span class="token punctuation">,</span><span class="token property">"selectEpisodesFromList"</span><span class="token operator">:</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token property">"selectEpisodeLinksFromList"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"matchEpisodeSortFromName"</span><span class="token operator">:</span><span class="token string">"第\\s*(?&lt;ep>.+)\\s*[话集]"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"selectorChannelFormatNoChannel"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"selectEpisodes"</span><span class="token operator">:</span><span class="token string">".anthology-list-play"</span><span class="token punctuation">,</span><span class="token property">"selectEpisodeLinks"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"matchEpisodeSortFromName"</span><span class="token operator">:</span><span class="token string">"第\\s*(?&lt;ep>.+)\\s*[话集]"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"filterByEpisodeSort"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token property">"filterBySubjectName"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token property">"selectMedia"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"distinguishSubjectName"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token property">"distinguishChannelName"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"matchVideo"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"enableNestedUrl"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token property">"matchNestedUrl"</span><span class="token operator">:</span><span class="token string">"^.+(m3u8|vip|xigua\\.php).+\\?"</span><span class="token punctuation">,</span><span class="token property">"matchVideoUrl"</span><span class="token operator">:</span><span class="token string">"(^http(s)?:\\/\\/(?!.*http(s)?:\\/\\/).+((\\.mp4)|(\\.mkv)|(m3u8)).*(\\?.+)?)|(akamaized)|(bilivideo.com)"</span><span class="token punctuation">,</span><span class="token property">"cookies"</span><span class="token operator">:</span><span class="token string">"quality=1080"</span><span class="token punctuation">,</span><span class="token property">"addHeadersToVideo"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"referer"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"userAgent"</span><span class="token operator">:</span><span class="token string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>记得测试一下是否正常。如果不正常，可能是次元城挂了，也可能是你的网络犯病，也可能是换网址了。<br>
-我建议使用<a href="https://www.cycity.pro/">https://www.cycity.pro/</a>这个地址发布页看看次元城的最新网址。这个网站还是很不错的，广告影响不大。</p>
-<p>当然，仅仅使用自带的源一般就够了。新番可以用BT，老番就老老实实用在线源吧。<br>
-以我这里的网络，稀饭动漫和漫次元是比较好的，清晰度高且无广告。</p>
-<p>祝大家看番顺利。</p>
+    <title>【随便漫谈】精灵幻想记 及第二季</title>
+    <url>/posts/6f9d9faf.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.27）：5.6/10 5.3/10</p>
+<p>个人评分：6/10</p>
+<p>画风挺好看的，尤其是女角色。故事属于一种很慢节奏的叙事，尤其是第二季的最后几集，已经慢到无聊了。</p>
+<p>但是你别说，你还真别说，女角色真的好看，尤其是小老师。<br>
+你就说你喜不喜欢小老师吧。</p>
+<p>实在不想对剧情有太多评论，毕竟，能做到让人感觉不到爽的爽番也挺厉害的。</p>
+<p>总之可以一看，当消磨时间了。一口气全看完是在还是有点折磨。</p>
 ]]></content>
       <categories>
-        <category>工具</category>
+        <category>随便漫谈</category>
       </categories>
       <tags>
-        <tag>小工具</tag>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】独自一人的异世界攻略</title>
+    <url>/posts/1c1a1f03.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.14）：4.5/10</p>
+<p>个人评分：3/10</p>
+<p>画风一般，演出极其尴尬，剧情也很无聊。</p>
+<p>但我确实每周一集追完了。可能每周看一集就能忍了。</p>
+<p>如果开倍速可以看看，反正不动脑。</p>
+<p>估计bgm评分还会接着跌就是了。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
       </tags>
   </entry>
   <entry>
@@ -1116,6 +1078,46 @@ LIMITS <span class="token operator">=</span> <span class="token punctuation">&#1
         <tag>blockchain</tag>
         <tag>小工具</tag>
         <tag>没用</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】这个医师超麻烦</title>
+    <url>/posts/c09f02d9.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.01.04）：6.1/10</p>
+<p>个人评分：8/10</p>
+<p>一开始看可能觉得很高血压，但是看着看着就开始笑了。虽然到后期有些笑点显得很重复，但我还是会笑。</p>
+<p>如果让我简单总结，那就是太搞了。所有内容都是服从于搞怪，从而产生笑点。但是男主也太菜了。</p>
+<p>总之属于是比较推荐的作品。但是我这连着看搞笑番实在有点累了，得去找点无脑厕纸平衡一下。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>搞笑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>推荐一个看番软件</title>
+    <url>/posts/567274b5.html</url>
+    <content><![CDATA[<p>推荐一个我经常用的看番软件：Animeko（<a href="https://myani.org/">https://myani.org/</a>或<a href="https://github.com/open-ani/animeko/">https://github.com/open-ani/animeko/</a>）。<br>
+这个软件集成了Bangumi，登录Bangumi账号后，再使用这个软件看番就会自动把进度同步。同时，这个软件一键点格子比在Bangumi上快多了。而且这个软件会读取弹弹Play的弹幕。最爽的是，这个软件支持长按倍速，再也不用担心看厕纸不能快进了。</p>
+<p>此外，分享一下关于数据源的经验（当前版本4.0.1，不确定后续版本是否相同）。<br>
+先讲一下思路。<br>
+有很多在线看番网站的模板大差不差，因此可以在已经给出的数据源中找出与你想用的数据源相似的，然后依葫芦画瓢改一改就行。其实大部分都不用改。<br>
+给出一个我搞好的例子。以下是次元城的数据源。（2024年12月15日更新：自带次元城数据源了）</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"mediaSources"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token property">"factoryId"</span><span class="token operator">:</span><span class="token string">"web-selector"</span><span class="token punctuation">,</span><span class="token property">"version"</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token property">"arguments"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"次元城"</span><span class="token punctuation">,</span><span class="token property">"description"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"iconUrl"</span><span class="token operator">:</span><span class="token string">"https://www.cyc-anime.net/upload/site/20240319-1/25e700991446a527804c82a744731b60.png"</span><span class="token punctuation">,</span><span class="token property">"searchConfig"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"searchUrl"</span><span class="token operator">:</span><span class="token string">"https://www.cyc-anime.net/search.html?wd=&#123;keyword&#125;"</span><span class="token punctuation">,</span><span class="token property">"searchUseOnlyFirstWord"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token property">"searchRemoveSpecial"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token property">"rawBaseUrl"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"subjectFormatId"</span><span class="token operator">:</span><span class="token string">"indexed"</span><span class="token punctuation">,</span><span class="token property">"selectorSubjectFormatA"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"selectLists"</span><span class="token operator">:</span><span class="token string">"body > div.box-width > div > div.row-9 > div > div > div.right.rel.flex-auto > div.thumb-content > div.thumb-txt.cor4.hide"</span><span class="token punctuation">,</span><span class="token property">"preferShorterName"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"selectorSubjectFormatIndexed"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"selectNames"</span><span class="token operator">:</span><span class="token string">"body > .box-width .search-box .thumb-content > .thumb-txt"</span><span class="token punctuation">,</span><span class="token property">"selectLinks"</span><span class="token operator">:</span><span class="token string">"body > .box-width .search-box .thumb-menu > a"</span><span class="token punctuation">,</span><span class="token property">"preferShorterName"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"selectorSubjectFormatJsonPathIndexed"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"selectLinks"</span><span class="token operator">:</span><span class="token string">"$[*]['url', 'link']"</span><span class="token punctuation">,</span><span class="token property">"selectNames"</span><span class="token operator">:</span><span class="token string">"$[*]['title','name']"</span><span class="token punctuation">,</span><span class="token property">"preferShorterName"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"channelFormatId"</span><span class="token operator">:</span><span class="token string">"index-grouped"</span><span class="token punctuation">,</span><span class="token property">"selectorChannelFormatFlattened"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"selectChannelNames"</span><span class="token operator">:</span><span class="token string">".anthology-tab > .swiper-wrapper a"</span><span class="token punctuation">,</span><span class="token property">"matchChannelName"</span><span class="token operator">:</span><span class="token string">"^(?&lt;ch>.+?)(\\d+)?$"</span><span class="token punctuation">,</span><span class="token property">"selectEpisodeLists"</span><span class="token operator">:</span><span class="token string">".anthology-list-box"</span><span class="token punctuation">,</span><span class="token property">"selectEpisodesFromList"</span><span class="token operator">:</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token property">"selectEpisodeLinksFromList"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"matchEpisodeSortFromName"</span><span class="token operator">:</span><span class="token string">"第\\s*(?&lt;ep>.+)\\s*[话集]"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"selectorChannelFormatNoChannel"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"selectEpisodes"</span><span class="token operator">:</span><span class="token string">".anthology-list-play"</span><span class="token punctuation">,</span><span class="token property">"selectEpisodeLinks"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"matchEpisodeSortFromName"</span><span class="token operator">:</span><span class="token string">"第\\s*(?&lt;ep>.+)\\s*[话集]"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"filterByEpisodeSort"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token property">"filterBySubjectName"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token property">"selectMedia"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"distinguishSubjectName"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token property">"distinguishChannelName"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"matchVideo"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"enableNestedUrl"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token property">"matchNestedUrl"</span><span class="token operator">:</span><span class="token string">"^.+(m3u8|vip|xigua\\.php).+\\?"</span><span class="token punctuation">,</span><span class="token property">"matchVideoUrl"</span><span class="token operator">:</span><span class="token string">"(^http(s)?:\\/\\/(?!.*http(s)?:\\/\\/).+((\\.mp4)|(\\.mkv)|(m3u8)).*(\\?.+)?)|(akamaized)|(bilivideo.com)"</span><span class="token punctuation">,</span><span class="token property">"cookies"</span><span class="token operator">:</span><span class="token string">"quality=1080"</span><span class="token punctuation">,</span><span class="token property">"addHeadersToVideo"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"referer"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"userAgent"</span><span class="token operator">:</span><span class="token string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>记得测试一下是否正常。如果不正常，可能是次元城挂了，也可能是你的网络犯病，也可能是换网址了。<br>
+我建议使用<a href="https://www.cycity.pro/">https://www.cycity.pro/</a>这个地址发布页看看次元城的最新网址。这个网站还是很不错的，广告影响不大。</p>
+<p>当然，仅仅使用自带的源一般就够了。新番可以用BT，老番就老老实实用在线源吧。<br>
+以我这里的网络，稀饭动漫和漫次元是比较好的，清晰度高且无广告。</p>
+<p>祝大家看番顺利。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>小工具</tag>
       </tags>
   </entry>
   <entry>
