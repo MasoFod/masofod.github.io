@@ -1211,7 +1211,8 @@ start_server<span class="token punctuation">(</span>main<span class="token punct
 如果你重新开启Termux，需要先<code>cd SillyTavern</code>一下。</p>
 <h1>关于另一种玩法</h1>
 <p>有一个很简单的手机玩酒馆的办法，就是用电脑运行，然后手机访问。<br>
-一般直接用局域网内的IP地址就行，端口应该还是8000。</p>
+首先更改<code>config.yaml</code>，首先<code>listen: true</code>，然后在<code>whitelist</code>中添加<code>192.168.*.*</code>（这个不用细讲应该也知道怎么添加，某些情况可能要填不一样的）。<br>
+手机上一般直接用局域网内电脑的IP地址就行，端口应该默认8000。</p>
 ]]></content>
       <categories>
         <category>工具</category>
