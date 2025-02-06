@@ -1191,4 +1191,33 @@ start_server<span class="token punctuation">(</span>main<span class="token punct
         <tag>小工具</tag>
       </tags>
   </entry>
+  <entry>
+    <title>安卓手机玩SillyTavern（酒馆）</title>
+    <url>/posts/9c94fc7b.html</url>
+    <content><![CDATA[<p>最近接触了SillyTavern，也就是常说的酒馆。这玩意用的AI模型一般都不是本地部署，所以还挺适合手机玩。于是我在网上找了找教程，自己搞了搞，发现还挺简单，于是写一下。</p>
+<h1>安装Termux</h1>
+<p>Termux是一个Linux的终端仿真软件，可以理解为运行了一个Linux系统。<br>
+可以在Github上获取。<a href="https://github.com/termux/termux-app/releases">https://github.com/termux/termux-app/releases</a><br>
+下载对应你的安卓架构的安装包即可，一般来讲比较新的手机系统就直接下载<code>Android 7+</code>里的<code>arm64-v8a</code>版本即可。</p>
+<h1>安装环境</h1>
+<div class="note info flat"><p>可能需要魔法。</p>
+</div>
+<p>打开你装好的Termux，先用<code>apt update</code>和<code>apt upgrade</code>更新一下包，如果中途问<code>Y/N</code>，一律都<code>Y</code>。<br>
+接下来是Git和Node.js。输入<code>pkg install git</code>和<code>pkg install nodejs</code>。<br>
+然后克隆SillyTavern的库。输入<code>git clone https://github.com/SillyTavern/SillyTavern.git</code>。<br>
+进入SillyTavern目录，安装依赖。输入<code>cd SillyTavern</code>和<code>npm install</code>。</p>
+<h1>开始愉快玩耍</h1>
+<p>输入<code>./start.sh</code>即可运行SillyTavern，接下来按理说会自动跳转到浏览器，如果没跳转，就手动去访问<code>127.0.0.1:8000</code>吧。<br>
+如果你重新开启Termux，需要先<code>cd SillyTavern</code>一下。</p>
+<h1>关于另一种玩法</h1>
+<p>有一个很简单的手机玩酒馆的办法，就是用电脑运行，然后手机访问。<br>
+一般直接用局域网内的IP地址就行，端口应该还是8000。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>娱乐</tag>
+      </tags>
+  </entry>
 </search>

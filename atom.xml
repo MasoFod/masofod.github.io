@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2025-02-01T13:36:22.141Z</updated>
+  <updated>2025-02-06T13:15:52.671Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安卓手机玩SillyTavern（酒馆）</title>
+    <link href="https://masofod.github.io/posts/9c94fc7b"/>
+    <id>https://masofod.github.io/posts/9c94fc7b</id>
+    <published>2025-02-06T12:49:42.000Z</published>
+    <updated>2025-02-06T13:15:52.671Z</updated>
+    
+    
+    <summary type="html">简介：用安卓手机玩SillyTavern的教程。</summary>
+    
+    
+    
+    <category term="工具" scheme="https://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="娱乐" scheme="https://masofod.github.io/tags/%E5%A8%B1%E4%B9%90/"/>
+    
+  </entry>
   
   <entry>
     <title>【来点技术】Godot开发中获得的一些经验（长期更新）</title>
@@ -438,29 +457,6 @@
     <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
     
     <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【随便漫谈】我立于百万生命之上 及第二季</title>
-    <link href="https://masofod.github.io/posts/83cee2d9"/>
-    <id>https://masofod.github.io/posts/83cee2d9</id>
-    <published>2024-12-14T03:23:07.000Z</published>
-    <updated>2024-12-27T08:54:55.837Z</updated>
-    
-    
-    <summary type="html">简介：男主不停开挂并刷好感的故事</summary>
-    
-    
-    
-    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
-    
-    
-    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
-    
-    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
-    
-    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
     
   </entry>
   
