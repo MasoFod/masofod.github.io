@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2025-02-16T13:43:37.359Z</updated>
+  <updated>2025-03-04T15:20:28.651Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【随便漫谈】萌萌侵略者</title>
+    <link href="https://masofod.github.io/posts/64a2dcb9"/>
+    <id>https://masofod.github.io/posts/64a2dcb9</id>
+    <published>2025-03-04T15:16:33.000Z</published>
+    <updated>2025-03-04T15:20:28.651Z</updated>
+    
+    
+    <summary type="html">简介：被送到异世界传播宅文化的男主与异世界人发生的故事。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
+    
+    <category term="搞笑" scheme="https://masofod.github.io/tags/%E6%90%9E%E7%AC%91/"/>
+    
+  </entry>
   
   <entry>
     <title>【来点技术】蒙特卡洛树搜索与决策AI</title>
@@ -434,27 +459,6 @@
     
     
     <category term="小工具" scheme="https://masofod.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【随便漫谈】独自一人的异世界攻略</title>
-    <link href="https://masofod.github.io/posts/1c1a1f03"/>
-    <id>https://masofod.github.io/posts/1c1a1f03</id>
-    <published>2024-12-14T03:31:22.000Z</published>
-    <updated>2025-01-09T13:56:45.465Z</updated>
-    
-    
-    <summary type="html">简介：实际上一直有人关心的男主开挂乱杀的故事。</summary>
-    
-    
-    
-    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
-    
-    
-    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
-    
-    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
     
   </entry>
   
