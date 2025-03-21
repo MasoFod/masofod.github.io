@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2025-03-04T15:20:28.651Z</updated>
+  <updated>2025-03-04T15:20:47.967Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://masofod.github.io/posts/64a2dcb9"/>
     <id>https://masofod.github.io/posts/64a2dcb9</id>
     <published>2025-03-04T15:16:33.000Z</published>
-    <updated>2025-03-04T15:20:28.651Z</updated>
+    <updated>2025-03-04T15:20:47.967Z</updated>
     
     
     <summary type="html">简介：被送到异世界传播宅文化的男主与异世界人发生的故事。</summary>
@@ -46,7 +46,7 @@
     <link href="https://masofod.github.io/posts/fe85f19"/>
     <id>https://masofod.github.io/posts/fe85f19</id>
     <published>2025-02-16T11:55:10.000Z</published>
-    <updated>2025-02-16T13:43:37.359Z</updated>
+    <updated>2025-03-21T03:18:04.516Z</updated>
     
     
     <summary type="html">简介：蒙特卡洛树搜索算法以及在决策AI中的应用。</summary>
@@ -69,7 +69,7 @@
     <link href="https://masofod.github.io/posts/9c94fc7b"/>
     <id>https://masofod.github.io/posts/9c94fc7b</id>
     <published>2025-02-06T12:49:42.000Z</published>
-    <updated>2025-02-06T14:44:23.068Z</updated>
+    <updated>2025-03-21T03:19:31.602Z</updated>
     
     
     <summary type="html">简介：用安卓手机玩SillyTavern的教程。</summary>
@@ -88,7 +88,7 @@
     <link href="https://masofod.github.io/posts/83c20e8a"/>
     <id>https://masofod.github.io/posts/83c20e8a</id>
     <published>2025-01-18T13:59:27.000Z</published>
-    <updated>2025-02-01T13:36:22.141Z</updated>
+    <updated>2025-03-21T03:18:27.456Z</updated>
     
     
     <summary type="html">简介：在一些小项目中获得的一点小经验。</summary>
@@ -176,7 +176,7 @@
     <link href="https://masofod.github.io/posts/1f9f5e5"/>
     <id>https://masofod.github.io/posts/1f9f5e5</id>
     <published>2025-01-05T08:36:41.000Z</published>
-    <updated>2025-02-01T13:36:23.351Z</updated>
+    <updated>2025-03-21T03:19:16.273Z</updated>
     
     
     <summary type="html">简介：在Godot 4.3中实现以单客户端同时支持单机和联机功能。</summary>
@@ -329,7 +329,7 @@
     <link href="https://masofod.github.io/posts/5fe5bce9"/>
     <id>https://masofod.github.io/posts/5fe5bce9</id>
     <published>2024-12-24T09:28:04.000Z</published>
-    <updated>2025-02-01T13:36:27.270Z</updated>
+    <updated>2025-03-21T03:16:32.081Z</updated>
     
     
     <summary type="html">简介：一个图论相关的算法问题。</summary>
@@ -408,13 +408,13 @@
     <category term="工具" scheme="https://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-    <category term="区块链" scheme="https://masofod.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    <category term="blockchain" scheme="https://masofod.github.io/tags/blockchain/"/>
-    
     <category term="小工具" scheme="https://masofod.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
     
     <category term="没用" scheme="https://masofod.github.io/tags/%E6%B2%A1%E7%94%A8/"/>
+    
+    <category term="区块链" scheme="https://masofod.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    <category term="blockchain" scheme="https://masofod.github.io/tags/blockchain/"/>
     
   </entry>
   
