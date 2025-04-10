@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2025-04-10T15:31:55.492Z</updated>
+  <updated>2025-04-10T15:39:44.408Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【随便漫谈】虽然我是注定没落的贵族，闲来无事只好来深究魔法</title>
+    <link href="https://masofod.github.io/posts/25372de7"/>
+    <id>https://masofod.github.io/posts/25372de7</id>
+    <published>2025-04-10T15:37:07.000Z</published>
+    <updated>2025-04-10T15:39:44.408Z</updated>
+    
+    
+    <summary type="html">简介：男主学魔法然后开挂的故事。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【随便漫谈】我的可爱对黑岩目高不管用</title>
     <link href="https://masofod.github.io/posts/ed229165"/>
     <id>https://masofod.github.io/posts/ed229165</id>
     <published>2025-04-10T15:28:49.000Z</published>
-    <updated>2025-04-10T15:31:55.492Z</updated>
+    <updated>2025-04-10T15:32:49.621Z</updated>
     
     
     <summary type="html">简介：遵守戒律的男主与受欢迎的可爱女主之间拉扯的故事。</summary>
@@ -42,10 +65,10 @@
     <link href="https://masofod.github.io/posts/f77ebf81"/>
     <id>https://masofod.github.io/posts/f77ebf81</id>
     <published>2025-04-10T15:24:23.000Z</published>
-    <updated>2025-04-10T15:27:35.149Z</updated>
+    <updated>2025-04-10T15:33:30.725Z</updated>
     
     
-    <summary type="html">简介：转生成S级怪兽但长成小猫样的男主与众多女性发福利的故事</summary>
+    <summary type="html">简介：转生成S级怪兽但长成小猫样的男主与众多女性发福利的故事.</summary>
     
     
     
@@ -432,27 +455,6 @@
     <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
     
     <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【来点技术】快递员问题</title>
-    <link href="https://masofod.github.io/posts/5fe5bce9"/>
-    <id>https://masofod.github.io/posts/5fe5bce9</id>
-    <published>2024-12-24T09:28:04.000Z</published>
-    <updated>2025-03-21T03:16:32.081Z</updated>
-    
-    
-    <summary type="html">简介：一个图论相关的算法问题。</summary>
-    
-    
-    
-    <category term="技术" scheme="https://masofod.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="技术" scheme="https://masofod.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="算法" scheme="https://masofod.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
