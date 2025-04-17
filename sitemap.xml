@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://masofod.github.io/posts/67dc5152</loc>
+    
+    <lastmod>2025-04-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://masofod.github.io/posts/25372de7</loc>
     
     <lastmod>2025-04-10</lastmod>
@@ -346,7 +355,7 @@
 
   <url>
     <loc>https://masofod.github.io/</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
