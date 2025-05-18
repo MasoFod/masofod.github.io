@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2025-05-09T14:29:50.183Z</updated>
+  <updated>2025-05-18T14:00:11.537Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -17,11 +17,53 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【随便漫谈】骸骨骑士大人异世界冒险中</title>
+    <link href="https://masofod.github.io/posts/8b33016e"/>
+    <id>https://masofod.github.io/posts/8b33016e</id>
+    <published>2025-05-18T13:57:21.000Z</published>
+    <updated>2025-05-18T14:00:11.537Z</updated>
+    
+    
+    <summary type="html">简介：穿越到异世界的男主无敌的故事。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随便漫谈】龙王的工作！</title>
+    <link href="https://masofod.github.io/posts/98be8cda"/>
+    <id>https://masofod.github.io/posts/98be8cda</id>
+    <published>2025-05-18T13:53:19.000Z</published>
+    <updated>2025-05-18T13:56:55.442Z</updated>
+    
+    
+    <summary type="html">简介：拥有将棋最高头衔”龙王“的男主与小学生弟子的日常。</summary>
+    
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    
+    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
+    
+    <category term="日常" scheme="https://masofod.github.io/tags/%E6%97%A5%E5%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【随便漫谈】不要欺负我，长瀞同学 及第二季</title>
     <link href="https://masofod.github.io/posts/93528f82"/>
     <id>https://masofod.github.io/posts/93528f82</id>
     <published>2025-05-09T14:26:11.000Z</published>
-    <updated>2025-05-09T14:29:50.183Z</updated>
+    <updated>2025-05-09T14:30:00.631Z</updated>
     
     
     <summary type="html">简介：男主与一直欺负（奖励）他的学妹之间发生的故事。</summary>
@@ -409,50 +451,6 @@
     <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
     
     <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【随便漫谈】月光下的异世界之旅</title>
-    <link href="https://masofod.github.io/posts/c0cfa037"/>
-    <id>https://masofod.github.io/posts/c0cfa037</id>
-    <published>2025-01-08T05:33:14.000Z</published>
-    <updated>2025-01-08T05:38:49.719Z</updated>
-    
-    
-    <summary type="html">简介：男主被召唤到异世界后被女神抛弃，但是实际上非常强，然后发生的冒险故事。</summary>
-    
-    
-    
-    <category term="随便漫谈" scheme="https://masofod.github.io/categories/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
-    
-    
-    <category term="随便漫谈" scheme="https://masofod.github.io/tags/%E9%9A%8F%E4%BE%BF%E6%BC%AB%E8%B0%88/"/>
-    
-    <category term="厕纸" scheme="https://masofod.github.io/tags/%E5%8E%95%E7%BA%B8/"/>
-    
-    <category term="后宫" scheme="https://masofod.github.io/tags/%E5%90%8E%E5%AE%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【来点技术】Godot中实现简单的单机联机通用的客户端</title>
-    <link href="https://masofod.github.io/posts/1f9f5e5"/>
-    <id>https://masofod.github.io/posts/1f9f5e5</id>
-    <published>2025-01-05T08:36:41.000Z</published>
-    <updated>2025-03-21T03:19:16.273Z</updated>
-    
-    
-    <summary type="html">简介：在Godot 4.3中实现以单客户端同时支持单机和联机功能。</summary>
-    
-    
-    
-    <category term="技术" scheme="https://masofod.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="技术" scheme="https://masofod.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="Godot" scheme="https://masofod.github.io/tags/Godot/"/>
     
   </entry>
   
