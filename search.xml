@@ -1,64 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>【来点技术】快递员问题</title>
-    <url>/posts/5fe5bce9.html</url>
-    <content><![CDATA[<h2 id="题目背景">题目背景</h2>
-<p>快递员遇到了一些小问题，每天的派送过程既繁琐又费时。而原因，就是派送的目的地要求的派送时间不一样。</p>
-<h2 id="题目描述">题目描述</h2>
-<p>给出一张无向图，每个节点有开关的时间，要求从起点出发，在节点开门的情况下遍历所有节点，问在耗时最短的情况下最晚可以从什么时候出发。其中，关门的节点依然可以经过，只是不计入访问。每一天的时间一共有1440。在到达关门的时间的时候，这个节点就已经关门了，例如节点在100的时候关门，则在100的时候到达并不认为成功访问。固定1号点为起点,且1号点没有开关门时间。</p>
-<h2 id="输入格式">输入格式</h2>
-<p>共n+m行。<br>
-第1行为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span>，表示点数和边数。<br>
-第2行至第n行中，每一行有两个整数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>t</mi><mi>n</mi><mi>o</mi></msubsup></mrow><annotation encoding="application/x-tex">t^o_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9114em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>t</mi><mi>n</mi><mi>c</mi></msubsup></mrow><annotation encoding="application/x-tex">t^c_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9114em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>表示这个节点的开门时间和关门时间，其中n为行数。<br>
-第n+1行至第n+m行中，每一行为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mrow><mi>a</mi><mi>b</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{ab}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7651em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ab</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ，表示边的起点、终点及经过边需要使用的时间。</p>
-<h2 id="输出格式">输出格式</h2>
-<p>输出仅一个整数，表示出发的时间。若无法完成，则输出-1。</p>
-<h2 id="输入输出示例">输入输出示例</h2>
-<h3 id="输入-1">输入 #1</h3>
-<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">2 1
-0 1440
-1 2 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="输出-2">输出 #2</h3>
-<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">1438<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="说明">说明</h2>
-<p>对所有数据，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&lt;</mo><mi>n</mi><mo>⩽</mo><mn>10000</mn></mrow><annotation encoding="application/x-tex">1&lt;n\leqslant10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>m</mi><mo>⩽</mo><mn>10000</mn></mrow><annotation encoding="application/x-tex">0&lt;m\leqslant10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000</span></span></span></span>。（数据范围我瞎编的）</p>
-<hr>
-<p>然而本人才疏学浅，并不能解决这个问题。可能经过一段时间就会发现其实这就是个很简单的问题吧。<br>
-如果说数据设定为一定有解，那应该有取巧的办法，但如果不一定有解，那我还真就只能想到暴力。<br>
-另外，这个问题还可以变一下式，比如结束的时间最早。这样的话跑暴力应该也好点。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【来点技术】Godot开发中获得的一些经验（长期更新）</title>
-    <url>/posts/83c20e8a.html</url>
-    <content><![CDATA[<p>本人使用Godot做过一些小游戏（或者不算游戏的小东西），虽然每个项目的开发时间不长，项目规模也不大，但我还是获得了不少经验。因此在这里记录下来，以便警醒自己。<br>
-如果你有什么自己的经验，也可以写在评论区。</p>
-<h2 id="效率类">效率类</h2>
-<p>1、做一个新功能之前，先搜一下有没有现成的插件。即使是过期插件，也可以从中学到思路。</p>
-<h2 id="技巧类">技巧类</h2>
-<p>1、多用信号，避免繁琐的节点访问。</p>
-<p>2、避免频繁切换场景（<code>change_scene_to_file()</code>方法），否则性能开销较大。考虑使用一个<code>Main</code>根节点来组织场景树。</p>
-<p>3、在<code>_process()</code>（或其他频繁调用的方法）中避免高消耗的操作，例如加载素材。</p>
-<p>4、尽量使用<code>@export</code>的方法加载复杂路径的节点，避免在脚本中直接写节点路径，这样在更改节点路径后不会出问题。</p>
-<h2 id="出错类">出错类</h2>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-        <tag>Godot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【来点技术】Godot中实现简单的单机联机通用的客户端</title>
     <url>/posts/1f9f5e5.html</url>
     <content><![CDATA[<p>本文主要作为学习笔记。<br>
@@ -515,23 +457,25 @@ Control_JoinMutiplayer<br>
       </tags>
   </entry>
   <entry>
-    <title>【随便漫谈】S级怪兽《贝希摩斯》被误认成小猫</title>
-    <url>/posts/f77ebf81.html</url>
-    <content><![CDATA[<p>全名：S级怪兽《贝希摩斯》被误认成小猫，成为精灵女孩的骑士（宠物）一起生活</p>
-<p>Bangumi评分（截至2025.04.10）：4.7/10</p>
-<p>个人评分：6/10</p>
-<p>从剧情上讲，确实没啥看头。但是每一集都有洗澡，等的就是这个。</p>
-<p>顺便看看真扎。</p>
-<p>总之是个很平凡但可以看看的番，至少很放松。</p>
+    <title>【来点技术】Godot开发中获得的一些经验（长期更新）</title>
+    <url>/posts/83c20e8a.html</url>
+    <content><![CDATA[<p>本人使用Godot做过一些小游戏（或者不算游戏的小东西），虽然每个项目的开发时间不长，项目规模也不大，但我还是获得了不少经验。因此在这里记录下来，以便警醒自己。<br>
+如果你有什么自己的经验，也可以写在评论区。</p>
+<h2 id="效率类">效率类</h2>
+<p>1、做一个新功能之前，先搜一下有没有现成的插件。即使是过期插件，也可以从中学到思路。</p>
+<h2 id="技巧类">技巧类</h2>
+<p>1、多用信号，避免繁琐的节点访问。</p>
+<p>2、避免频繁切换场景（<code>change_scene_to_file()</code>方法），否则性能开销较大。考虑使用一个<code>Main</code>根节点来组织场景树。</p>
+<p>3、在<code>_process()</code>（或其他频繁调用的方法）中避免高消耗的操作，例如加载素材。</p>
+<p>4、尽量使用<code>@export</code>的方法加载复杂路径的节点，避免在脚本中直接写节点路径，这样在更改节点路径后不会出问题。</p>
+<h2 id="出错类">出错类</h2>
 ]]></content>
       <categories>
-        <category>随便漫谈</category>
+        <category>技术</category>
       </categories>
       <tags>
-        <tag>随便漫谈</tag>
-        <tag>厕纸</tag>
-        <tag>后宫</tag>
-        <tag>卖肉</tag>
+        <tag>技术</tag>
+        <tag>Godot</tag>
       </tags>
   </entry>
   <entry>
@@ -609,62 +553,64 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
       </categories>
       <tags>
         <tag>技术</tag>
-        <tag>算法</tag>
         <tag>人工智能</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
-    <title>【随便漫谈】RPG不动产</title>
-    <url>/posts/1427c487.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.01.15）：5.4/10</p>
-<p>个人评分：7/10</p>
-<p>既然是芳文社，那不得不品了。只不过一打开的第一感想就是，女主这眼睛是否有点不对，以及不符合年龄的某地方。</p>
-<p>别的不说，我就是来看可爱的。画得可爱就有分。啊我悟了，原来前段时间发现看什么都没意思，是因为画风不对胃口。</p>
-<p>果然看可爱的番就会心情变好。</p>
-<p>太热血辣！！！！！！</p>
+    <title>【来点技术】快递员问题</title>
+    <url>/posts/5fe5bce9.html</url>
+    <content><![CDATA[<h2 id="题目背景">题目背景</h2>
+<p>快递员遇到了一些小问题，每天的派送过程既繁琐又费时。而原因，就是派送的目的地要求的派送时间不一样。</p>
+<h2 id="题目描述">题目描述</h2>
+<p>给出一张无向图，每个节点有开关的时间，要求从起点出发，在节点开门的情况下遍历所有节点，问在耗时最短的情况下最晚可以从什么时候出发。其中，关门的节点依然可以经过，只是不计入访问。每一天的时间一共有1440。在到达关门的时间的时候，这个节点就已经关门了，例如节点在100的时候关门，则在100的时候到达并不认为成功访问。固定1号点为起点,且1号点没有开关门时间。</p>
+<h2 id="输入格式">输入格式</h2>
+<p>共n+m行。<br>
+第1行为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span>，表示点数和边数。<br>
+第2行至第n行中，每一行有两个整数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>t</mi><mi>n</mi><mi>o</mi></msubsup></mrow><annotation encoding="application/x-tex">t^o_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9114em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>t</mi><mi>n</mi><mi>c</mi></msubsup></mrow><annotation encoding="application/x-tex">t^c_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9114em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>表示这个节点的开门时间和关门时间，其中n为行数。<br>
+第n+1行至第n+m行中，每一行为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mrow><mi>a</mi><mi>b</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{ab}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7651em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ab</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ，表示边的起点、终点及经过边需要使用的时间。</p>
+<h2 id="输出格式">输出格式</h2>
+<p>输出仅一个整数，表示出发的时间。若无法完成，则输出-1。</p>
+<h2 id="输入输出示例">输入输出示例</h2>
+<h3 id="输入-1">输入 #1</h3>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">2 1
+0 1440
+1 2 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="输出-2">输出 #2</h3>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">1438<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="说明">说明</h2>
+<p>对所有数据，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&lt;</mo><mi>n</mi><mo>⩽</mo><mn>10000</mn></mrow><annotation encoding="application/x-tex">1&lt;n\leqslant10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>m</mi><mo>⩽</mo><mn>10000</mn></mrow><annotation encoding="application/x-tex">0&lt;m\leqslant10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000</span></span></span></span>。（数据范围我瞎编的）</p>
+<hr>
+<p>然而本人才疏学浅，并不能解决这个问题。可能经过一段时间就会发现其实这就是个很简单的问题吧。<br>
+如果说数据设定为一定有解，那应该有取巧的办法，但如果不一定有解，那我还真就只能想到暴力。<br>
+另外，这个问题还可以变一下式，比如结束的时间最早。这样的话跑暴力应该也好点。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】S级怪兽《贝希摩斯》被误认成小猫</title>
+    <url>/posts/f77ebf81.html</url>
+    <content><![CDATA[<p>全名：S级怪兽《贝希摩斯》被误认成小猫，成为精灵女孩的骑士（宠物）一起生活</p>
+<p>Bangumi评分（截至2025.04.10）：4.7/10</p>
+<p>个人评分：6/10</p>
+<p>从剧情上讲，确实没啥看头。但是每一集都有洗澡，等的就是这个。</p>
+<p>顺便看看真扎。</p>
+<p>总之是个很平凡但可以看看的番，至少很放松。</p>
 ]]></content>
       <categories>
         <category>随便漫谈</category>
       </categories>
       <tags>
         <tag>随便漫谈</tag>
-        <tag>百合</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】变态王子与不笑猫</title>
-    <url>/posts/a10ab4dd.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2024.12.16）：6.8/10</p>
-<p>个人评分：9/10</p>
-<p>虽然是十年前的番，但是画风还是很好，女生都很可爱。每个人的个性都很鲜明，故事也是围绕每个人的性格推动。很多情节也很好笑，虽然经常笑着笑着就笑不出来了。</p>
-<p>不得不说，男主性格是真的好啊，该坦率的时候特别坦率。整部番全都是围绕男主进行，而且节奏很好，没有拖沓。虽说是后宫番，但其实可以认为是讲男主和各个女孩一起发生的故事。要是仅仅冲着后宫来看的话并不能得到太多乐趣，但是如果看作一部恋爱喜剧，体会其中的感情变化，那还是相当有趣的。</p>
-<p>总之是一部值得一看的番，对我来说各个方面都接近完美。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
         <tag>后宫</tag>
-        <tag>搞笑</tag>
-        <tag>恋爱</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】我和班上最讨厌的女生结婚了</title>
-    <url>/posts/b931de29.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.03.29）：5.5/10</p>
-<p>个人评分：5/10</p>
-<p>6。</p>
-<p>老套，且逆天，你要是个后宫结局，我还敬你是条汉子。故事节奏也是稀奇古怪，我看不懂且大受震撼。</p>
-<p>看看妹妹就够了，这番真没啥能看的。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>恋爱</tag>
+        <tag>卖肉</tag>
       </tags>
   </entry>
   <entry>
@@ -706,6 +652,60 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
       </tags>
   </entry>
   <entry>
+    <title>【随便漫谈】不要欺负我，长瀞同学 及第二季</title>
+    <url>/posts/93528f82.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.05.09）：6.4/10 6.6/10</p>
+<p>个人评分：7/10</p>
+<p>虽说黑皮不是我的菜，但是女主还是挺可爱的。从剧情来讲，看得还算舒服，讲的是日常，但还是能看出两人之间关系的加深。</p>
+<p>看恋爱久了，感觉，虽然挺好看，但是看不下去。也不知道怎么了。</p>
+<p>总之是比较推荐的一部番，虽然我是遇不到这样的女生了。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>恋爱</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】RPG不动产</title>
+    <url>/posts/1427c487.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.01.15）：5.4/10</p>
+<p>个人评分：7/10</p>
+<p>既然是芳文社，那不得不品了。只不过一打开的第一感想就是，女主这眼睛是否有点不对，以及不符合年龄的某地方。</p>
+<p>别的不说，我就是来看可爱的。画得可爱就有分。啊我悟了，原来前段时间发现看什么都没意思，是因为画风不对胃口。</p>
+<p>果然看可爱的番就会心情变好。</p>
+<p>太热血辣！！！！！！</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>百合</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】变态王子与不笑猫</title>
+    <url>/posts/a10ab4dd.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.16）：6.8/10</p>
+<p>个人评分：9/10</p>
+<p>虽然是十年前的番，但是画风还是很好，女生都很可爱。每个人的个性都很鲜明，故事也是围绕每个人的性格推动。很多情节也很好笑，虽然经常笑着笑着就笑不出来了。</p>
+<p>不得不说，男主性格是真的好啊，该坦率的时候特别坦率。整部番全都是围绕男主进行，而且节奏很好，没有拖沓。虽说是后宫番，但其实可以认为是讲男主和各个女孩一起发生的故事。要是仅仅冲着后宫来看的话并不能得到太多乐趣，但是如果看作一部恋爱喜剧，体会其中的感情变化，那还是相当有趣的。</p>
+<p>总之是一部值得一看的番，对我来说各个方面都接近完美。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>后宫</tag>
+        <tag>恋爱</tag>
+        <tag>搞笑</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【随便漫谈】叹气的亡灵想隐退</title>
     <url>/posts/7f701857.html</url>
     <content><![CDATA[<p>Bangumi评分（截至2024.12.24）：6.3/10</p>
@@ -724,14 +724,13 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
       </tags>
   </entry>
   <entry>
-    <title>【随便漫谈】我的可爱对黑岩目高不管用</title>
-    <url>/posts/ed229165.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.04.10）：4.4/10</p>
-<p>个人评分：7/10</p>
-<p>剧情属于是很典的，卖肉属于是可有可无的，角色也画得一般。</p>
-<p>但是声优倒是挺大牌。</p>
-<p>说实话，作为一个桃子番，大概还算合格。男主人设没有瞎搞，女主也能看出变化，虽然开头的时候看起来有点脑子不太对。</p>
-<p>总之可以看看，也属于是不用带脑子的。</p>
+    <title>【随便漫谈】古见同学有交流障碍症 及第二季</title>
+    <url>/posts/479222f2.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.06.20）：7.0/10 7.3/10</p>
+<p>个人评分：8/10</p>
+<p>就是喜欢这种恋爱啊，虽然发现自己看不进去就是了。一集一集慢慢看，看得还是很开心的。</p>
+<p>话说回来，可能是我用倍速的原因，看完过后确实记不住什么。光看狗粮了。</p>
+<p>总之还是推荐看看，喜欢纯爱就更应该看看了。</p>
 ]]></content>
       <categories>
         <category>随便漫谈</category>
@@ -739,6 +738,42 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
       <tags>
         <tag>随便漫谈</tag>
         <tag>恋爱</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】如果有妹妹就好了</title>
+    <url>/posts/2934455f.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.05.02）：6.6/10</p>
+<p>个人评分：8/10</p>
+<p>喵帕斯~</p>
+<p>是一部很平淡的番。剧情偏日常，用很平淡的故事来表现人物。对我来说是一种不错但是很难激起热情的表现形式。</p>
+<p>画风我很喜欢，很喜欢那由多。各种表情很有意思。</p>
+<p>总之适合喜欢看日常的人看。我还是觉得有点喜欢但不多。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>恋爱</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】异世界舅舅</title>
+    <url>/posts/2da51f56.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.01.02）：7.6/10</p>
+<p>个人评分：9/10</p>
+<p>很好看。无论制作还是剧情，都做得很好。有很多很好笑的地方，我看得很开心。</p>
+<p>唯一的问题就是，这种一节一节的剧情描述方式可能不合一些人的胃口。至少看得我很急，就像里面的男主和女主。但这也是特点吧。</p>
+<p>总之就是，快出第二季，很急。尤其是听了群友爆料后面的漫画剧情过后就更急了。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>后宫</tag>
+        <tag>搞笑</tag>
       </tags>
   </entry>
   <entry>
@@ -764,21 +799,164 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
       </tags>
   </entry>
   <entry>
-    <title>【随便漫谈】异世界舅舅</title>
-    <url>/posts/2da51f56.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.01.02）：7.6/10</p>
-<p>个人评分：9/10</p>
-<p>很好看。无论制作还是剧情，都做得很好。有很多很好笑的地方，我看得很开心。</p>
-<p>唯一的问题就是，这种一节一节的剧情描述方式可能不合一些人的胃口。至少看得我很急，就像里面的男主和女主。但这也是特点吧。</p>
-<p>总之就是，快出第二季，很急。尤其是听了群友爆料后面的漫画剧情过后就更急了。</p>
+    <title>【随便漫谈】归还者的魔法要特别</title>
+    <url>/posts/4c1de69.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.06.20）：5.2/10</p>
+<p>个人评分：5/10</p>
+<p>一部看着比较一般的厕纸，画风也算能看。</p>
+<p>剧情有点抽象，爽点及格。</p>
+<p>总的来说，是合格的厕纸，可以打发时间看看。</p>
+<p>话说，现在好像都找不到几个好看的短篇异世界厕纸了，我得再多翻翻。</p>
 ]]></content>
       <categories>
         <category>随便漫谈</category>
       </categories>
       <tags>
         <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】快藏起来！玛琪娜同学！！</title>
+    <url>/posts/c464c875.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.01.09）：5.4/10</p>
+<p>个人评分：5/10</p>
+<p>剧情很无聊，看半天感觉一点没推进。大概这就是为什么到头来这部番都没有恋爱标签。</p>
+<p>画风的话也属于一般及格吧。</p>
+<p>不过这季度我也没追几部，所以这部每次一更新我就看了，倒也能看。</p>
+<p>确实无聊了点，随便看看吧。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>卖肉</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】我和班上最讨厌的女生结婚了</title>
+    <url>/posts/b931de29.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.03.29）：5.5/10</p>
+<p>个人评分：5/10</p>
+<p>6。</p>
+<p>老套，且逆天，你要是个后宫结局，我还敬你是条汉子。故事节奏也是稀奇古怪，我看不懂且大受震撼。</p>
+<p>看看妹妹就够了，这番真没啥能看的。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>恋爱</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】我喜欢的是妹妹但不是妹妹</title>
+    <url>/posts/c313dad5.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.05.02）：3.1/10</p>
+<p>个人评分：5/10</p>
+<p>好久没有笑得这么开心了。当我看到四根指头和六根指头的时候，我就知道这番有了。</p>
+<p>抛开崩坏不谈，剧情还是有那么一点意思的，虽然交互看起来挺套路。</p>
+<p>说到底，我直接被崩坏的画风吸引了全部注意力，所以根本不知道这番讲了什么，不过好在之前看过小说，倒也不是不能接受。</p>
+<p>总之可以当个乐子看看，仅此而已。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>恋爱</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】我独自升级 及第二季</title>
+    <url>/posts/cb1c2f94.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.05.02）：6.5/10 7.4/10</p>
+<p>个人评分：7/10 8/10</p>
+<p>不就是网文套路，没整出个多大的活。但也没怎么让人难受，从爽文的角度来看还是优秀的。</p>
+<p>该说不愧是韩国吗，这下巴越来越尖，就离谱。</p>
+<p>总之还是值得一看，爽就完事了。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>战斗</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】我的可爱对黑岩目高不管用</title>
+    <url>/posts/ed229165.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.04.10）：4.4/10</p>
+<p>个人评分：7/10</p>
+<p>剧情属于是很典的，卖肉属于是可有可无的，角色也画得一般。</p>
+<p>但是声优倒是挺大牌。</p>
+<p>说实话，作为一个桃子番，大概还算合格。男主人设没有瞎搞，女主也能看出变化，虽然开头的时候看起来有点脑子不太对。</p>
+<p>总之可以看看，也属于是不用带脑子的。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>恋爱</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】我立于百万生命之上 及第二季</title>
+    <url>/posts/83cee2d9.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.14）：5.9/10 6.1/10</p>
+<p>个人评分：7/10</p>
+<p>剧情一般，没有让人看不下去。但是感觉节奏还行，不会让人觉得无聊。而且并非主打龙傲天的，没那么无脑。</p>
+<p>总之属于可以一看的类型，正好有两季，拿来放松一下还行。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】战斗员派遣中</title>
+    <url>/posts/96772038.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.14）：6.3/10</p>
+<p>个人评分：8/10</p>
+<p>作为一部搞笑番，搞笑部分还算可以，能让我时不时笑一下。主要角色画得还行。</p>
+<p>剧情比较典，但看的过程中并不会反感。</p>
+<p>总之还是值得一看，挺有意思的。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
         <tag>后宫</tag>
         <tag>搞笑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】拜托请穿上，鹰峰同学</title>
+    <url>/posts/bea5fd60.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.06.20）：4.5/10</p>
+<p>个人评分：5/10</p>
+<p>作为卖肉番，这个脸确实有点一般了，感觉下巴可以戳死我。</p>
+<p>硬要说恋爱，好像两个人也没啥特别的互动，有点太典了。</p>
+<p>总之不是特别推荐，但是作为这季度少数我追着看的，好歹还是看完了。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>卖肉</tag>
+        <tag>恋爱</tag>
       </tags>
   </entry>
   <entry>
@@ -821,42 +999,6 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
       </tags>
   </entry>
   <entry>
-    <title>【随便漫谈】战斗员派遣中</title>
-    <url>/posts/96772038.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2024.12.14）：6.3/10</p>
-<p>个人评分：8/10</p>
-<p>作为一部搞笑番，搞笑部分还算可以，能让我时不时笑一下。主要角色画得还行。</p>
-<p>剧情比较典，但看的过程中并不会反感。</p>
-<p>总之还是值得一看，挺有意思的。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>厕纸</tag>
-        <tag>后宫</tag>
-        <tag>搞笑</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】我立于百万生命之上 及第二季</title>
-    <url>/posts/83cee2d9.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2024.12.14）：5.9/10 6.1/10</p>
-<p>个人评分：7/10</p>
-<p>剧情一般，没有让人看不下去。但是感觉节奏还行，不会让人觉得无聊。而且并非主打龙傲天的，没那么无脑。</p>
-<p>总之属于可以一看的类型，正好有两季，拿来放松一下还行。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>厕纸</tag>
-        <tag>后宫</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【随便漫谈】最强阴阳师的异世界转生记</title>
     <url>/posts/ed36ff09.html</url>
     <content><![CDATA[<p>Bangumi评分（截至2025.01.09）：5.9/10</p>
@@ -865,6 +1007,24 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <p>男主作为一根木头，非常好地保持了人设，反正我是不知道女主这些人喜欢他啥了，可能大伙觉得被救了就得以身相许吧。可惜我是个没啥能力的废物。</p>
 <p>看到第12集的时候，我整个人都傻了。虽然有所预料，但是男主的表现还是太吓人了点。可能确实也是转生之前的影响吧。</p>
 <p>从厕纸角度讲是一部及格以上的番，比较推荐一看。不过也确实看个乐。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】月光下的异世界之旅</title>
+    <url>/posts/c0cfa037.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.01.08）：6.0/10</p>
+<p>个人评分：5/10</p>
+<p>符合时代的作画，以及我觉得很无聊的剧情。人物没什么特色，在剧情中也没表现什么人物特点。每一集看了过后的唯一感想就是寂寞。</p>
+<p>不过我也只看了7集，先搁置了。感觉还是得找找别的类型的番。</p>
+<p>但是话说回来，这番好歹还是个及格吧。没什么雷，没什么亮点。适合睡前助眠。</p>
 ]]></content>
       <categories>
         <category>随便漫谈</category>
@@ -893,6 +1053,62 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
       </tags>
   </entry>
   <entry>
+    <title>【随便漫谈】测不准的阿波连同学 及第二季</title>
+    <url>/posts/60f473ab.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.06.28）：6.4/10 6.5/10</p>
+<p>个人评分：7/10</p>
+<p>剧情是日常类型的，主打搞笑和发糖。画风很可爱，说起来B站还投了钱来着。</p>
+<p>虽然感觉评分没我想的高，但我个人还是很喜欢的。</p>
+<p>毕竟我缺的就是这个。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>恋爱</tag>
+        <tag>搞笑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】精灵幻想记 及第二季</title>
+    <url>/posts/6f9d9faf.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2024.12.27）：5.6/10 5.3/10</p>
+<p>个人评分：6/10</p>
+<p>画风挺好看的，尤其是女角色。故事属于一种很慢节奏的叙事，尤其是第二季的最后几集，已经慢到无聊了。</p>
+<p>但是你别说，你还真别说，女角色真的好看，尤其是小老师。<br>
+你就说你喜不喜欢小老师吧。</p>
+<p>实在不想对剧情有太多评论，毕竟，能做到让人感觉不到爽的爽番也挺厉害的。</p>
+<p>总之可以一看，当消磨时间了。一口气全看完是在还是有点折磨。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】监狱学园</title>
+    <url>/posts/8b570bd9.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.06.28）：7.3/10</p>
+<p>个人评分：9/10</p>
+<p>很有趣的一部番，能同时实现抽象和智斗，挺不容易的。</p>
+<p>虽然确实一直觉得很抽象，但还是一直看完了，并不像赤石那般的抽象。这部番的抽象更多的是提供了乐子。</p>
+<p>怎么还没出第二季啊，急了。</p>
+<p>非常推荐的一部番，都快去看。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>搞笑</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【随便漫谈】独自一人的异世界攻略</title>
     <url>/posts/1c1a1f03.html</url>
     <content><![CDATA[<p>Bangumi评分（截至2024.12.14）：4.5/10</p>
@@ -911,21 +1127,21 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
       </tags>
   </entry>
   <entry>
-    <title>【随便漫谈】月光下的异世界之旅</title>
-    <url>/posts/c0cfa037.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.01.08）：6.0/10</p>
-<p>个人评分：5/10</p>
-<p>符合时代的作画，以及我觉得很无聊的剧情。人物没什么特色，在剧情中也没表现什么人物特点。每一集看了过后的唯一感想就是寂寞。</p>
-<p>不过我也只看了7集，先搁置了。感觉还是得找找别的类型的番。</p>
-<p>但是话说回来，这番好歹还是个及格吧。没什么雷，没什么亮点。适合睡前助眠。</p>
+    <title>【随便漫谈】缘结甘神家</title>
+    <url>/posts/67dc5152.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.04.17）：5.9/10</p>
+<p>个人评分：8/10</p>
+<p>剧情稍显老套，节奏很慢。但是人物性格刻画不错，画得也不错。</p>
+<p>虽说看得我很难受（指联想到自己的人生），但我还是挺喜欢这部番的。</p>
+<p>总之还是比较推荐看看，倒也没有太多特点就是了。</p>
 ]]></content>
       <categories>
         <category>随便漫谈</category>
       </categories>
       <tags>
         <tag>随便漫谈</tag>
-        <tag>厕纸</tag>
         <tag>后宫</tag>
+        <tag>恋爱</tag>
       </tags>
   </entry>
   <entry>
@@ -948,15 +1164,34 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
       </tags>
   </entry>
   <entry>
-    <title>【随便漫谈】精灵幻想记 及第二季</title>
-    <url>/posts/6f9d9faf.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2024.12.27）：5.6/10 5.3/10</p>
+    <title>【随便漫谈】萌萌侵略者</title>
+    <url>/posts/64a2dcb9.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.03.04）：6.6/10</p>
 <p>个人评分：6/10</p>
-<p>画风挺好看的，尤其是女角色。故事属于一种很慢节奏的叙事，尤其是第二季的最后几集，已经慢到无聊了。</p>
-<p>但是你别说，你还真别说，女角色真的好看，尤其是小老师。<br>
-你就说你喜不喜欢小老师吧。</p>
-<p>实在不想对剧情有太多评论，毕竟，能做到让人感觉不到爽的爽番也挺厉害的。</p>
-<p>总之可以一看，当消磨时间了。一口气全看完是在还是有点折磨。</p>
+<p>虽然有时候看着很尬，但是画风我很喜欢。</p>
+<p>从内容来讲，搞笑程度并不高，看似有点深度，其实并没有。</p>
+<p>弹幕更是重量级，还好我三倍速看不清弹幕。</p>
+<p>总之是一部适合快进看看的番，看之前记得存放脑子。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+        <tag>后宫</tag>
+        <tag>搞笑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】虽然我是注定没落的贵族，闲来无事只好来深究魔法</title>
+    <url>/posts/25372de7.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.04.10）：3.7/10</p>
+<p>个人评分：3/10</p>
+<p>无聊至极，看了9集弃了。</p>
+<p>属于是做成吐槽视频都没人看的类型，内容啥都没有，一看，哦声优不错。</p>
+<p>我现在都想不出来剧情到底讲了什么，看了就忘了，感觉少看一集都不影响。</p>
+<p>总之别看，浪费时间。</p>
 ]]></content>
       <categories>
         <category>随便漫谈</category>
@@ -1004,23 +1239,22 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
       </tags>
   </entry>
   <entry>
-    <title>【随便漫谈】萌萌侵略者</title>
-    <url>/posts/64a2dcb9.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.03.04）：6.6/10</p>
-<p>个人评分：6/10</p>
-<p>虽然有时候看着很尬，但是画风我很喜欢。</p>
-<p>从内容来讲，搞笑程度并不高，看似有点深度，其实并没有。</p>
-<p>弹幕更是重量级，还好我三倍速看不清弹幕。</p>
-<p>总之是一部适合快进看看的番，看之前记得存放脑子。</p>
+    <title>【随便漫谈】香格里拉·弗陇提亚 及第二季</title>
+    <url>/posts/fc9dfa97.html</url>
+    <content><![CDATA[<p>全名：香格里拉·弗陇提亚~屎作猎人向神作发起挑战</p>
+<p>Bangumi评分（截至2025.05.02）：6.4/10 6.4/10</p>
+<p>个人评分：7/10 7/10</p>
+<p>说实话，我并不是特别喜欢战斗番，还是更喜欢看看剧情。从剧情来讲，这番的节奏确实很慢，导致我根本没办法被调动。</p>
+<p>作画的话倒也算有点特色。</p>
+<p>但我还是觉得剧情不太行，该不会就是因为可以做很长所以把剧情拖长了吧。</p>
+<p>总之可以看看，这50集应该可以打发很长的时间。</p>
 ]]></content>
       <categories>
         <category>随便漫谈</category>
       </categories>
       <tags>
         <tag>随便漫谈</tag>
-        <tag>厕纸</tag>
-        <tag>后宫</tag>
-        <tag>搞笑</tag>
+        <tag>战斗</tag>
       </tags>
   </entry>
   <entry>
@@ -1039,6 +1273,71 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
         <tag>随便漫谈</tag>
         <tag>厕纸</tag>
         <tag>后宫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】龙王的工作！</title>
+    <url>/posts/98be8cda.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.05.18）：6.3/10</p>
+<p>个人评分：8/10</p>
+<p>你以为我们人民警察会相信你的鬼话吗？</p>
+<p>既然来看这部著名的萝莉番了，那果然就是看画风来了。对我来说，这画风属于是最舒服的那种，不算惊艳，但就是很顺眼。等一下，哪家公司做的？</p>
+<p>剧情比较普通，不过这种偏日常的番，剧情也写不出个花。要是真整活了，可能就寄了。</p>
+<p>总之属于适合放松的时候看的番。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随便漫谈】骸骨骑士大人异世界冒险中</title>
+    <url>/posts/8b33016e.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.05.18）：5.8/10</p>
+<p>个人评分：7/10</p>
+<p>从画风来讲，比较普通，算是中等偏上的厕纸。</p>
+<p>从剧情来说，足够龙傲天，虽然比较典，但是不带脑子看着还是很放松的。</p>
+<p>总之是一部适合随便看看的番，厕纸爱好者应该挺喜欢的。</p>
+]]></content>
+      <categories>
+        <category>随便漫谈</category>
+      </categories>
+      <tags>
+        <tag>随便漫谈</tag>
+        <tag>厕纸</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>安卓手机玩SillyTavern（酒馆）</title>
+    <url>/posts/9c94fc7b.html</url>
+    <content><![CDATA[<p>最近接触了SillyTavern，也就是常说的酒馆。这玩意用的AI模型一般都不是本地部署，所以还挺适合手机玩。于是我在网上找了找教程，自己搞了搞，发现还挺简单，于是写一下。</p>
+<h2 id="安装Termux">安装Termux</h2>
+<p>Termux是一个Linux的终端仿真软件，可以理解为运行了一个Linux系统。<br>
+可以在Github上获取。<a href="https://github.com/termux/termux-app/releases">https://github.com/termux/termux-app/releases</a><br>
+下载对应你的安卓架构的安装包即可，一般来讲比较新的手机系统就直接下载<code>Android 7+</code>里的<code>arm64-v8a</code>版本即可。</p>
+<h2 id="安装环境">安装环境</h2>
+<div class="note info flat"><p>可能需要魔法。</p>
+</div>
+<p>打开你装好的Termux，先用<code>apt update</code>和<code>apt upgrade</code>更新一下包，如果中途问<code>Y/N</code>，一律都<code>Y</code>。<br>
+接下来是Git和Node.js。输入<code>pkg install git</code>和<code>pkg install nodejs</code>。<br>
+然后克隆SillyTavern的库。输入<code>git clone https://github.com/SillyTavern/SillyTavern.git</code>。<br>
+进入SillyTavern目录，安装依赖。输入<code>cd SillyTavern</code>和<code>npm install</code>。</p>
+<h2 id="开始愉快玩耍">开始愉快玩耍</h2>
+<p>输入<code>./start.sh</code>即可运行SillyTavern，接下来按理说会自动跳转到浏览器，如果没跳转，就手动去访问<code>127.0.0.1:8000</code>吧。<br>
+如果你重新开启Termux，需要先<code>cd SillyTavern</code>一下。</p>
+<h2 id="关于另一种玩法">关于另一种玩法</h2>
+<p>有一个很简单的手机玩酒馆的办法，就是用电脑运行，然后手机访问。<br>
+首先更改<code>config.yaml</code>，首先<code>listen: true</code>，然后在<code>whitelist</code>中添加<code>192.168.*.*</code>（这个不用细讲应该也知道怎么添加，某些情况可能要填不一样的）。<br>
+手机上一般直接用局域网内电脑的IP地址就行，端口应该默认8000。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>娱乐</tag>
       </tags>
   </entry>
   <entry>
@@ -1258,36 +1557,6 @@ LIMITS <span class="token operator">=</span> <span class="token punctuation">&#1
       </tags>
   </entry>
   <entry>
-    <title>安卓手机玩SillyTavern（酒馆）</title>
-    <url>/posts/9c94fc7b.html</url>
-    <content><![CDATA[<p>最近接触了SillyTavern，也就是常说的酒馆。这玩意用的AI模型一般都不是本地部署，所以还挺适合手机玩。于是我在网上找了找教程，自己搞了搞，发现还挺简单，于是写一下。</p>
-<h2 id="安装Termux">安装Termux</h2>
-<p>Termux是一个Linux的终端仿真软件，可以理解为运行了一个Linux系统。<br>
-可以在Github上获取。<a href="https://github.com/termux/termux-app/releases">https://github.com/termux/termux-app/releases</a><br>
-下载对应你的安卓架构的安装包即可，一般来讲比较新的手机系统就直接下载<code>Android 7+</code>里的<code>arm64-v8a</code>版本即可。</p>
-<h2 id="安装环境">安装环境</h2>
-<div class="note info flat"><p>可能需要魔法。</p>
-</div>
-<p>打开你装好的Termux，先用<code>apt update</code>和<code>apt upgrade</code>更新一下包，如果中途问<code>Y/N</code>，一律都<code>Y</code>。<br>
-接下来是Git和Node.js。输入<code>pkg install git</code>和<code>pkg install nodejs</code>。<br>
-然后克隆SillyTavern的库。输入<code>git clone https://github.com/SillyTavern/SillyTavern.git</code>。<br>
-进入SillyTavern目录，安装依赖。输入<code>cd SillyTavern</code>和<code>npm install</code>。</p>
-<h2 id="开始愉快玩耍">开始愉快玩耍</h2>
-<p>输入<code>./start.sh</code>即可运行SillyTavern，接下来按理说会自动跳转到浏览器，如果没跳转，就手动去访问<code>127.0.0.1:8000</code>吧。<br>
-如果你重新开启Termux，需要先<code>cd SillyTavern</code>一下。</p>
-<h2 id="关于另一种玩法">关于另一种玩法</h2>
-<p>有一个很简单的手机玩酒馆的办法，就是用电脑运行，然后手机访问。<br>
-首先更改<code>config.yaml</code>，首先<code>listen: true</code>，然后在<code>whitelist</code>中添加<code>192.168.*.*</code>（这个不用细讲应该也知道怎么添加，某些情况可能要填不一样的）。<br>
-手机上一般直接用局域网内电脑的IP地址就行，端口应该默认8000。</p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>娱乐</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>通过对比清理图片</title>
     <url>/posts/cbb6721e.html</url>
     <content><![CDATA[<p>因为本人平时喜好存一些图片，但经常批量下载，存了又不怎么看，因此有很多图片实际上并不需要，因此我想到了这个办法。</p>
@@ -1359,14 +1628,14 @@ start_server<span class="token punctuation">(</span>main<span class="token punct
       </tags>
   </entry>
   <entry>
-    <title>【随便漫谈】虽然我是注定没落的贵族，闲来无事只好来深究魔法</title>
-    <url>/posts/25372de7.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.04.10）：3.7/10</p>
-<p>个人评分：3/10</p>
-<p>无聊至极，看了9集弃了。</p>
-<p>属于是做成吐槽视频都没人看的类型，内容啥都没有，一看，哦声优不错。</p>
-<p>我现在都想不出来剧情到底讲了什么，看了就忘了，感觉少看一集都不影响。</p>
-<p>总之别看，浪费时间。</p>
+    <title>【随便漫谈】转生成自动贩卖机的我今天也在迷宫徘徊</title>
+    <url>/posts/75063539.html</url>
+    <content><![CDATA[<p>Bangumi评分（截至2025.08.22）：5.3/10</p>
+<p>个人评分：6/10</p>
+<p>不知道为什么就是觉得看着有点无聊，但是总体来说没什么问题。</p>
+<p>女主很可爱，但是男主只是一个盒子。</p>
+<p>剧情就是很普通的异世界日常，男主用各种商品解决问题。</p>
+<p>没太多亮点，无功无过吧。可以磨时间看看。</p>
 ]]></content>
       <categories>
         <category>随便漫谈</category>
@@ -1374,257 +1643,6 @@ start_server<span class="token punctuation">(</span>main<span class="token punct
       <tags>
         <tag>随便漫谈</tag>
         <tag>厕纸</tag>
-        <tag>后宫</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】缘结甘神家</title>
-    <url>/posts/67dc5152.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.04.17）：5.9/10</p>
-<p>个人评分：8/10</p>
-<p>剧情稍显老套，节奏很慢。但是人物性格刻画不错，画得也不错。</p>
-<p>虽说看得我很难受（指联想到自己的人生），但我还是挺喜欢这部番的。</p>
-<p>总之还是比较推荐看看，倒也没有太多特点就是了。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>后宫</tag>
-        <tag>恋爱</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】我喜欢的是妹妹但不是妹妹</title>
-    <url>/posts/c313dad5.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.05.02）：3.1/10</p>
-<p>个人评分：5/10</p>
-<p>好久没有笑得这么开心了。当我看到四根指头和六根指头的时候，我就知道这番有了。</p>
-<p>抛开崩坏不谈，剧情还是有那么一点意思的，虽然交互看起来挺套路。</p>
-<p>说到底，我直接被崩坏的画风吸引了全部注意力，所以根本不知道这番讲了什么，不过好在之前看过小说，倒也不是不能接受。</p>
-<p>总之可以当个乐子看看，仅此而已。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>恋爱</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】香格里拉·弗陇提亚 及第二季</title>
-    <url>/posts/fc9dfa97.html</url>
-    <content><![CDATA[<p>全名：香格里拉·弗陇提亚~屎作猎人向神作发起挑战</p>
-<p>Bangumi评分（截至2025.05.02）：6.4/10 6.4/10</p>
-<p>个人评分：7/10 7/10</p>
-<p>说实话，我并不是特别喜欢战斗番，还是更喜欢看看剧情。从剧情来讲，这番的节奏确实很慢，导致我根本没办法被调动。</p>
-<p>作画的话倒也算有点特色。</p>
-<p>但我还是觉得剧情不太行，该不会就是因为可以做很长所以把剧情拖长了吧。</p>
-<p>总之可以看看，这50集应该可以打发很长的时间。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>战斗</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】我独自升级 及第二季</title>
-    <url>/posts/cb1c2f94.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.05.02）：6.5/10 7.4/10</p>
-<p>个人评分：7/10 8/10</p>
-<p>不就是网文套路，没整出个多大的活。但也没怎么让人难受，从爽文的角度来看还是优秀的。</p>
-<p>该说不愧是韩国吗，这下巴越来越尖，就离谱。</p>
-<p>总之还是值得一看，爽就完事了。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>厕纸</tag>
-        <tag>战斗</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】如果有妹妹就好了</title>
-    <url>/posts/2934455f.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.05.02）：6.6/10</p>
-<p>个人评分：8/10</p>
-<p>喵帕斯~</p>
-<p>是一部很平淡的番。剧情偏日常，用很平淡的故事来表现人物。对我来说是一种不错但是很难激起热情的表现形式。</p>
-<p>画风我很喜欢，很喜欢那由多。各种表情很有意思。</p>
-<p>总之适合喜欢看日常的人看。我还是觉得有点喜欢但不多。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>恋爱</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】不要欺负我，长瀞同学 及第二季</title>
-    <url>/posts/93528f82.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.05.09）：6.4/10 6.6/10</p>
-<p>个人评分：7/10</p>
-<p>虽说黑皮不是我的菜，但是女主还是挺可爱的。从剧情来讲，看得还算舒服，讲的是日常，但还是能看出两人之间关系的加深。</p>
-<p>看恋爱久了，感觉，虽然挺好看，但是看不下去。也不知道怎么了。</p>
-<p>总之是比较推荐的一部番，虽然我是遇不到这样的女生了。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>恋爱</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】龙王的工作！</title>
-    <url>/posts/98be8cda.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.05.18）：6.3/10</p>
-<p>个人评分：8/10</p>
-<p>你以为我们人民警察会相信你的鬼话吗？</p>
-<p>既然来看这部著名的萝莉番了，那果然就是看画风来了。对我来说，这画风属于是最舒服的那种，不算惊艳，但就是很顺眼。等一下，哪家公司做的？</p>
-<p>剧情比较普通，不过这种偏日常的番，剧情也写不出个花。要是真整活了，可能就寄了。</p>
-<p>总之属于适合放松的时候看的番。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>日常</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】骸骨骑士大人异世界冒险中</title>
-    <url>/posts/8b33016e.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.05.18）：5.8/10</p>
-<p>个人评分：7/10</p>
-<p>从画风来讲，比较普通，算是中等偏上的厕纸。</p>
-<p>从剧情来说，足够龙傲天，虽然比较典，但是不带脑子看着还是很放松的。</p>
-<p>总之是一部适合随便看看的番，厕纸爱好者应该挺喜欢的。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>厕纸</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】古见同学有交流障碍症 及第二季</title>
-    <url>/posts/479222f2.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.06.20）：7.0/10 7.3/10</p>
-<p>个人评分：8/10</p>
-<p>就是喜欢这种恋爱啊，虽然发现自己看不进去就是了。一集一集慢慢看，看得还是很开心的。</p>
-<p>话说回来，可能是我用倍速的原因，看完过后确实记不住什么。光看狗粮了。</p>
-<p>总之还是推荐看看，喜欢纯爱就更应该看看了。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>恋爱</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】归还者的魔法要特别</title>
-    <url>/posts/4c1de69.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.06.20）：5.2/10</p>
-<p>个人评分：5/10</p>
-<p>一部看着比较一般的厕纸，画风也算能看。</p>
-<p>剧情有点抽象，爽点及格。</p>
-<p>总的来说，是合格的厕纸，可以打发时间看看。</p>
-<p>话说，现在好像都找不到几个好看的短篇异世界厕纸了，我得再多翻翻。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>厕纸</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】拜托请穿上，鹰峰同学</title>
-    <url>/posts/bea5fd60.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.06.20）：4.5/10</p>
-<p>个人评分：5/10</p>
-<p>作为卖肉番，这个脸确实有点一般了，感觉下巴可以戳死我。</p>
-<p>硬要说恋爱，好像两个人也没啥特别的互动，有点太典了。</p>
-<p>总之不是特别推荐，但是作为这季度少数我追着看的，好歹还是看完了。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>卖肉</tag>
-        <tag>恋爱</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】快藏起来！玛琪娜同学！！</title>
-    <url>/posts/c464c875.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.01.09）：5.4/10</p>
-<p>个人评分：5/10</p>
-<p>剧情很无聊，看半天感觉一点没推进。大概这就是为什么到头来这部番都没有恋爱标签。</p>
-<p>画风的话也属于一般及格吧。</p>
-<p>不过这季度我也没追几部，所以这部每次一更新我就看了，倒也能看。</p>
-<p>确实无聊了点，随便看看吧。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>卖肉</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】测不准的阿波连同学 及第二季</title>
-    <url>/posts/60f473ab.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.06.28）：6.4/10 6.5/10</p>
-<p>个人评分：7/10</p>
-<p>剧情是日常类型的，主打搞笑和发糖。画风很可爱，说起来B站还投了钱来着。</p>
-<p>虽然感觉评分没我想的高，但我个人还是很喜欢的。</p>
-<p>毕竟我缺的就是这个。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>搞笑</tag>
-        <tag>恋爱</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随便漫谈】监狱学园</title>
-    <url>/posts/8b570bd9.html</url>
-    <content><![CDATA[<p>Bangumi评分（截至2025.06.28）：7.3/10</p>
-<p>个人评分：9/10</p>
-<p>很有趣的一部番，能同时实现抽象和智斗，挺不容易的。</p>
-<p>虽然确实一直觉得很抽象，但还是一直看完了，并不像赤石那般的抽象。这部番的抽象更多的是提供了乐子。</p>
-<p>怎么还没出第二季啊，急了。</p>
-<p>非常推荐的一部番，都快去看。</p>
-]]></content>
-      <categories>
-        <category>随便漫谈</category>
-      </categories>
-      <tags>
-        <tag>随便漫谈</tag>
-        <tag>搞笑</tag>
       </tags>
   </entry>
 </search>
