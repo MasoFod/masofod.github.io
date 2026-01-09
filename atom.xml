@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2025-03-21T03:18:04.516Z</updated>
+  <updated>2026-01-09T01:57:05.954Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>漆黑猎场物品分享代码生成器</title>
+    <link href="https://masofod.github.io/posts/7ceba66a"/>
+    <id>https://masofod.github.io/posts/7ceba66a</id>
+    <published>2026-01-09T01:55:00.000Z</published>
+    <updated>2026-01-09T01:57:05.954Z</updated>
+    
+    
+    <summary type="html">简介：本工具可以直接选择物品类型、名称、稀有度和词条等信息直接生成物品分享代码。</summary>
+    
+    
+    
+    <category term="工具" scheme="https://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="小工具" scheme="https://masofod.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>【来点技术】蒙特卡洛树搜索与决策AI</title>

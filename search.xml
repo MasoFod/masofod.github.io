@@ -910,4 +910,24 @@ start_server<span class="token punctuation">(</span>main<span class="token punct
         <tag>小工具</tag>
       </tags>
   </entry>
+  <entry>
+    <title>漆黑猎场物品分享代码生成器</title>
+    <url>/posts/7ceba66a.html</url>
+    <content><![CDATA[<p>使用地址: <a href="https://masofod.github.io/dhg-share-code-generator/release/">https://masofod.github.io/dhg-share-code-generator/release/</a><br>
+本工具可以直接选择物品类型、名称、稀有度和词条等信息直接生成物品分享代码。</p>
+<h2 id="注意">注意</h2>
+<ol>
+<li>数值可以随意填写，且本工具不对代码可用性保证。若遇问题，请先确认自己设置的属性是否正常；若确定一切正常却仍无法使用，请发issue，给出完整截图。本工具不保证后续更新。</li>
+<li>部分名称与游戏内不同，实际效果相同。</li>
+<li>词条顺序基本与游戏内一致，请对照使用。</li>
+<li>数值项须填整数，百分比项须填百分数实际对应的小数，负数项须填负数。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>小工具</tag>
+      </tags>
+  </entry>
 </search>
