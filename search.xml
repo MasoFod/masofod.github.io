@@ -875,6 +875,16 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <span class="token keyword">from</span> pywebio<span class="token punctuation">.</span><span class="token builtin">input</span> <span class="token keyword">import</span> <span class="token operator">*</span>
 <span class="token keyword">from</span> pywebio<span class="token punctuation">.</span>output <span class="token keyword">import</span> <span class="token operator">*</span>
 <span class="token keyword">from</span> pywebio <span class="token keyword">import</span> start_server
+<span class="token keyword">import</span> shutil
+
+directory <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">"D:\\projects\\image-cleaner"</span><span class="token punctuation">,</span>
+    <span class="token comment"># "D:\\projects\\image-cleaner\\test",</span>
+    <span class="token string">"D:\\Pics\\all"</span><span class="token punctuation">,</span>
+    <span class="token string">"D:\\Pics\\1"</span><span class="token punctuation">,</span>
+    <span class="token string">"D:\\Pics\\2"</span><span class="token punctuation">,</span>
+    <span class="token string">"D:\\Pics\\3"</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
 
 
 <span class="token comment"># 1. 读取目录内的随机两张图片</span>
@@ -887,9 +897,9 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 
 
 <span class="token comment"># 2. 显示图片并处理用户选择</span>
-<span class="token keyword">def</span> <span class="token function">show_images</span><span class="token punctuation">(</span>directory<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">def</span> <span class="token function">show_images</span><span class="token punctuation">(</span>epoch<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-        image_paths <span class="token operator">=</span> get_random_images<span class="token punctuation">(</span>directory<span class="token punctuation">)</span>
+        image_paths <span class="token operator">=</span> get_random_images<span class="token punctuation">(</span>directory<span class="token punctuation">[</span>epoch<span class="token punctuation">]</span><span class="token punctuation">)</span>
         <span class="token keyword">if</span> <span class="token keyword">not</span> image_paths<span class="token punctuation">:</span>
             put_text<span class="token punctuation">(</span><span class="token string">"目录中没有足够的图片"</span><span class="token punctuation">)</span>
             <span class="token keyword">break</span>
@@ -905,26 +915,40 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
         <span class="token punctuation">)</span>
 
         <span class="token comment"># 创建按钮</span>
-        choice <span class="token operator">=</span> actions<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">"留下左边"</span><span class="token punctuation">,</span> <span class="token string">"留下右边"</span><span class="token punctuation">,</span> <span class="token string">"跳过"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        choice <span class="token operator">=</span> actions<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">"留下左边"</span><span class="token punctuation">,</span> <span class="token string">"留下右边"</span><span class="token punctuation">,</span> <span class="token string">"都可以"</span><span class="token punctuation">,</span> <span class="token string">"都不行"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 
         <span class="token comment"># 刷新页面</span>
         clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token comment"># 处理用户选择</span>
         <span class="token keyword">if</span> choice <span class="token operator">==</span> <span class="token string">"留下左边"</span><span class="token punctuation">:</span>
+            shutil<span class="token punctuation">.</span>move<span class="token punctuation">(</span>image_paths<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> directory<span class="token punctuation">[</span>epoch <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
             os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>image_paths<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
         <span class="token keyword">elif</span> choice <span class="token operator">==</span> <span class="token string">"留下右边"</span><span class="token punctuation">:</span>
+            shutil<span class="token punctuation">.</span>move<span class="token punctuation">(</span>image_paths<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> directory<span class="token punctuation">[</span>epoch <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
             os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>image_paths<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token keyword">elif</span> choice <span class="token operator">==</span> <span class="token string">"跳过"</span><span class="token punctuation">:</span>
-            <span class="token keyword">continue</span>
+        <span class="token keyword">elif</span> choice <span class="token operator">==</span> <span class="token string">"都可以"</span><span class="token punctuation">:</span>
+            shutil<span class="token punctuation">.</span>move<span class="token punctuation">(</span>image_paths<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> directory<span class="token punctuation">[</span>epoch <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            shutil<span class="token punctuation">.</span>move<span class="token punctuation">(</span>image_paths<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> directory<span class="token punctuation">[</span>epoch <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> choice <span class="token operator">==</span> <span class="token string">"都不行"</span><span class="token punctuation">:</span>
+            os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>image_paths<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>image_paths<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 
 
 <span class="token comment"># 3. 开启HTTP服务</span>
 <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    directory <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"请输入图片目录的路径："</span><span class="token punctuation">)</span>
-    show_images<span class="token punctuation">(</span>directory<span class="token punctuation">)</span>
+    choice <span class="token operator">=</span> actions<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">"测试"</span><span class="token punctuation">,</span> <span class="token string">"第一轮"</span><span class="token punctuation">,</span> <span class="token string">"第二轮"</span><span class="token punctuation">,</span> <span class="token string">"第三轮"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> choice <span class="token operator">==</span> <span class="token string">"测试"</span><span class="token punctuation">:</span>
+        show_images<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> choice <span class="token operator">==</span> <span class="token string">"第一轮"</span><span class="token punctuation">:</span>
+        show_images<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> choice <span class="token operator">==</span> <span class="token string">"第二轮"</span><span class="token punctuation">:</span>
+        show_images<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> choice <span class="token operator">==</span> <span class="token string">"第三轮"</span><span class="token punctuation">:</span>
+        show_images<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
 
 
-start_server<span class="token punctuation">(</span>main<span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">1145</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+start_server<span class="token punctuation">(</span>main<span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">1145</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
       <categories>
         <category>工具</category>
       </categories>
