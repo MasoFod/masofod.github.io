@@ -1,7 +1,7 @@
 
-https://masofod.github.io/resource/
+https://masofod.github.io/resource/posts/%E5%85%94%E5%AD%90%E5%AE%87%E5%AE%993-0notion%E6%A8%A1%E6%9D%BF-%E6%95%99%E7%A8%8B
 
-https://masofod.github.io/posts/8a43f626
+https://masofod.github.io/resource/
 
 https://masofod.github.io/resource/posts/Notion%E4%B8%8A%E6%89%8B%E5%88%B0%E7%B2%BE%E9%80%9A
 
@@ -9,7 +9,7 @@ https://masofod.github.io/resource/posts/Notion%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D
 
 https://masofod.github.io/resource/posts/%E4%BF%AE%E7%82%BC%E8%A1%80%E5%8E%9A%E6%94%BB%E9%AB%98%E7%9A%84%E8%87%AA%E5%B7%B1%EF%BC%9A%E6%9E%84%E5%BB%BA%E6%97%A0%E6%89%80%E7%95%8F%E6%83%A7%E7%9A%84%E9%AB%98%E8%83%BD%E6%88%90%E9%95%BF%E4%BD%93%E7%B3%BB
 
-https://masofod.github.io/posts/10ca48a9
+https://masofod.github.io/resource/posts/%E3%80%8A%E6%81%8B%E7%88%B1%E6%A0%B8%E5%BF%83%E7%A7%98%E8%AF%80%E8%A7%A3%E5%AF%86%E3%80%8B%EF%BC%9A%E4%BB%8E%E7%89%B5%E6%89%8B%E5%88%B0%E7%A1%AE%E7%AB%8B%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%8C%E6%95%B4%E8%BF%BD%E5%A5%B3%E7%94%9F%E6%8C%87%E5%8D%97
 
 https://masofod.github.io/resource/posts/SAI%E7%BB%98%E7%94%BB%E4%BB%8E%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%EF%BC%8C%E5%AD%A6%E5%AE%8C%E6%88%90%E4%B8%BA%E7%BB%98%E7%94%BB%E5%A4%A7%E8%A7%A6%EF%BC%81
 
@@ -121,11 +121,7 @@ https://masofod.github.io/tags/blockchain/
 
 https://masofod.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/
 
-https://masofod.github.io/tags/%E8%B5%84%E6%BA%90/
-
 
 https://masofod.github.io/categories/%E6%8A%80%E6%9C%AF/
 
 https://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/
-
-https://masofod.github.io/categories/%E8%B5%84%E6%BA%90/
