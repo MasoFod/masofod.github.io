@@ -1,1 +1,4 @@
+User-Agent: *
+Disallow: /dhg-share-code-generator/release/
+
 Sitemap: https://masofod.github.io/sitemap.xml
