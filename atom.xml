@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2026-01-09T01:57:05.954Z</updated>
+  <updated>2026-02-24T14:59:28.604Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>图片对决评分</title>
+    <link href="https://masofod.github.io/posts/3e3e007f"/>
+    <id>https://masofod.github.io/posts/3e3e007f</id>
+    <published>2026-02-24T14:55:08.000Z</published>
+    <updated>2026-02-24T14:59:28.604Z</updated>
+    
+    
+    <summary type="html">简介：用户在主页面看到两张随机选出的图片，点击其中一张完成投票。后台通过 ELO 等级算法调整两张图片的分数，并记录胜/参赛次数。</summary>
+    
+    
+    
+    <category term="工具" scheme="https://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="小工具" scheme="https://masofod.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>漆黑猎场物品分享代码生成器</title>
