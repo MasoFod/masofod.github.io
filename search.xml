@@ -1076,4 +1076,42 @@ DIRECTORIES <span class="token operator">=</span> <span class="token punctuation
         <tag>小工具</tag>
       </tags>
   </entry>
+  <entry>
+    <title>挂机赚钱分享</title>
+    <url>/posts/9d231854.html</url>
+    <content><![CDATA[<h1>介绍</h1>
+<p>在国内，运营商不让跑PCDN。但是，如果是占用极低的类PCDN项目，运营商未必能查到。</p>
+<p>这里分享两个亲测可用的渠道，可以分享未使用的带宽来获取一定报酬。</p>
+<h1>项目</h1>
+<h2 id="TraffMonetizer">TraffMonetizer</h2>
+<p>这是一个在各个地方介绍比较多的平台，主要特点是全网络可用，包括机房IP都能用。</p>
+<p>软件可运行在Windows、MacOS、Android或docker。</p>
+<p>官网注册后会获得一个token，填入你安装的软件即可。</p>
+<p>具体报酬是大概1GB数据分享得0.1美元，但是目前我在一个美国机房IP服务器的测试结果是一天0.01到0.02刀，预计如果是国外的住宅IP会更高。</p>
+<p>鉴于如此缓慢的数据分享速度，这个软件不会对带宽造成任何负担。</p>
+<p>另外，这个软件的系统占用极小，可以忽略不计。</p>
+<p>在总共获取10美元后，可以获取一次付款。付款方式是USDT，可以选择Solana、Ton、Tron TRC20和Arbitrum链。平台会负担手续费。</p>
+<p>点击下方按钮立刻注册（包含我的邀请码），希望能使用我的邀请，反正你不会有损失。</p>
+<a class="btn-beautify block center red larger" href="https://traffmonetizer.com/?aff=2107281&utm_source=blog" title="立即注册"><i class="far fa-hand-point-right"></i><span>立即注册</span></a>
+<h2 id="Honeygain">Honeygain</h2>
+<p>这也是一个别的地方介绍比较多的平台，不过这个无法用于机房IP。</p>
+<p>软件可运行在Windows、MacOS、Android或docker。</p>
+<p>先在官网注册，然后在软件中登录即可。</p>
+<p>登录后建议将收款方式换为JumpTask，这样有10%的额外奖励，且提现额度极低。更换的地方在官网上方，手机软件里也可以看到。JumpTask需要绑定一个加密货币钱包才能发币。</p>
+<p>收益大约是0.05积分/MB，1000积分是1美元，换算一下就是1GB数据得0.05美元。不过电脑端的这个软件还可以进行内容分发，这个收益按运行的时间，且收益更高，但我排队了很久仍未启动，基本可以忽略其在国内的效果。我现在两个机子，一个是手机流量，一个是家庭Wifi，一天大概几个积分或十多积分。</p>
+<p>此外，平台提供了一些额外奖励，例如每日分享5MB可以获得每日奖励，一般是5个积分。</p>
+<p>如果使用Honeygain wallet，即默认的付款，那么需要达到20美元后才会支付，支付方式是PayPal。而使用JumpTask wallet则只需要0.5JMPT即可付款，约0.3美元，也就是300积分，这个还是容易很多的。</p>
+<p>点击下方按钮立刻注册（包含我的邀请码），使用我的邀请可获得3美元的初始奖励。</p>
+<a class="btn-beautify block center red larger" href="https://join.honeygain.com/MASOF234BE" title="立即注册"><i class="far fa-hand-point-right"></i><span>立即注册</span></a>
+<h1>总结</h1>
+<p>这两个项目都是我亲测可用的，但是很明显，这个收益很低。如果能够挂多个机子，还是有点说法的。</p>
+<p>TraffMonetizer适合有多个IP的人，例如买了一堆小VPS的人。主要优点是收益较高，任意网络可用。</p>
+<p>而Honeygain需要住宅IP，收益也一言难尽。主要优点是容易提现。</p>
+<p>两个项目各有优点，我的建议是一起挂，反正没影响。想通过这个赚钱似乎意义不大，更多的是一个把闲置资源利用一下。</p>
+<p>如果有更好的平台，可以在评论区推荐一下。</p>
+]]></content>
+      <tags>
+        <tag>赚钱</tag>
+      </tags>
+  </entry>
 </search>
