@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2026-03-04T01:43:23.990Z</updated>
+  <updated>2026-03-05T13:12:16.143Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -21,10 +21,10 @@
     <link href="https://masofod.github.io/posts/9d231854"/>
     <id>https://masofod.github.io/posts/9d231854</id>
     <published>2026-03-04T00:55:13.000Z</published>
-    <updated>2026-03-04T01:43:23.990Z</updated>
+    <updated>2026-03-05T13:12:16.143Z</updated>
     
     
-    <summary type="html">简介：通过分享未使用的宽带来获取微末报酬。</summary>
+    <summary type="html">通过分享未使用的宽带来获取微末报酬。主要使用TraffMonetizer和Honeygain两个平台。</summary>
     
     
     
@@ -40,10 +40,10 @@
     <link href="https://masofod.github.io/posts/3e3e007f"/>
     <id>https://masofod.github.io/posts/3e3e007f</id>
     <published>2026-02-24T14:55:08.000Z</published>
-    <updated>2026-02-24T14:59:34.920Z</updated>
+    <updated>2026-03-05T13:22:59.424Z</updated>
     
     
-    <summary type="html">简介：用户在主页面看到两张随机选出的图片，点击其中一张完成投票。后台通过 ELO 等级算法调整两张图片的分数，并记录胜/参赛次数。</summary>
+    <summary type="html">用户在主页面看到两张随机选出的图片，点击其中一张完成投票。后台通过 ELO 等级算法调整两张图片的分数，并记录胜/参赛次数。使用简单策略限制刷票。</summary>
     
     
     
@@ -59,10 +59,10 @@
     <link href="https://masofod.github.io/posts/7ceba66a"/>
     <id>https://masofod.github.io/posts/7ceba66a</id>
     <published>2026-01-09T01:55:00.000Z</published>
-    <updated>2026-01-09T01:57:05.954Z</updated>
+    <updated>2026-03-05T13:13:23.038Z</updated>
     
     
-    <summary type="html">简介：本工具可以直接选择物品类型、名称、稀有度和词条等信息直接生成物品分享代码。</summary>
+    <summary type="html">本工具可以直接选择物品类型、名称、稀有度和词条等信息直接生成漆黑猎场的物品分享代码。</summary>
     
     
     
@@ -78,10 +78,10 @@
     <link href="https://masofod.github.io/posts/fe85f19"/>
     <id>https://masofod.github.io/posts/fe85f19</id>
     <published>2025-02-16T11:55:10.000Z</published>
-    <updated>2025-03-21T03:18:04.516Z</updated>
+    <updated>2026-03-05T12:50:19.871Z</updated>
     
     
-    <summary type="html">简介：蒙特卡洛树搜索算法以及在决策AI中的应用。</summary>
+    <summary type="html">蒙特卡洛树搜索算法以及在决策AI中的应用。模仿AlphaZero编写一个可用于任一完全公开信息的游戏。</summary>
     
     
     
@@ -90,9 +90,9 @@
     
     <category term="技术" scheme="https://masofod.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
     
-    <category term="算法" scheme="https://masofod.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
     <category term="人工智能" scheme="https://masofod.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    <category term="算法" scheme="https://masofod.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -101,10 +101,10 @@
     <link href="https://masofod.github.io/posts/9c94fc7b"/>
     <id>https://masofod.github.io/posts/9c94fc7b</id>
     <published>2025-02-06T12:49:42.000Z</published>
-    <updated>2025-03-21T03:19:31.602Z</updated>
+    <updated>2026-03-05T13:10:58.113Z</updated>
     
     
-    <summary type="html">简介：用安卓手机玩SillyTavern的教程。</summary>
+    <summary type="html">用安卓手机玩SillyTavern的教程。包括在Termux安装酒馆的方式和直接访问别的地方的酒馆的方式。</summary>
     
     
     
@@ -120,10 +120,10 @@
     <link href="https://masofod.github.io/posts/83c20e8a"/>
     <id>https://masofod.github.io/posts/83c20e8a</id>
     <published>2025-01-18T13:59:27.000Z</published>
-    <updated>2026-01-09T05:02:05.884Z</updated>
+    <updated>2026-03-05T13:09:35.126Z</updated>
     
     
-    <summary type="html">简介：在一些小项目中获得的一点小经验。</summary>
+    <summary type="html">在一些小项目中获得的一点小经验。更新中...</summary>
     
     
     
@@ -141,10 +141,10 @@
     <link href="https://masofod.github.io/posts/1f9f5e5"/>
     <id>https://masofod.github.io/posts/1f9f5e5</id>
     <published>2025-01-05T08:36:41.000Z</published>
-    <updated>2025-03-21T03:19:16.273Z</updated>
+    <updated>2026-03-05T13:10:19.537Z</updated>
     
     
-    <summary type="html">简介：在Godot 4.3中实现以单客户端同时支持单机和联机功能。</summary>
+    <summary type="html">在Godot 4.3中实现以单客户端同时支持单机和联机功能。主要使用的是Godot提供的高级api。</summary>
     
     
     
@@ -162,10 +162,10 @@
     <link href="https://masofod.github.io/posts/5fe5bce9"/>
     <id>https://masofod.github.io/posts/5fe5bce9</id>
     <published>2024-12-24T09:28:04.000Z</published>
-    <updated>2025-03-21T03:16:32.081Z</updated>
+    <updated>2026-03-05T13:09:13.824Z</updated>
     
     
-    <summary type="html">简介：一个图论相关的算法问题。</summary>
+    <summary type="html">一个图论相关的算法问题。由现实中的快递员工作启发而来。自从我想出这个问题以来还未获得一个高效的解决方式。</summary>
     
     
     
@@ -183,10 +183,10 @@
     <link href="https://masofod.github.io/posts/1dd25bb5"/>
     <id>https://masofod.github.io/posts/1dd25bb5</id>
     <published>2024-12-16T09:30:18.000Z</published>
-    <updated>2024-12-27T08:55:06.971Z</updated>
+    <updated>2026-03-05T13:13:01.127Z</updated>
     
     
-    <summary type="html">简介：随机生成ETH钱包地址查询里面有没有币</summary>
+    <summary type="html">随机生成ETH钱包地址查询里面有没有币。实际上是一个不可能成功的事情。</summary>
     
     
     
@@ -208,10 +208,10 @@
     <link href="https://masofod.github.io/posts/567274b5"/>
     <id>https://masofod.github.io/posts/567274b5</id>
     <published>2024-12-14T15:58:05.000Z</published>
-    <updated>2026-01-09T04:56:35.629Z</updated>
+    <updated>2026-03-05T13:25:34.895Z</updated>
     
     
-    <summary type="html">简介：一个集成了Bangumi带弹幕和长按倍速的看番软件</summary>
+    <summary type="html">Animeko：一个集成了Bangumi带弹幕和长按倍速的看番软件。可自定义数据源。</summary>
     
     
     
@@ -227,10 +227,10 @@
     <link href="https://masofod.github.io/posts/cbb6721e"/>
     <id>https://masofod.github.io/posts/cbb6721e</id>
     <published>2024-12-08T14:51:53.000Z</published>
-    <updated>2026-02-15T12:58:32.259Z</updated>
+    <updated>2026-03-05T13:22:34.463Z</updated>
     
     
-    <summary type="html">简介：对比两张图片然后选择删除一张的工具</summary>
+    <summary type="html">对比两张图片然后选择删除一张的工具，基于Python，使用网页操作。</summary>
     
     
     
