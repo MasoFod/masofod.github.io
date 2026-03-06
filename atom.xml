@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2026-03-05T13:12:16.143Z</updated>
+  <updated>2026-03-06T05:45:02.947Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>全链条白嫖建站资源</title>
+    <link href="https://masofod.github.io/posts/7a6b7f1d"/>
+    <id>https://masofod.github.io/posts/7a6b7f1d</id>
+    <published>2026-03-06T04:26:30.000Z</published>
+    <updated>2026-03-06T05:45:02.947Z</updated>
+    
+    
+    <summary type="html">从域名到服务器再到cloudflare代理，全链条搞定，不花一分钱，不用外币卡。</summary>
+    
+    
+    
+    <category term="白嫖" scheme="https://masofod.github.io/categories/%E7%99%BD%E5%AB%96/"/>
+    
+    
+    <category term="建站, 白嫖, 服务器, 域名" scheme="https://masofod.github.io/tags/%E5%BB%BA%E7%AB%99-%E7%99%BD%E5%AB%96-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E5%9F%9F%E5%90%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>挂机赚钱分享</title>
@@ -90,9 +109,9 @@
     
     <category term="技术" scheme="https://masofod.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
     
-    <category term="人工智能" scheme="https://masofod.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    
     <category term="算法" scheme="https://masofod.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="人工智能" scheme="https://masofod.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
     
   </entry>
   
