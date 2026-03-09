@@ -1,6 +1,489 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【来点技术】Godot开发中获得的一些经验（长期更新）</title>
+    <url>/posts/83c20e8a.html</url>
+    <content><![CDATA[<p>本人使用Godot做过一些小游戏（或者不算游戏的小东西），虽然每个项目的开发时间不长，项目规模也不大，但我还是获得了不少经验。因此在这里记录下来，以便警醒自己。<br>
+如果你有什么自己的经验，也可以写在评论区。</p>
+<h2 id="效率类">效率类</h2>
+<ol>
+<li>做一个新功能之前，先搜一下有没有现成的插件。即使是过期插件，也可以从中学到思路。</li>
+</ol>
+<h2 id="技巧类">技巧类</h2>
+<ol>
+<li>多用信号，避免繁琐的节点访问。</li>
+<li>避免频繁切换场景（<code>change_scene_to_file()</code>方法），否则性能开销较大。考虑使用一个<code>Main</code>根节点来组织场景树。</li>
+<li>在<code>_process()</code>（或其他频繁调用的方法）中避免高消耗的操作，例如加载素材。</li>
+<li>尽量使用<code>@export</code>的方法加载复杂路径的节点，避免在脚本中直接写节点路径，这样在更改节点路径后不会出问题。</li>
+<li>用GDScript别忘了有些方法在C#中有现成的。</li>
+</ol>
+<h2 id="出错类">出错类</h2>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>Godot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【来点技术】Godot中实现简单的单机联机通用的客户端</title>
+    <url>/posts/1f9f5e5.html</url>
+    <content><![CDATA[<p>本文主要作为学习笔记。<br>
+以下内容主要根据<a href="https://docs.godotengine.org/zh-cn/4.x/tutorials/networking/high_level_multiplayer.html">Godot的相关文档</a>和我的理解与实践编写，可能并非最佳实践，也可能存在错误，但是应该基本能用。</p>
+<div class="note info flat"><p>本文基于4.3版本。</p>
+</div>
+<h2 id="Godot中的网络通讯基础">Godot中的网络通讯基础</h2>
+<p>Godot中提供了一些较底层的实现，但是因为我用不上，所以就不讲了。<br>
+Godot提供的高级api是用的UDP，支持IPv6。</p>
+<h3 id="网络初始化">网络初始化</h3>
+<p>每个节点都有一个<code>multiplayer</code>属性，它是对场景树为其配置的<code>MultiplayerAPI</code>实例的引用。可以对节点单独设置<code>MultiplayerAPI</code>，同时覆盖所有子节点。因此，可以实现在一个Godot示例中运行多个服务端和客户端。</p>
+<p>可以通过如下方法创建客户端和服务端。</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token comment"># 创建客户端</span>
+<span class="token keyword">var</span> peer <span class="token operator">=</span> ENetMultiplayerPeer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+peer<span class="token punctuation">.</span><span class="token function">create_client</span><span class="token punctuation">(</span><span class="token constant">IP_ADDRESS</span><span class="token punctuation">,</span> <span class="token constant">PORT</span><span class="token punctuation">)</span>
+multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> peer
+
+<span class="token comment"># 创建服务端</span>
+<span class="token keyword">var</span> peer <span class="token operator">=</span> ENetMultiplayerPeer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+peer<span class="token punctuation">.</span><span class="token function">create_server</span><span class="token punctuation">(</span><span class="token constant">PORT</span><span class="token punctuation">,</span> <span class="token constant">MAX_CLIENTS</span><span class="token punctuation">)</span>
+multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> peer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>通过如下方法结束联网。</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<div class="note info flat"><p>导出Android需要勾选INTERNET权限，否则不能联网。</p>
+</div>
+<h3 id="管理连接">管理连接</h3>
+<p>这里要用到的一个概念是对等体，可以直接理解为一个没有性质的物体。<br>
+系统会给每个对等体都分配一个唯一ID（UID），服务端的ID永远为1，客户端的ID则会被分配给一个随机的正整数。</p>
+<p>可以通过<code>MultiplayerAPI</code>信号来检测连接建立和断开：<br>
+· <code>peer_connected(id: int)</code> 此信号在每个其他对等体上与新连接的对等体ID一起发出，并在新对等点上多次发出，其中一次与每个其他对等点ID一起发出。<br>
+· <code>peer_disconnected（id:int）</code> 当一个对等体断开连接时，剩余的每个对等体都会发出此信号。<br>
+以下信号仅在客户端上发送：<br>
+· <code>connected_to_server()</code><br>
+· <code>connection_failed()</code><br>
+· <code>server_disconnected()</code><br>
+通过<code>multiplayer.get_unique_id()</code>获取关联的UID。<br>
+通过<code>multiplayer.is_server()</code>获取对等体是服务端还是客户端。</p>
+<h3 id="远程过程调用（RPC）">远程过程调用（RPC）</h3>
+<p>远程过程调用是指在其他对等体上调用的函数。在函数定义前加上<code>@rpc</code>则将该函数创建为RPC。<br>
+若要调用 RPC，请在每个对等体中通过 Callable 的 rpc() 方法调用之，或使用 rpc_id() 在特定对等方中调用之。</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">if</span> multiplayer<span class="token punctuation">.</span><span class="token function">is_server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+		print_once_per_client<span class="token punctuation">.</span><span class="token function">rpc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+@rpc
+<span class="token keyword">func</span> <span class="token function">print_once_per_client</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"每个连接的客户端都会将我打印到控制台一次。"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>要实现RPC，要求发送方和接收方的节点有相同的<code>NodePath</code>，包括节点名称。同时要求<code>@rpc</code>同时存在于服务端和客户端的对应函数，且函数的声明和返回类型等要相同。若要对预期使用RPC的节点调用<code>add_child()</code>时，请将参数<code>force_readable_name</code>设置为<code>true</code>。</p>
+<div class="note info flat"><p>在这个<a href="https://github.com/godotengine/godot/issues/57869#issuecomment-1034215138">issue</a>中有更多关于RPC错误的信息。<br>
+<a href="https://docs.godotengine.org/zh-cn/4.x/tutorials/networking/high_level_multiplayer.html#remote-procedure-calls">文档</a>也有说明。</p>
+</div>
+<p><code>@rpc</code>可以有多个参数，在没有设置时，采用如下预设：</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"authority"</span><span class="token punctuation">,</span> <span class="token string">"call_remote"</span><span class="token punctuation">,</span> <span class="token string">"unreliable"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其参数及可选值如下：<br>
+<code>mode</code>：<br>
+· <code>&quot;authority&quot;</code> ：只有多人游戏权限端（服务端）才能远程调用该函数。<br>
+· <code>&quot;any_peer&quot;</code> ：也允许客户端进行远程调用该函数，用于传输用户输入。<br>
+<code>sync</code>：<br>
+· <code>&quot;call_remote&quot;</code> ：让该函数不会在本地对等体上调用。<br>
+· <code>&quot;call_local”</code> ：让该函数也可以在本地对等体上调用，在服务端也是玩家时非常有用。<br>
+<code>transfer_mode</code>：<br>
+· <code>&quot;unreliable&quot;</code> ：数据包不被确认，可能丢失，并且可以按任意顺序到达接收方。<br>
+· <code>&quot;unreliable_ordered&quot;</code> ：数据包按照发送的顺序接收，透过忽略迟达的数据包（如果已经收到在这些数据包之后发送的另一个数据包）来实现的。使用不当可能会导致丢包。<br>
+· <code>&quot;reliable&quot;</code> ：发送重新传送尝试，直到数据包被确认为止，且这些数据包的顺序会被保留。具有明显的性能损失。<br>
+<code>transfer_channel</code>是信道索引。<br>
+前3个参数在注解中的顺序任意，但<code>transfer_channel</code>参数必须始终位于注解中的最后。</p>
+<p>在RPC所调用的函数中，可用函数<code>multiplayer.get_remote_sender_id()</code>来获取RPC发送方对等体的UID。</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">func</span> <span class="token function">_on_some_input</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment"># 连接到某些输入。</span>
+	transfer_some_input<span class="token punctuation">.</span><span class="token function">rpc_id</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># 只对服务端发送输入。</span>
+
+
+<span class="token comment"># 当服务端也是一个玩家时，需要设置为call_local。</span>
+@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"any_peer"</span><span class="token punctuation">,</span> <span class="token string">"call_local"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
+<span class="token keyword">func</span> <span class="token function">transfer_some_input</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token comment"># 获得发送发UID。</span>
+	<span class="token keyword">var</span> sender_id <span class="token operator">=</span> multiplayer<span class="token punctuation">.</span><span class="token function">get_remote_sender_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="信道">信道</h3>
+<p>可以设置多个信道以实现互不干扰的通信，尤其是在需要的可靠度不同的时候可以提高效率。<br>
+索引为0的信道实际是3个不同的传输模式的3个信道。（但我不是很理解这句）</p>
+<h3 id="官方示例">官方示例</h3>
+<p>下面为一个示例大厅，可以处理对等体的加入和离开，通过信号来通知UI场景，并在所有客户端加载游戏场景后启动游戏。</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Node</span>
+
+<span class="token comment"># Autoload named Lobby</span>
+
+<span class="token comment"># These signals can be connected to by a UI lobby scene or the game scene.</span>
+<span class="token keyword">signal</span> <span class="token function">player_connected</span><span class="token punctuation">(</span>peer_id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
+<span class="token keyword">signal</span> <span class="token function">player_disconnected</span><span class="token punctuation">(</span>peer_id<span class="token punctuation">)</span>
+<span class="token keyword">signal</span> server_disconnected
+
+<span class="token keyword">const</span> <span class="token constant">PORT</span> <span class="token operator">=</span> <span class="token number">7000</span>
+<span class="token keyword">const</span> <span class="token constant">DEFAULT_SERVER_IP</span> <span class="token operator">=</span> <span class="token string">"127.0.0.1"</span> <span class="token comment"># IPv4 localhost</span>
+<span class="token keyword">const</span> <span class="token constant">MAX_CONNECTIONS</span> <span class="token operator">=</span> <span class="token number">20</span>
+
+<span class="token comment"># This will contain player info for every player,</span>
+<span class="token comment"># with the keys being each player's unique IDs.</span>
+<span class="token keyword">var</span> players <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+<span class="token comment"># This is the local player info. This should be modified locally</span>
+<span class="token comment"># before the connection is made. It will be passed to every other peer.</span>
+<span class="token comment"># For example, the value of "name" can be set to something the player</span>
+<span class="token comment"># entered in a UI scene.</span>
+<span class="token keyword">var</span> player_info <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"Name"</span><span class="token punctuation">&#125;</span>
+
+<span class="token keyword">var</span> players_loaded <span class="token operator">=</span> <span class="token number">0</span>
+
+
+
+<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	multiplayer<span class="token punctuation">.</span>peer_connected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_player_connected<span class="token punctuation">)</span>
+	multiplayer<span class="token punctuation">.</span>peer_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_player_disconnected<span class="token punctuation">)</span>
+	multiplayer<span class="token punctuation">.</span>connected_to_server<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_connected_ok<span class="token punctuation">)</span>
+	multiplayer<span class="token punctuation">.</span>connection_failed<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_connected_fail<span class="token punctuation">)</span>
+	multiplayer<span class="token punctuation">.</span>server_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_server_disconnected<span class="token punctuation">)</span>
+
+
+<span class="token keyword">func</span> <span class="token function">join_game</span><span class="token punctuation">(</span>address <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">if</span> address<span class="token punctuation">.</span><span class="token function">is_empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+		address <span class="token operator">=</span> <span class="token constant">DEFAULT_SERVER_IP</span>
+	<span class="token keyword">var</span> peer <span class="token operator">=</span> ENetMultiplayerPeer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">var</span> error <span class="token operator">=</span> peer<span class="token punctuation">.</span><span class="token function">create_client</span><span class="token punctuation">(</span>address<span class="token punctuation">,</span> <span class="token constant">PORT</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> error<span class="token punctuation">:</span>
+		<span class="token keyword">return</span> error
+	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> peer
+
+
+<span class="token keyword">func</span> <span class="token function">create_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">var</span> peer <span class="token operator">=</span> ENetMultiplayerPeer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">var</span> error <span class="token operator">=</span> peer<span class="token punctuation">.</span><span class="token function">create_server</span><span class="token punctuation">(</span><span class="token constant">PORT</span><span class="token punctuation">,</span> <span class="token constant">MAX_CONNECTIONS</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> error<span class="token punctuation">:</span>
+		<span class="token keyword">return</span> error
+	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> peer
+
+	players<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> player_info
+	player_connected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
+
+
+<span class="token keyword">func</span> <span class="token function">remove_multiplayer_peer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
+
+
+<span class="token comment"># When the server decides to start the game from a UI scene,</span>
+<span class="token comment"># do Lobby.load_game.rpc(filepath)</span>
+@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"call_local"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
+<span class="token keyword">func</span> <span class="token function">load_game</span><span class="token punctuation">(</span>game_scene_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span>game_scene_path<span class="token punctuation">)</span>
+
+
+<span class="token comment"># Every peer will call this when they have loaded the game scene.</span>
+@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"any_peer"</span><span class="token punctuation">,</span> <span class="token string">"call_local"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
+<span class="token keyword">func</span> <span class="token function">player_loaded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">if</span> multiplayer<span class="token punctuation">.</span><span class="token function">is_server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+		players_loaded <span class="token operator">+=</span> <span class="token number">1</span>
+		<span class="token keyword">if</span> players_loaded <span class="token operator">==</span> players<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+			$<span class="token operator">/</span>root<span class="token operator">/</span>Game<span class="token punctuation">.</span><span class="token function">start_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+			players_loaded <span class="token operator">=</span> <span class="token number">0</span>
+
+
+<span class="token comment"># When a peer connects, send them my player info.</span>
+<span class="token comment"># This allows transfer of all desired data for each player, not only the unique ID.</span>
+<span class="token keyword">func</span> <span class="token function">_on_player_connected</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	_register_player<span class="token punctuation">.</span><span class="token function">rpc_id</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
+
+
+@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"any_peer"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
+<span class="token keyword">func</span> <span class="token function">_register_player</span><span class="token punctuation">(</span>new_player_info<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">var</span> new_player_id <span class="token operator">=</span> multiplayer<span class="token punctuation">.</span><span class="token function">get_remote_sender_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	players<span class="token punctuation">[</span>new_player_id<span class="token punctuation">]</span> <span class="token operator">=</span> new_player_info
+	player_connected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>new_player_id<span class="token punctuation">,</span> new_player_info<span class="token punctuation">)</span>
+
+
+<span class="token keyword">func</span> <span class="token function">_on_player_disconnected</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	players<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+	player_disconnected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+
+
+<span class="token keyword">func</span> <span class="token function">_on_connected_ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">var</span> peer_id <span class="token operator">=</span> multiplayer<span class="token punctuation">.</span><span class="token function">get_unique_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	players<span class="token punctuation">[</span>peer_id<span class="token punctuation">]</span> <span class="token operator">=</span> player_info
+	player_connected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>peer_id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
+
+
+<span class="token keyword">func</span> <span class="token function">_on_connected_fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
+
+
+<span class="token keyword">func</span> <span class="token function">_on_server_disconnected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
+	players<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	server_disconnected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>游戏场景的根节点应命名为 Game，在其所附加的脚本中：</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Node3D</span> <span class="token comment"># Or Node2D.</span>
+
+
+
+<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token comment"># Preconfigure game.</span>
+
+	Lobby<span class="token punctuation">.</span>player_loaded<span class="token punctuation">.</span><span class="token function">rpc_id</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># Tell the server that this peer has loaded.</span>
+
+
+<span class="token comment"># Called only on the server.</span>
+<span class="token keyword">func</span> <span class="token function">start_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token comment"># All peers are ready to receive RPCs in this scene.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="自动同步">自动同步</h2>
+<p><code>MultiplayerSynchronizer</code>节点可以实现多端自动同步。<br>
+添加节点后，下方选择<code>复制</code>-&gt;<code>添加同步属性</code>，然后选择要同步的节点和属性。<br>
+例如可以将多个<code>Sprite2D</code>的<code>Transform</code>同步，这样就可以实现所有端上的<code>Sprite2D</code>的位置同步了。</p>
+<h2 id="实现一个可以单机或联机的客户端">实现一个可以单机或联机的客户端</h2>
+<p>实际上是用官方示例改的。我只是加入了一个让单机与联机能用相同逻辑的脚本以及我自己的注解。</p>
+<h3 id="总体节点架构">总体节点架构</h3>
+<p>主场景<br>
+Control_Main<br>
+|- LineEdit_InputName<br>
+|- Button_Solo<br>
+|- Button_HostMutiplayer<br>
+|- Button_JoinMutiplayer</p>
+<p>实际游戏<br>
+Control_Game<br>
+|- Button_GetScore<br>
+|- Button_End<br>
+|- Label_Players<br>
+|-MultiplayerSynchronizer_MultiplayerSynchronizer</p>
+<p>主持多人游戏<br>
+Control_HostMutiplayer<br>
+|- Label_Players<br>
+|- Button_Start<br>
+|- Button_End</p>
+<p>加入多人游戏<br>
+Control_JoinMutiplayer<br>
+|- Label-Players<br>
+|- LineEdit_InputIP<br>
+|- Button_Start<br>
+|- Button_End</p>
+<h3 id="编写脚本">编写脚本</h3>
+<p><code>server.gd</code>（需要自动加载）</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Node</span>
+
+<span class="token comment"># 自定义信号，方便别的地方获取信息</span>
+<span class="token keyword">signal</span> <span class="token function">player_connected</span><span class="token punctuation">(</span>peer_id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
+<span class="token keyword">signal</span> <span class="token function">player_disconnected</span><span class="token punctuation">(</span>peer_id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
+<span class="token keyword">signal</span> server_disconnected
+<span class="token keyword">signal</span> player_getscore
+
+<span class="token comment"># 默认服务端配置</span>
+<span class="token keyword">var</span> <span class="token constant">PORT</span> <span class="token operator">=</span> <span class="token number">7000</span>
+<span class="token keyword">var</span> <span class="token constant">DEFAULT_SERVER_IP</span> <span class="token operator">=</span> <span class="token string">"127.0.0.1"</span>
+<span class="token keyword">const</span> <span class="token constant">MAX_CONNECTIONS</span> <span class="token operator">=</span> <span class="token number">20</span>
+
+<span class="token comment"># 以UID为索引</span>
+@<span class="token keyword">export</span> <span class="token keyword">var</span> players <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token keyword">var</span> player_info <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"MasoFod"</span><span class="token punctuation">,</span> <span class="token string">"score"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">&#125;</span> <span class="token comment"># 该端的玩家信息，需要在建立连接前进行更改</span>
+
+<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	multiplayer<span class="token punctuation">.</span>peer_connected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_player_connected<span class="token punctuation">)</span>
+	multiplayer<span class="token punctuation">.</span>peer_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_player_disconnected<span class="token punctuation">)</span>
+	multiplayer<span class="token punctuation">.</span>connected_to_server<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_connected_ok<span class="token punctuation">)</span>
+	multiplayer<span class="token punctuation">.</span>connection_failed<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_connected_fail<span class="token punctuation">)</span>
+	multiplayer<span class="token punctuation">.</span>server_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_server_disconnected<span class="token punctuation">)</span>
+
+<span class="token comment"># 连接到指定IP的服务端</span>
+<span class="token keyword">func</span> <span class="token function">join_game</span><span class="token punctuation">(</span>address <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">if</span> address<span class="token punctuation">.</span><span class="token function">is_empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+		address <span class="token operator">=</span> <span class="token constant">DEFAULT_SERVER_IP</span>
+	<span class="token keyword">var</span> peer <span class="token operator">=</span> ENetMultiplayerPeer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">var</span> error <span class="token operator">=</span> peer<span class="token punctuation">.</span><span class="token function">create_client</span><span class="token punctuation">(</span>address<span class="token punctuation">,</span> <span class="token constant">PORT</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> error<span class="token punctuation">:</span>
+		<span class="token keyword">return</span> error
+	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> peer
+
+<span class="token comment"># 创建服务端</span>
+<span class="token keyword">func</span> <span class="token function">create_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">var</span> peer <span class="token operator">=</span> ENetMultiplayerPeer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">var</span> error <span class="token operator">=</span> peer<span class="token punctuation">.</span><span class="token function">create_server</span><span class="token punctuation">(</span><span class="token constant">PORT</span><span class="token punctuation">,</span> <span class="token constant">MAX_CONNECTIONS</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> error<span class="token punctuation">:</span>
+		<span class="token keyword">return</span> error
+	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> peer
+
+	<span class="token comment"># 将默认玩家设置为服务端玩家</span>
+	players<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> player_info
+	player_connected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
+
+<span class="token comment"># 停止联网</span>
+<span class="token keyword">func</span> <span class="token function">remove_multiplayer_peer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
+
+<span class="token comment"># 可执行Server.load_game.rpc(filepath)重启游戏，仅服务端可调用</span>
+@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"call_local"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
+<span class="token keyword">func</span> <span class="token function">load_game</span><span class="token punctuation">(</span>game_scene_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span>game_scene_path<span class="token punctuation">)</span>
+
+<span class="token comment"># 客户端连接到服务端时，发送玩家信息</span>
+<span class="token keyword">func</span> <span class="token function">_on_player_connected</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	_register_player<span class="token punctuation">.</span><span class="token function">rpc_id</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
+
+<span class="token comment"># 所有客户端注册玩家信息</span>
+@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"any_peer"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
+<span class="token keyword">func</span> <span class="token function">_register_player</span><span class="token punctuation">(</span>new_player_info<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">var</span> new_player_id <span class="token operator">=</span> multiplayer<span class="token punctuation">.</span><span class="token function">get_remote_sender_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	players<span class="token punctuation">[</span>new_player_id<span class="token punctuation">]</span> <span class="token operator">=</span> new_player_info
+	player_connected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>new_player_id<span class="token punctuation">,</span> new_player_info<span class="token punctuation">)</span>
+
+<span class="token comment"># 客户端断开连接后服务端处理</span>
+<span class="token keyword">func</span> <span class="token function">_on_player_disconnected</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	players<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+	player_disconnected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
+
+<span class="token comment"># 客户端建立连接后，在本地注册自己</span>
+<span class="token keyword">func</span> <span class="token function">_on_connected_ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">var</span> peer_id <span class="token operator">=</span> multiplayer<span class="token punctuation">.</span><span class="token function">get_unique_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	players<span class="token punctuation">[</span>peer_id<span class="token punctuation">]</span> <span class="token operator">=</span> player_info
+	player_connected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>peer_id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
+
+<span class="token comment"># 客户端连接失败后断网</span>
+<span class="token keyword">func</span> <span class="token function">_on_connected_fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
+
+<span class="token comment"># 客户端断开连接客户端处理</span>
+<span class="token keyword">func</span> <span class="token function">_on_server_disconnected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
+	players<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	player_info<span class="token punctuation">.</span>score <span class="token operator">=</span> <span class="token number">0</span>
+	server_disconnected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://main.tscn"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 当有玩家的分数变化</span>
+@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"any_peer"</span><span class="token punctuation">,</span> <span class="token string">"call_local"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
+<span class="token keyword">func</span> <span class="token function">_on_player_get_score</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	players<span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">.</span>score <span class="token operator">+=</span> <span class="token number">1</span>
+	player_getscore<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 所有端开始游戏</span>
+@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"authority"</span><span class="token punctuation">,</span><span class="token string">"call_local"</span><span class="token punctuation">,</span><span class="token string">"reliable"</span><span class="token punctuation">)</span>
+<span class="token keyword">func</span> <span class="token function">start_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://game.tscn"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 结束本地游戏</span>
+<span class="token keyword">func</span> <span class="token function">end_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
+	players<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	player_info<span class="token punctuation">.</span>score <span class="token operator">=</span> <span class="token number">0</span>
+	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://main.tscn"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>main.gd</code>（main的脚本，需要连接信号）</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Control</span>
+
+@<span class="token keyword">onready</span> <span class="token keyword">var</span> input_name<span class="token punctuation">:</span> <span class="token class-name">LineEdit</span> <span class="token operator">=</span> <span class="token variable">$InputName</span>
+
+<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	input_name<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token function">str</span><span class="token punctuation">(</span>Server<span class="token punctuation">.</span>player_info<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">_on_solo_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	Server<span class="token punctuation">.</span>player_info<span class="token punctuation">.</span>name <span class="token operator">=</span> input_name<span class="token punctuation">.</span>text
+	Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> Server<span class="token punctuation">.</span>player_info
+	Server<span class="token punctuation">.</span><span class="token function">create_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://game.tscn"</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">func</span> <span class="token function">_on_host_mutiplayer_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	Server<span class="token punctuation">.</span>player_info<span class="token punctuation">.</span>name <span class="token operator">=</span> input_name<span class="token punctuation">.</span>text
+	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://host_mutiplayer.tscn"</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">func</span> <span class="token function">_on_join_mutiplayer_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	Server<span class="token punctuation">.</span>player_info<span class="token punctuation">.</span>name <span class="token operator">=</span> input_name<span class="token punctuation">.</span>text
+	Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> Server<span class="token punctuation">.</span>player_info
+	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://join_mutiplayer.tscn"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>game.gd</code>（game的脚本，需要连接信号）</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Control</span>
+
+@<span class="token keyword">onready</span> <span class="token keyword">var</span> players<span class="token punctuation">:</span> <span class="token class-name">Label</span> <span class="token operator">=</span> <span class="token variable">$Players</span>
+
+<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	Server<span class="token punctuation">.</span>player_getscore<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>refresh_text<span class="token punctuation">)</span>
+	Server<span class="token punctuation">.</span>player_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>refresh_text<span class="token punctuation">)</span>
+	<span class="token keyword">for</span> p <span class="token keyword">in</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">:</span>
+		players<span class="token punctuation">.</span>text <span class="token operator">+=</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">' '</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token operator">%</span>Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'分\n'</span>
+
+
+<span class="token keyword">func</span> <span class="token function">_on_end_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	Server<span class="token punctuation">.</span><span class="token function">end_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">func</span> <span class="token function">_on_get_score_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	<span class="token comment"># 对当前玩家+1分</span>
+	Server<span class="token punctuation">.</span>_on_player_get_score<span class="token punctuation">.</span><span class="token function">rpc</span><span class="token punctuation">(</span>Server<span class="token punctuation">.</span>multiplayer<span class="token punctuation">.</span><span class="token function">get_unique_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 刷新积分榜</span>
+<span class="token keyword">func</span> <span class="token function">refresh_text</span><span class="token punctuation">(</span>_id <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> _player_info <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	players<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">""</span>
+	<span class="token keyword">for</span> p <span class="token keyword">in</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">:</span>
+		players<span class="token punctuation">.</span>text <span class="token operator">+=</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">' '</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token operator">%</span>Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'分\n'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>host_mutiplayer.gd</code>（HostMutiplayer的脚本，需要连接信号）</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Control</span>
+
+@<span class="token keyword">onready</span> <span class="token keyword">var</span> players<span class="token punctuation">:</span> <span class="token class-name">Label</span> <span class="token operator">=</span> <span class="token variable">$Players</span>
+
+<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	Server<span class="token punctuation">.</span>player_connected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>update_players<span class="token punctuation">)</span>
+	Server<span class="token punctuation">.</span>player_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>update_players<span class="token punctuation">)</span>
+	Server<span class="token punctuation">.</span><span class="token function">create_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">update_players</span><span class="token punctuation">(</span>_id<span class="token punctuation">:</span><span class="token class-name">int</span><span class="token punctuation">,</span> _player_info<span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	players<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"玩家有：\n"</span>
+	<span class="token keyword">for</span> p <span class="token keyword">in</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">:</span>
+		players<span class="token punctuation">.</span>text <span class="token operator">+=</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">'\n'</span>
+
+<span class="token keyword">func</span> <span class="token function">_on_start_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	Server<span class="token punctuation">.</span>start_game<span class="token punctuation">.</span><span class="token function">rpc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">_on_end_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	Server<span class="token punctuation">.</span><span class="token function">end_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>join_mutiplayer.gd</code>（JoinMutiplayer的脚本，需要连接信号）</p>
+<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Control</span>
+
+@<span class="token keyword">onready</span> <span class="token keyword">var</span> start<span class="token punctuation">:</span> <span class="token class-name">Button</span> <span class="token operator">=</span> <span class="token variable">$Start</span>
+@<span class="token keyword">onready</span> <span class="token keyword">var</span> players<span class="token punctuation">:</span> <span class="token class-name">Label</span> <span class="token operator">=</span> <span class="token variable">$Players</span>
+@<span class="token keyword">onready</span> <span class="token keyword">var</span> input_ip<span class="token punctuation">:</span> <span class="token class-name">LineEdit</span> <span class="token operator">=</span> <span class="token variable">$InputIP</span>
+
+<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	Server<span class="token punctuation">.</span>player_connected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>update_players<span class="token punctuation">)</span>
+	Server<span class="token punctuation">.</span>player_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>update_players<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">update_players</span><span class="token punctuation">(</span>id<span class="token punctuation">:</span><span class="token class-name">int</span><span class="token punctuation">,</span> player_info<span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	players<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"玩家有：\n"</span>
+	<span class="token keyword">for</span> p <span class="token keyword">in</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">:</span>
+		players<span class="token punctuation">.</span>text <span class="token operator">+=</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">'\n'</span>
+
+<span class="token keyword">func</span> <span class="token function">_on_start_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	<span class="token keyword">var</span> ip <span class="token operator">=</span> <span class="token function">str</span><span class="token punctuation">(</span>input_ip<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+	<span class="token keyword">var</span> error <span class="token operator">=</span> Server<span class="token punctuation">.</span><span class="token function">join_game</span><span class="token punctuation">(</span>ip<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> error<span class="token punctuation">:</span>
+		players<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"找不到服务器"</span>
+	<span class="token keyword">else</span><span class="token punctuation">:</span>
+		start<span class="token punctuation">.</span><span class="token function">queue_free</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">func</span> <span class="token function">_on_end_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
+	Server<span class="token punctuation">.</span><span class="token function">remove_multiplayer_peer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://main.tscn"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="小提示">小提示</h2>
+<p>左上<code>调试</code>-&gt;<code>自定义运行实例...</code>可以设置运行的时候打开几个实例，方便测试网络。</p>
+<h2 id="总结">总结</h2>
+<p>这篇所讲到的内容基本上用处不大，只适合做点小游戏联机。如果想做大量联机，还是得做专用服务器。<br>
+如果看完了这篇文章还有不懂的，推荐看看<a href="https://www.bilibili.com/video/BV1aH4y167Lv">这个视频</a>，虽然语速很快，但是全是干货，如果无法理解，可以再看看文档，两个结合过后就很好懂了。<br>
+只不过看起来我还是用得很不好，执着于造轮子思维，总想着自己实现，没想到有现成的东西可以用。<br>
+因此我的代码中肯定有很多不“优美”的地方，还望大家谅解。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>Godot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【来点技术】快递员问题</title>
     <url>/posts/5fe5bce9.html</url>
     <content><![CDATA[<h2 id="题目背景">题目背景</h2>
@@ -574,486 +1057,23 @@ LIMITS <span class="token operator">=</span> <span class="token punctuation">&#1
       </tags>
   </entry>
   <entry>
-    <title>【来点技术】Godot中实现简单的单机联机通用的客户端</title>
-    <url>/posts/1f9f5e5.html</url>
-    <content><![CDATA[<p>本文主要作为学习笔记。<br>
-以下内容主要根据<a href="https://docs.godotengine.org/zh-cn/4.x/tutorials/networking/high_level_multiplayer.html">Godot的相关文档</a>和我的理解与实践编写，可能并非最佳实践，也可能存在错误，但是应该基本能用。</p>
-<div class="note info flat"><p>本文基于4.3版本。</p>
-</div>
-<h2 id="Godot中的网络通讯基础">Godot中的网络通讯基础</h2>
-<p>Godot中提供了一些较底层的实现，但是因为我用不上，所以就不讲了。<br>
-Godot提供的高级api是用的UDP，支持IPv6。</p>
-<h3 id="网络初始化">网络初始化</h3>
-<p>每个节点都有一个<code>multiplayer</code>属性，它是对场景树为其配置的<code>MultiplayerAPI</code>实例的引用。可以对节点单独设置<code>MultiplayerAPI</code>，同时覆盖所有子节点。因此，可以实现在一个Godot示例中运行多个服务端和客户端。</p>
-<p>可以通过如下方法创建客户端和服务端。</p>
-<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token comment"># 创建客户端</span>
-<span class="token keyword">var</span> peer <span class="token operator">=</span> ENetMultiplayerPeer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-peer<span class="token punctuation">.</span><span class="token function">create_client</span><span class="token punctuation">(</span><span class="token constant">IP_ADDRESS</span><span class="token punctuation">,</span> <span class="token constant">PORT</span><span class="token punctuation">)</span>
-multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> peer
-
-<span class="token comment"># 创建服务端</span>
-<span class="token keyword">var</span> peer <span class="token operator">=</span> ENetMultiplayerPeer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-peer<span class="token punctuation">.</span><span class="token function">create_server</span><span class="token punctuation">(</span><span class="token constant">PORT</span><span class="token punctuation">,</span> <span class="token constant">MAX_CLIENTS</span><span class="token punctuation">)</span>
-multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> peer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>通过如下方法结束联网。</p>
-<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<div class="note info flat"><p>导出Android需要勾选INTERNET权限，否则不能联网。</p>
-</div>
-<h3 id="管理连接">管理连接</h3>
-<p>这里要用到的一个概念是对等体，可以直接理解为一个没有性质的物体。<br>
-系统会给每个对等体都分配一个唯一ID（UID），服务端的ID永远为1，客户端的ID则会被分配给一个随机的正整数。</p>
-<p>可以通过<code>MultiplayerAPI</code>信号来检测连接建立和断开：<br>
-· <code>peer_connected(id: int)</code> 此信号在每个其他对等体上与新连接的对等体ID一起发出，并在新对等点上多次发出，其中一次与每个其他对等点ID一起发出。<br>
-· <code>peer_disconnected（id:int）</code> 当一个对等体断开连接时，剩余的每个对等体都会发出此信号。<br>
-以下信号仅在客户端上发送：<br>
-· <code>connected_to_server()</code><br>
-· <code>connection_failed()</code><br>
-· <code>server_disconnected()</code><br>
-通过<code>multiplayer.get_unique_id()</code>获取关联的UID。<br>
-通过<code>multiplayer.is_server()</code>获取对等体是服务端还是客户端。</p>
-<h3 id="远程过程调用（RPC）">远程过程调用（RPC）</h3>
-<p>远程过程调用是指在其他对等体上调用的函数。在函数定义前加上<code>@rpc</code>则将该函数创建为RPC。<br>
-若要调用 RPC，请在每个对等体中通过 Callable 的 rpc() 方法调用之，或使用 rpc_id() 在特定对等方中调用之。</p>
-<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token keyword">if</span> multiplayer<span class="token punctuation">.</span><span class="token function">is_server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-		print_once_per_client<span class="token punctuation">.</span><span class="token function">rpc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-@rpc
-<span class="token keyword">func</span> <span class="token function">print_once_per_client</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"每个连接的客户端都会将我打印到控制台一次。"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>要实现RPC，要求发送方和接收方的节点有相同的<code>NodePath</code>，包括节点名称。同时要求<code>@rpc</code>同时存在于服务端和客户端的对应函数，且函数的声明和返回类型等要相同。若要对预期使用RPC的节点调用<code>add_child()</code>时，请将参数<code>force_readable_name</code>设置为<code>true</code>。</p>
-<div class="note info flat"><p>在这个<a href="https://github.com/godotengine/godot/issues/57869#issuecomment-1034215138">issue</a>中有更多关于RPC错误的信息。<br>
-<a href="https://docs.godotengine.org/zh-cn/4.x/tutorials/networking/high_level_multiplayer.html#remote-procedure-calls">文档</a>也有说明。</p>
-</div>
-<p><code>@rpc</code>可以有多个参数，在没有设置时，采用如下预设：</p>
-<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript">@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"authority"</span><span class="token punctuation">,</span> <span class="token string">"call_remote"</span><span class="token punctuation">,</span> <span class="token string">"unreliable"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>其参数及可选值如下：<br>
-<code>mode</code>：<br>
-· <code>&quot;authority&quot;</code> ：只有多人游戏权限端（服务端）才能远程调用该函数。<br>
-· <code>&quot;any_peer&quot;</code> ：也允许客户端进行远程调用该函数，用于传输用户输入。<br>
-<code>sync</code>：<br>
-· <code>&quot;call_remote&quot;</code> ：让该函数不会在本地对等体上调用。<br>
-· <code>&quot;call_local”</code> ：让该函数也可以在本地对等体上调用，在服务端也是玩家时非常有用。<br>
-<code>transfer_mode</code>：<br>
-· <code>&quot;unreliable&quot;</code> ：数据包不被确认，可能丢失，并且可以按任意顺序到达接收方。<br>
-· <code>&quot;unreliable_ordered&quot;</code> ：数据包按照发送的顺序接收，透过忽略迟达的数据包（如果已经收到在这些数据包之后发送的另一个数据包）来实现的。使用不当可能会导致丢包。<br>
-· <code>&quot;reliable&quot;</code> ：发送重新传送尝试，直到数据包被确认为止，且这些数据包的顺序会被保留。具有明显的性能损失。<br>
-<code>transfer_channel</code>是信道索引。<br>
-前3个参数在注解中的顺序任意，但<code>transfer_channel</code>参数必须始终位于注解中的最后。</p>
-<p>在RPC所调用的函数中，可用函数<code>multiplayer.get_remote_sender_id()</code>来获取RPC发送方对等体的UID。</p>
-<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">func</span> <span class="token function">_on_some_input</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment"># 连接到某些输入。</span>
-	transfer_some_input<span class="token punctuation">.</span><span class="token function">rpc_id</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># 只对服务端发送输入。</span>
-
-
-<span class="token comment"># 当服务端也是一个玩家时，需要设置为call_local。</span>
-@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"any_peer"</span><span class="token punctuation">,</span> <span class="token string">"call_local"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
-<span class="token keyword">func</span> <span class="token function">transfer_some_input</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token comment"># 获得发送发UID。</span>
-	<span class="token keyword">var</span> sender_id <span class="token operator">=</span> multiplayer<span class="token punctuation">.</span><span class="token function">get_remote_sender_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="信道">信道</h3>
-<p>可以设置多个信道以实现互不干扰的通信，尤其是在需要的可靠度不同的时候可以提高效率。<br>
-索引为0的信道实际是3个不同的传输模式的3个信道。（但我不是很理解这句）</p>
-<h3 id="官方示例">官方示例</h3>
-<p>下面为一个示例大厅，可以处理对等体的加入和离开，通过信号来通知UI场景，并在所有客户端加载游戏场景后启动游戏。</p>
-<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Node</span>
-
-<span class="token comment"># Autoload named Lobby</span>
-
-<span class="token comment"># These signals can be connected to by a UI lobby scene or the game scene.</span>
-<span class="token keyword">signal</span> <span class="token function">player_connected</span><span class="token punctuation">(</span>peer_id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
-<span class="token keyword">signal</span> <span class="token function">player_disconnected</span><span class="token punctuation">(</span>peer_id<span class="token punctuation">)</span>
-<span class="token keyword">signal</span> server_disconnected
-
-<span class="token keyword">const</span> <span class="token constant">PORT</span> <span class="token operator">=</span> <span class="token number">7000</span>
-<span class="token keyword">const</span> <span class="token constant">DEFAULT_SERVER_IP</span> <span class="token operator">=</span> <span class="token string">"127.0.0.1"</span> <span class="token comment"># IPv4 localhost</span>
-<span class="token keyword">const</span> <span class="token constant">MAX_CONNECTIONS</span> <span class="token operator">=</span> <span class="token number">20</span>
-
-<span class="token comment"># This will contain player info for every player,</span>
-<span class="token comment"># with the keys being each player's unique IDs.</span>
-<span class="token keyword">var</span> players <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
-
-<span class="token comment"># This is the local player info. This should be modified locally</span>
-<span class="token comment"># before the connection is made. It will be passed to every other peer.</span>
-<span class="token comment"># For example, the value of "name" can be set to something the player</span>
-<span class="token comment"># entered in a UI scene.</span>
-<span class="token keyword">var</span> player_info <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"Name"</span><span class="token punctuation">&#125;</span>
-
-<span class="token keyword">var</span> players_loaded <span class="token operator">=</span> <span class="token number">0</span>
-
-
-
-<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	multiplayer<span class="token punctuation">.</span>peer_connected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_player_connected<span class="token punctuation">)</span>
-	multiplayer<span class="token punctuation">.</span>peer_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_player_disconnected<span class="token punctuation">)</span>
-	multiplayer<span class="token punctuation">.</span>connected_to_server<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_connected_ok<span class="token punctuation">)</span>
-	multiplayer<span class="token punctuation">.</span>connection_failed<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_connected_fail<span class="token punctuation">)</span>
-	multiplayer<span class="token punctuation">.</span>server_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_server_disconnected<span class="token punctuation">)</span>
-
-
-<span class="token keyword">func</span> <span class="token function">join_game</span><span class="token punctuation">(</span>address <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token keyword">if</span> address<span class="token punctuation">.</span><span class="token function">is_empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-		address <span class="token operator">=</span> <span class="token constant">DEFAULT_SERVER_IP</span>
-	<span class="token keyword">var</span> peer <span class="token operator">=</span> ENetMultiplayerPeer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	<span class="token keyword">var</span> error <span class="token operator">=</span> peer<span class="token punctuation">.</span><span class="token function">create_client</span><span class="token punctuation">(</span>address<span class="token punctuation">,</span> <span class="token constant">PORT</span><span class="token punctuation">)</span>
-	<span class="token keyword">if</span> error<span class="token punctuation">:</span>
-		<span class="token keyword">return</span> error
-	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> peer
-
-
-<span class="token keyword">func</span> <span class="token function">create_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token keyword">var</span> peer <span class="token operator">=</span> ENetMultiplayerPeer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	<span class="token keyword">var</span> error <span class="token operator">=</span> peer<span class="token punctuation">.</span><span class="token function">create_server</span><span class="token punctuation">(</span><span class="token constant">PORT</span><span class="token punctuation">,</span> <span class="token constant">MAX_CONNECTIONS</span><span class="token punctuation">)</span>
-	<span class="token keyword">if</span> error<span class="token punctuation">:</span>
-		<span class="token keyword">return</span> error
-	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> peer
-
-	players<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> player_info
-	player_connected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
-
-
-<span class="token keyword">func</span> <span class="token function">remove_multiplayer_peer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
-
-
-<span class="token comment"># When the server decides to start the game from a UI scene,</span>
-<span class="token comment"># do Lobby.load_game.rpc(filepath)</span>
-@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"call_local"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
-<span class="token keyword">func</span> <span class="token function">load_game</span><span class="token punctuation">(</span>game_scene_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span>game_scene_path<span class="token punctuation">)</span>
-
-
-<span class="token comment"># Every peer will call this when they have loaded the game scene.</span>
-@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"any_peer"</span><span class="token punctuation">,</span> <span class="token string">"call_local"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
-<span class="token keyword">func</span> <span class="token function">player_loaded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token keyword">if</span> multiplayer<span class="token punctuation">.</span><span class="token function">is_server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-		players_loaded <span class="token operator">+=</span> <span class="token number">1</span>
-		<span class="token keyword">if</span> players_loaded <span class="token operator">==</span> players<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-			$<span class="token operator">/</span>root<span class="token operator">/</span>Game<span class="token punctuation">.</span><span class="token function">start_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-			players_loaded <span class="token operator">=</span> <span class="token number">0</span>
-
-
-<span class="token comment"># When a peer connects, send them my player info.</span>
-<span class="token comment"># This allows transfer of all desired data for each player, not only the unique ID.</span>
-<span class="token keyword">func</span> <span class="token function">_on_player_connected</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">:</span>
-	_register_player<span class="token punctuation">.</span><span class="token function">rpc_id</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
-
-
-@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"any_peer"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
-<span class="token keyword">func</span> <span class="token function">_register_player</span><span class="token punctuation">(</span>new_player_info<span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token keyword">var</span> new_player_id <span class="token operator">=</span> multiplayer<span class="token punctuation">.</span><span class="token function">get_remote_sender_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	players<span class="token punctuation">[</span>new_player_id<span class="token punctuation">]</span> <span class="token operator">=</span> new_player_info
-	player_connected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>new_player_id<span class="token punctuation">,</span> new_player_info<span class="token punctuation">)</span>
-
-
-<span class="token keyword">func</span> <span class="token function">_on_player_disconnected</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">:</span>
-	players<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
-	player_disconnected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
-
-
-<span class="token keyword">func</span> <span class="token function">_on_connected_ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token keyword">var</span> peer_id <span class="token operator">=</span> multiplayer<span class="token punctuation">.</span><span class="token function">get_unique_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	players<span class="token punctuation">[</span>peer_id<span class="token punctuation">]</span> <span class="token operator">=</span> player_info
-	player_connected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>peer_id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
-
-
-<span class="token keyword">func</span> <span class="token function">_on_connected_fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
-
-
-<span class="token keyword">func</span> <span class="token function">_on_server_disconnected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
-	players<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	server_disconnected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>游戏场景的根节点应命名为 Game，在其所附加的脚本中：</p>
-<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Node3D</span> <span class="token comment"># Or Node2D.</span>
-
-
-
-<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token comment"># Preconfigure game.</span>
-
-	Lobby<span class="token punctuation">.</span>player_loaded<span class="token punctuation">.</span><span class="token function">rpc_id</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># Tell the server that this peer has loaded.</span>
-
-
-<span class="token comment"># Called only on the server.</span>
-<span class="token keyword">func</span> <span class="token function">start_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token comment"># All peers are ready to receive RPCs in this scene.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="自动同步">自动同步</h2>
-<p><code>MultiplayerSynchronizer</code>节点可以实现多端自动同步。<br>
-添加节点后，下方选择<code>复制</code>-&gt;<code>添加同步属性</code>，然后选择要同步的节点和属性。<br>
-例如可以将多个<code>Sprite2D</code>的<code>Transform</code>同步，这样就可以实现所有端上的<code>Sprite2D</code>的位置同步了。</p>
-<h2 id="实现一个可以单机或联机的客户端">实现一个可以单机或联机的客户端</h2>
-<p>实际上是用官方示例改的。我只是加入了一个让单机与联机能用相同逻辑的脚本以及我自己的注解。</p>
-<h3 id="总体节点架构">总体节点架构</h3>
-<p>主场景<br>
-Control_Main<br>
-|- LineEdit_InputName<br>
-|- Button_Solo<br>
-|- Button_HostMutiplayer<br>
-|- Button_JoinMutiplayer</p>
-<p>实际游戏<br>
-Control_Game<br>
-|- Button_GetScore<br>
-|- Button_End<br>
-|- Label_Players<br>
-|-MultiplayerSynchronizer_MultiplayerSynchronizer</p>
-<p>主持多人游戏<br>
-Control_HostMutiplayer<br>
-|- Label_Players<br>
-|- Button_Start<br>
-|- Button_End</p>
-<p>加入多人游戏<br>
-Control_JoinMutiplayer<br>
-|- Label-Players<br>
-|- LineEdit_InputIP<br>
-|- Button_Start<br>
-|- Button_End</p>
-<h3 id="编写脚本">编写脚本</h3>
-<p><code>server.gd</code>（需要自动加载）</p>
-<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Node</span>
-
-<span class="token comment"># 自定义信号，方便别的地方获取信息</span>
-<span class="token keyword">signal</span> <span class="token function">player_connected</span><span class="token punctuation">(</span>peer_id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
-<span class="token keyword">signal</span> <span class="token function">player_disconnected</span><span class="token punctuation">(</span>peer_id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
-<span class="token keyword">signal</span> server_disconnected
-<span class="token keyword">signal</span> player_getscore
-
-<span class="token comment"># 默认服务端配置</span>
-<span class="token keyword">var</span> <span class="token constant">PORT</span> <span class="token operator">=</span> <span class="token number">7000</span>
-<span class="token keyword">var</span> <span class="token constant">DEFAULT_SERVER_IP</span> <span class="token operator">=</span> <span class="token string">"127.0.0.1"</span>
-<span class="token keyword">const</span> <span class="token constant">MAX_CONNECTIONS</span> <span class="token operator">=</span> <span class="token number">20</span>
-
-<span class="token comment"># 以UID为索引</span>
-@<span class="token keyword">export</span> <span class="token keyword">var</span> players <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
-<span class="token keyword">var</span> player_info <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"MasoFod"</span><span class="token punctuation">,</span> <span class="token string">"score"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">&#125;</span> <span class="token comment"># 该端的玩家信息，需要在建立连接前进行更改</span>
-
-<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	multiplayer<span class="token punctuation">.</span>peer_connected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_player_connected<span class="token punctuation">)</span>
-	multiplayer<span class="token punctuation">.</span>peer_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_player_disconnected<span class="token punctuation">)</span>
-	multiplayer<span class="token punctuation">.</span>connected_to_server<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_connected_ok<span class="token punctuation">)</span>
-	multiplayer<span class="token punctuation">.</span>connection_failed<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_connected_fail<span class="token punctuation">)</span>
-	multiplayer<span class="token punctuation">.</span>server_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>_on_server_disconnected<span class="token punctuation">)</span>
-
-<span class="token comment"># 连接到指定IP的服务端</span>
-<span class="token keyword">func</span> <span class="token function">join_game</span><span class="token punctuation">(</span>address <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token keyword">if</span> address<span class="token punctuation">.</span><span class="token function">is_empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-		address <span class="token operator">=</span> <span class="token constant">DEFAULT_SERVER_IP</span>
-	<span class="token keyword">var</span> peer <span class="token operator">=</span> ENetMultiplayerPeer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	<span class="token keyword">var</span> error <span class="token operator">=</span> peer<span class="token punctuation">.</span><span class="token function">create_client</span><span class="token punctuation">(</span>address<span class="token punctuation">,</span> <span class="token constant">PORT</span><span class="token punctuation">)</span>
-	<span class="token keyword">if</span> error<span class="token punctuation">:</span>
-		<span class="token keyword">return</span> error
-	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> peer
-
-<span class="token comment"># 创建服务端</span>
-<span class="token keyword">func</span> <span class="token function">create_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token keyword">var</span> peer <span class="token operator">=</span> ENetMultiplayerPeer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	<span class="token keyword">var</span> error <span class="token operator">=</span> peer<span class="token punctuation">.</span><span class="token function">create_server</span><span class="token punctuation">(</span><span class="token constant">PORT</span><span class="token punctuation">,</span> <span class="token constant">MAX_CONNECTIONS</span><span class="token punctuation">)</span>
-	<span class="token keyword">if</span> error<span class="token punctuation">:</span>
-		<span class="token keyword">return</span> error
-	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> peer
-
-	<span class="token comment"># 将默认玩家设置为服务端玩家</span>
-	players<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> player_info
-	player_connected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
-
-<span class="token comment"># 停止联网</span>
-<span class="token keyword">func</span> <span class="token function">remove_multiplayer_peer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
-
-<span class="token comment"># 可执行Server.load_game.rpc(filepath)重启游戏，仅服务端可调用</span>
-@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"call_local"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
-<span class="token keyword">func</span> <span class="token function">load_game</span><span class="token punctuation">(</span>game_scene_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span>game_scene_path<span class="token punctuation">)</span>
-
-<span class="token comment"># 客户端连接到服务端时，发送玩家信息</span>
-<span class="token keyword">func</span> <span class="token function">_on_player_connected</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">:</span>
-	_register_player<span class="token punctuation">.</span><span class="token function">rpc_id</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
-
-<span class="token comment"># 所有客户端注册玩家信息</span>
-@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"any_peer"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
-<span class="token keyword">func</span> <span class="token function">_register_player</span><span class="token punctuation">(</span>new_player_info<span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token keyword">var</span> new_player_id <span class="token operator">=</span> multiplayer<span class="token punctuation">.</span><span class="token function">get_remote_sender_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	players<span class="token punctuation">[</span>new_player_id<span class="token punctuation">]</span> <span class="token operator">=</span> new_player_info
-	player_connected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>new_player_id<span class="token punctuation">,</span> new_player_info<span class="token punctuation">)</span>
-
-<span class="token comment"># 客户端断开连接后服务端处理</span>
-<span class="token keyword">func</span> <span class="token function">_on_player_disconnected</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">:</span>
-	players<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
-	player_disconnected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
-
-<span class="token comment"># 客户端建立连接后，在本地注册自己</span>
-<span class="token keyword">func</span> <span class="token function">_on_connected_ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	<span class="token keyword">var</span> peer_id <span class="token operator">=</span> multiplayer<span class="token punctuation">.</span><span class="token function">get_unique_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	players<span class="token punctuation">[</span>peer_id<span class="token punctuation">]</span> <span class="token operator">=</span> player_info
-	player_connected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>peer_id<span class="token punctuation">,</span> player_info<span class="token punctuation">)</span>
-
-<span class="token comment"># 客户端连接失败后断网</span>
-<span class="token keyword">func</span> <span class="token function">_on_connected_fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
-
-<span class="token comment"># 客户端断开连接客户端处理</span>
-<span class="token keyword">func</span> <span class="token function">_on_server_disconnected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
-	players<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	player_info<span class="token punctuation">.</span>score <span class="token operator">=</span> <span class="token number">0</span>
-	server_disconnected<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://main.tscn"</span><span class="token punctuation">)</span>
-
-<span class="token comment"># 当有玩家的分数变化</span>
-@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"any_peer"</span><span class="token punctuation">,</span> <span class="token string">"call_local"</span><span class="token punctuation">,</span> <span class="token string">"reliable"</span><span class="token punctuation">)</span>
-<span class="token keyword">func</span> <span class="token function">_on_player_get_score</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">:</span>
-	players<span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">.</span>score <span class="token operator">+=</span> <span class="token number">1</span>
-	player_getscore<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token comment"># 所有端开始游戏</span>
-@<span class="token function">rpc</span><span class="token punctuation">(</span><span class="token string">"authority"</span><span class="token punctuation">,</span><span class="token string">"call_local"</span><span class="token punctuation">,</span><span class="token string">"reliable"</span><span class="token punctuation">)</span>
-<span class="token keyword">func</span> <span class="token function">start_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://game.tscn"</span><span class="token punctuation">)</span>
-
-<span class="token comment"># 结束本地游戏</span>
-<span class="token keyword">func</span> <span class="token function">end_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	multiplayer<span class="token punctuation">.</span>multiplayer_peer <span class="token operator">=</span> <span class="token keyword">null</span>
-	players<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	player_info<span class="token punctuation">.</span>score <span class="token operator">=</span> <span class="token number">0</span>
-	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://main.tscn"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>main.gd</code>（main的脚本，需要连接信号）</p>
-<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Control</span>
-
-@<span class="token keyword">onready</span> <span class="token keyword">var</span> input_name<span class="token punctuation">:</span> <span class="token class-name">LineEdit</span> <span class="token operator">=</span> <span class="token variable">$InputName</span>
-
-<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	input_name<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token function">str</span><span class="token punctuation">(</span>Server<span class="token punctuation">.</span>player_info<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
-
-<span class="token keyword">func</span> <span class="token function">_on_solo_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	Server<span class="token punctuation">.</span>player_info<span class="token punctuation">.</span>name <span class="token operator">=</span> input_name<span class="token punctuation">.</span>text
-	Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> Server<span class="token punctuation">.</span>player_info
-	Server<span class="token punctuation">.</span><span class="token function">create_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://game.tscn"</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">func</span> <span class="token function">_on_host_mutiplayer_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	Server<span class="token punctuation">.</span>player_info<span class="token punctuation">.</span>name <span class="token operator">=</span> input_name<span class="token punctuation">.</span>text
-	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://host_mutiplayer.tscn"</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">func</span> <span class="token function">_on_join_mutiplayer_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	Server<span class="token punctuation">.</span>player_info<span class="token punctuation">.</span>name <span class="token operator">=</span> input_name<span class="token punctuation">.</span>text
-	Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> Server<span class="token punctuation">.</span>player_info
-	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://join_mutiplayer.tscn"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>game.gd</code>（game的脚本，需要连接信号）</p>
-<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Control</span>
-
-@<span class="token keyword">onready</span> <span class="token keyword">var</span> players<span class="token punctuation">:</span> <span class="token class-name">Label</span> <span class="token operator">=</span> <span class="token variable">$Players</span>
-
-<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	Server<span class="token punctuation">.</span>player_getscore<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>refresh_text<span class="token punctuation">)</span>
-	Server<span class="token punctuation">.</span>player_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>refresh_text<span class="token punctuation">)</span>
-	<span class="token keyword">for</span> p <span class="token keyword">in</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">:</span>
-		players<span class="token punctuation">.</span>text <span class="token operator">+=</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">' '</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token operator">%</span>Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'分\n'</span>
-
-
-<span class="token keyword">func</span> <span class="token function">_on_end_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	Server<span class="token punctuation">.</span><span class="token function">end_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">func</span> <span class="token function">_on_get_score_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	<span class="token comment"># 对当前玩家+1分</span>
-	Server<span class="token punctuation">.</span>_on_player_get_score<span class="token punctuation">.</span><span class="token function">rpc</span><span class="token punctuation">(</span>Server<span class="token punctuation">.</span>multiplayer<span class="token punctuation">.</span><span class="token function">get_unique_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token comment"># 刷新积分榜</span>
-<span class="token keyword">func</span> <span class="token function">refresh_text</span><span class="token punctuation">(</span>_id <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> _player_info <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	players<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">""</span>
-	<span class="token keyword">for</span> p <span class="token keyword">in</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">:</span>
-		players<span class="token punctuation">.</span>text <span class="token operator">+=</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">' '</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token operator">%</span>Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'分\n'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>host_mutiplayer.gd</code>（HostMutiplayer的脚本，需要连接信号）</p>
-<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Control</span>
-
-@<span class="token keyword">onready</span> <span class="token keyword">var</span> players<span class="token punctuation">:</span> <span class="token class-name">Label</span> <span class="token operator">=</span> <span class="token variable">$Players</span>
-
-<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	Server<span class="token punctuation">.</span>player_connected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>update_players<span class="token punctuation">)</span>
-	Server<span class="token punctuation">.</span>player_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>update_players<span class="token punctuation">)</span>
-	Server<span class="token punctuation">.</span><span class="token function">create_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token keyword">func</span> <span class="token function">update_players</span><span class="token punctuation">(</span>_id<span class="token punctuation">:</span><span class="token class-name">int</span><span class="token punctuation">,</span> _player_info<span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	players<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"玩家有：\n"</span>
-	<span class="token keyword">for</span> p <span class="token keyword">in</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">:</span>
-		players<span class="token punctuation">.</span>text <span class="token operator">+=</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">'\n'</span>
-
-<span class="token keyword">func</span> <span class="token function">_on_start_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	Server<span class="token punctuation">.</span>start_game<span class="token punctuation">.</span><span class="token function">rpc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token keyword">func</span> <span class="token function">_on_end_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	Server<span class="token punctuation">.</span><span class="token function">end_game</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>join_mutiplayer.gd</code>（JoinMutiplayer的脚本，需要连接信号）</p>
-<pre class="line-numbers language-gdscript" data-language="gdscript"><code class="language-gdscript"><span class="token keyword">extends</span> <span class="token class-name">Control</span>
-
-@<span class="token keyword">onready</span> <span class="token keyword">var</span> start<span class="token punctuation">:</span> <span class="token class-name">Button</span> <span class="token operator">=</span> <span class="token variable">$Start</span>
-@<span class="token keyword">onready</span> <span class="token keyword">var</span> players<span class="token punctuation">:</span> <span class="token class-name">Label</span> <span class="token operator">=</span> <span class="token variable">$Players</span>
-@<span class="token keyword">onready</span> <span class="token keyword">var</span> input_ip<span class="token punctuation">:</span> <span class="token class-name">LineEdit</span> <span class="token operator">=</span> <span class="token variable">$InputIP</span>
-
-<span class="token keyword">func</span> <span class="token function">_ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	Server<span class="token punctuation">.</span>player_connected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>update_players<span class="token punctuation">)</span>
-	Server<span class="token punctuation">.</span>player_disconnected<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>update_players<span class="token punctuation">)</span>
-
-<span class="token keyword">func</span> <span class="token function">update_players</span><span class="token punctuation">(</span>id<span class="token punctuation">:</span><span class="token class-name">int</span><span class="token punctuation">,</span> player_info<span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	players<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"玩家有：\n"</span>
-	<span class="token keyword">for</span> p <span class="token keyword">in</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">:</span>
-		players<span class="token punctuation">.</span>text <span class="token operator">+=</span> Server<span class="token punctuation">.</span>players<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">'\n'</span>
-
-<span class="token keyword">func</span> <span class="token function">_on_start_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	<span class="token keyword">var</span> ip <span class="token operator">=</span> <span class="token function">str</span><span class="token punctuation">(</span>input_ip<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
-	<span class="token keyword">var</span> error <span class="token operator">=</span> Server<span class="token punctuation">.</span><span class="token function">join_game</span><span class="token punctuation">(</span>ip<span class="token punctuation">)</span>
-	<span class="token keyword">if</span> error<span class="token punctuation">:</span>
-		players<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"找不到服务器"</span>
-	<span class="token keyword">else</span><span class="token punctuation">:</span>
-		start<span class="token punctuation">.</span><span class="token function">queue_free</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">func</span> <span class="token function">_on_end_pressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">void</span><span class="token punctuation">:</span>
-	Server<span class="token punctuation">.</span><span class="token function">remove_multiplayer_peer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	<span class="token function">get_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">change_scene_to_file</span><span class="token punctuation">(</span><span class="token string">"res://main.tscn"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="小提示">小提示</h2>
-<p>左上<code>调试</code>-&gt;<code>自定义运行实例...</code>可以设置运行的时候打开几个实例，方便测试网络。</p>
-<h2 id="总结">总结</h2>
-<p>这篇所讲到的内容基本上用处不大，只适合做点小游戏联机。如果想做大量联机，还是得做专用服务器。<br>
-如果看完了这篇文章还有不懂的，推荐看看<a href="https://www.bilibili.com/video/BV1aH4y167Lv">这个视频</a>，虽然语速很快，但是全是干货，如果无法理解，可以再看看文档，两个结合过后就很好懂了。<br>
-只不过看起来我还是用得很不好，执着于造轮子思维，总想着自己实现，没想到有现成的东西可以用。<br>
-因此我的代码中肯定有很多不“优美”的地方，还望大家谅解。</p>
+    <title>漆黑猎场物品分享代码生成器</title>
+    <url>/posts/7ceba66a.html</url>
+    <content><![CDATA[<p>使用地址: <a href="https://masofod.github.io/dhg-share-code-generator/release/">https://masofod.github.io/dhg-share-code-generator/release/</a><br>
+本工具可以直接选择物品类型、名称、稀有度和词条等信息直接生成物品分享代码。</p>
+<h2 id="注意">注意</h2>
+<ol>
+<li>数值可以随意填写，且本工具不对代码可用性保证。若遇问题，请先确认自己设置的属性是否正常；若确定一切正常却仍无法使用，请发issue，给出完整截图。本工具不保证后续更新。</li>
+<li>部分名称与游戏内不同，实际效果相同。</li>
+<li>词条顺序基本与游戏内一致，请对照使用。</li>
+<li>数值项须填整数，百分比项须填百分数实际对应的小数，负数项须填负数。</li>
+</ol>
 ]]></content>
       <categories>
-        <category>技术</category>
+        <category>工具</category>
       </categories>
       <tags>
-        <tag>技术</tag>
-        <tag>Godot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【来点技术】Godot开发中获得的一些经验（长期更新）</title>
-    <url>/posts/83c20e8a.html</url>
-    <content><![CDATA[<p>本人使用Godot做过一些小游戏（或者不算游戏的小东西），虽然每个项目的开发时间不长，项目规模也不大，但我还是获得了不少经验。因此在这里记录下来，以便警醒自己。<br>
-如果你有什么自己的经验，也可以写在评论区。</p>
-<h2 id="效率类">效率类</h2>
-<ol>
-<li>做一个新功能之前，先搜一下有没有现成的插件。即使是过期插件，也可以从中学到思路。</li>
-</ol>
-<h2 id="技巧类">技巧类</h2>
-<ol>
-<li>多用信号，避免繁琐的节点访问。</li>
-<li>避免频繁切换场景（<code>change_scene_to_file()</code>方法），否则性能开销较大。考虑使用一个<code>Main</code>根节点来组织场景树。</li>
-<li>在<code>_process()</code>（或其他频繁调用的方法）中避免高消耗的操作，例如加载素材。</li>
-<li>尽量使用<code>@export</code>的方法加载复杂路径的节点，避免在脚本中直接写节点路径，这样在更改节点路径后不会出问题。</li>
-<li>用GDScript别忘了有些方法在C#中有现成的。</li>
-</ol>
-<h2 id="出错类">出错类</h2>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-        <tag>Godot</tag>
+        <tag>小工具</tag>
       </tags>
   </entry>
   <entry>
@@ -1157,26 +1177,6 @@ DIRECTORIES <span class="token operator">=</span> <span class="token punctuation
     start_server<span class="token punctuation">(</span>main<span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">1450</span><span class="token punctuation">)</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>小工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>漆黑猎场物品分享代码生成器</title>
-    <url>/posts/7ceba66a.html</url>
-    <content><![CDATA[<p>使用地址: <a href="https://masofod.github.io/dhg-share-code-generator/release/">https://masofod.github.io/dhg-share-code-generator/release/</a><br>
-本工具可以直接选择物品类型、名称、稀有度和词条等信息直接生成物品分享代码。</p>
-<h2 id="注意">注意</h2>
-<ol>
-<li>数值可以随意填写，且本工具不对代码可用性保证。若遇问题，请先确认自己设置的属性是否正常；若确定一切正常却仍无法使用，请发issue，给出完整截图。本工具不保证后续更新。</li>
-<li>部分名称与游戏内不同，实际效果相同。</li>
-<li>词条顺序基本与游戏内一致，请对照使用。</li>
-<li>数值项须填整数，百分比项须填百分数实际对应的小数，负数项须填负数。</li>
-</ol>
-]]></content>
       <categories>
         <category>工具</category>
       </categories>
