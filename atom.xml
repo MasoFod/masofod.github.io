@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2026-03-08T14:48:51.128Z</updated>
+  <updated>2026-03-10T00:18:48.937Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://masofod.github.io/posts/7a6b7f1d"/>
     <id>https://masofod.github.io/posts/7a6b7f1d</id>
     <published>2026-03-06T04:26:30.000Z</published>
-    <updated>2026-03-08T14:48:51.128Z</updated>
+    <updated>2026-03-10T00:18:48.937Z</updated>
     
     
     <summary type="html">从域名到服务器再到cloudflare代理，全链条搞定，不花一分钱，不用外币卡。</summary>
@@ -31,7 +31,13 @@
     <category term="白嫖" scheme="https://masofod.github.io/categories/%E7%99%BD%E5%AB%96/"/>
     
     
-    <category term="建站, 白嫖, 服务器, 域名" scheme="https://masofod.github.io/tags/%E5%BB%BA%E7%AB%99-%E7%99%BD%E5%AB%96-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E5%9F%9F%E5%90%8D/"/>
+    <category term="建站" scheme="https://masofod.github.io/tags/%E5%BB%BA%E7%AB%99/"/>
+    
+    <category term="白嫖" scheme="https://masofod.github.io/tags/%E7%99%BD%E5%AB%96/"/>
+    
+    <category term="服务器" scheme="https://masofod.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    <category term="域名" scheme="https://masofod.github.io/tags/%E5%9F%9F%E5%90%8D/"/>
     
   </entry>
   
