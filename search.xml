@@ -29,33 +29,6 @@ On the phone, generally just use the computer’s IP address within the LAN, the
       </tags>
   </entry>
   <entry>
-    <title>【来点技术】Godot开发中获得的一些经验（长期更新）</title>
-    <url>/posts/83c20e8a.html</url>
-    <content><![CDATA[<p>本人使用Godot做过一些小游戏（或者不算游戏的小东西），虽然每个项目的开发时间不长，项目规模也不大，但我还是获得了不少经验。因此在这里记录下来，以便警醒自己。<br>
-如果你有什么自己的经验，也可以写在评论区。</p>
-<h2 id="效率类">效率类</h2>
-<ol>
-<li>做一个新功能之前，先搜一下有没有现成的插件。即使是过期插件，也可以从中学到思路。</li>
-</ol>
-<h2 id="技巧类">技巧类</h2>
-<ol>
-<li>多用信号，避免繁琐的节点访问。</li>
-<li>避免频繁切换场景（<code>change_scene_to_file()</code>方法），否则性能开销较大。考虑使用一个<code>Main</code>根节点来组织场景树。</li>
-<li>在<code>_process()</code>（或其他频繁调用的方法）中避免高消耗的操作，例如加载素材。</li>
-<li>尽量使用<code>@export</code>的方法加载复杂路径的节点，避免在脚本中直接写节点路径，这样在更改节点路径后不会出问题。</li>
-<li>用GDScript别忘了有些方法在C#中有现成的。</li>
-</ol>
-<h2 id="出错类">出错类</h2>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-        <tag>Godot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【来点技术】Godot中实现简单的单机联机通用的客户端</title>
     <url>/posts/1f9f5e5.html</url>
     <content><![CDATA[<p>本文主要作为学习笔记。<br>
@@ -502,6 +475,33 @@ Control_JoinMutiplayer<br>
 如果看完了这篇文章还有不懂的，推荐看看<a href="https://www.bilibili.com/video/BV1aH4y167Lv">这个视频</a>，虽然语速很快，但是全是干货，如果无法理解，可以再看看文档，两个结合过后就很好懂了。<br>
 只不过看起来我还是用得很不好，执着于造轮子思维，总想着自己实现，没想到有现成的东西可以用。<br>
 因此我的代码中肯定有很多不“优美”的地方，还望大家谅解。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>Godot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【来点技术】Godot开发中获得的一些经验（长期更新）</title>
+    <url>/posts/83c20e8a.html</url>
+    <content><![CDATA[<p>本人使用Godot做过一些小游戏（或者不算游戏的小东西），虽然每个项目的开发时间不长，项目规模也不大，但我还是获得了不少经验。因此在这里记录下来，以便警醒自己。<br>
+如果你有什么自己的经验，也可以写在评论区。</p>
+<h2 id="效率类">效率类</h2>
+<ol>
+<li>做一个新功能之前，先搜一下有没有现成的插件。即使是过期插件，也可以从中学到思路。</li>
+</ol>
+<h2 id="技巧类">技巧类</h2>
+<ol>
+<li>多用信号，避免繁琐的节点访问。</li>
+<li>避免频繁切换场景（<code>change_scene_to_file()</code>方法），否则性能开销较大。考虑使用一个<code>Main</code>根节点来组织场景树。</li>
+<li>在<code>_process()</code>（或其他频繁调用的方法）中避免高消耗的操作，例如加载素材。</li>
+<li>尽量使用<code>@export</code>的方法加载复杂路径的节点，避免在脚本中直接写节点路径，这样在更改节点路径后不会出问题。</li>
+<li>用GDScript别忘了有些方法在C#中有现成的。</li>
+</ol>
+<h2 id="出错类">出错类</h2>
 ]]></content>
       <categories>
         <category>技术</category>
