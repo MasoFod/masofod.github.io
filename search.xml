@@ -1111,4 +1111,24 @@ DIRECTORIES <span class="token operator">=</span> <span class="token punctuation
         <tag>小工具</tag>
       </tags>
   </entry>
+  <entry>
+    <title>免费vps白嫖：Lunes</title>
+    <url>/posts/3493362f.html</url>
+    <content><![CDATA[<p>今天给大家推荐一个免费的轻量VPS服务器：<a href="https://lunes.host/">Lunes</a>。<br>
+注册只需要邮箱，无需信用卡或实名。<br>
+其中，提供的免费服务器资源有限，只有128MB内存和512MB硬盘，且CPU仅为15%核，而且只有一个端口可用。<br>
+虽然是一个很迷你的服务器，但是在很多方面还是可用的，大家自己探索吧。</p>
+<p>注册完成后在面板下方<code>Create Server</code>即可创建服务器，<code>Node</code>目前只有德国和美国，德国已经满了，<code>Software</code>按需求选择，记得选免费层级。<br>
+一个账户只能创建一台服务器，而且一个IP只能创建一个账户。</p>
+<p>注意，创建服务器后需要及时进入服务器的面板，否则可能删除服务器。<br>
+同理，账号也需要时不时登录一下，避免删号。</p>
+]]></content>
+      <categories>
+        <category>白嫖</category>
+      </categories>
+      <tags>
+        <tag>白嫖</tag>
+        <tag>服务器</tag>
+      </tags>
+  </entry>
 </search>
