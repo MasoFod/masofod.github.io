@@ -6,7 +6,7 @@
   <link href="https://masofod.github.io/atom.xml" rel="self"/>
   
   <link href="https://masofod.github.io/"/>
-  <updated>2026-04-20T09:00:41.527Z</updated>
+  <updated>2026-05-14T15:37:22.362Z</updated>
   <id>https://masofod.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网站迁移说明</title>
+    <link href="https://masofod.github.io/posts/9c8f3b0d"/>
+    <id>https://masofod.github.io/posts/9c8f3b0d</id>
+    <published>2026-05-10T08:51:24.000Z</published>
+    <updated>2026-05-14T15:37:22.362Z</updated>
+    
+    
+    <summary type="html">本网站已迁移到blog.masofod.top。</summary>
+    
+    
+    
+    <category term="工具" scheme="https://masofod.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="网站" scheme="https://masofod.github.io/tags/%E7%BD%91%E7%AB%99/"/>
+    
+  </entry>
   
   <entry>
     <title>神经网络简单模拟</title>
